@@ -1,0 +1,9 @@
+.home-module {
+  // margin-top: 20px;
+  padding: 20px;
+  &__left,
+  &__right {
+    position: sticky;
+    top: 20px;
+  }
+}

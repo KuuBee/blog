@@ -1,0 +1,174 @@
+/*
+ * @Descripttion: markdown 样式
+ * @Author: 杨湛杰
+ * @Date: 2020-12-15 10:51:40
+ * @LastEditors: 杨湛杰
+ * @LastEditTime: 2021-01-06 16:56:50
+ */
+@import "~@angular/material/theming";
+
+@mixin markdown($is-dark, $primary, $accent, $warn) {
+  // 变量部分
+  $table-border: red !default;
+  $h2-border: 1px solid #ffffff !default;
+  @if $is-dark {
+    $table-border: 2px
+      solid
+      map-get(
+        $map: $mat-grey,
+        $key: 500,
+      );
+    $h2-border: 1px solid #ffffff;
+  } @else {
+    $table-border: 2px
+      solid
+      map-get(
+        $map: $mat-grey,
+        $key: 400,
+      );
+    $h2-border: 1px solid #000000;
+  }
+  // 公共部分
+  markdown {
+    .del {
+      text-decoration: line-through;
+    }
+  }
+  // 文章 markdown
+  .article-markdown {
+    markdown {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 100;
+      }
+      h1,
+      h2 {
+        text-align: center;
+      }
+      h1 {
+        font-size: 36px;
+        transition: all 0.3s;
+        cursor: pointer;
+        &:hover {
+          color: $accent;
+        }
+        &::before {
+          content: "「";
+          position: relative;
+          top: -4px;
+          left: 0px;
+          font-size: 40px;
+        }
+        &::after {
+          content: "」";
+          position: relative;
+          bottom: -4px;
+          right: 0px;
+          font-size: 40px;
+        }
+      }
+      h2 {
+        font-size: 32px;
+        &::after {
+          content: "";
+          border-bottom: $h2-border;
+        }
+      }
+      h3 {
+        font-size: 28px;
+      }
+      h4 {
+        font-size: 20px;
+      }
+      h5 {
+        font-size: 18px;
+      }
+      h6 {
+        font-size: 16px;
+      }
+      blockquote {
+        > p {
+          margin-bottom: 0;
+        }
+        margin: 0 0 12px 0;
+        padding: 1em;
+        border-left: 5px solid $accent;
+        background-color: rgba($color: #000000, $alpha: 0.1);
+        // color: #ccc;
+        border-radius: 5px;
+        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
+      }
+      table {
+        box-sizing: border-box;
+        overflow: hidden;
+        margin-top: 20px;
+        width: 100%;
+        border-spacing: 0;
+        border-radius: 5px;
+        background-color: rgba($color: #000000, $alpha: 0.08);
+        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
+        thead {
+          text-align: left;
+          tr {
+            > th {
+              padding: 10px;
+              background-color: rgba($color: #000000, $alpha: 0.11);
+              border-bottom: $table-border;
+              border-right: $table-border;
+              &:last-child {
+                border-right: none;
+              }
+              &:hover {
+                transition: all 0.3s;
+                background-color: rgba($color: #000000, $alpha: 0.2);
+              }
+            }
+          }
+        }
+        tbody {
+          tr {
+            > td {
+              padding: 10px;
+              border-bottom: $table-border;
+              border-right: $table-border;
+              &:last-child {
+                border-right: none;
+              }
+              &:hover {
+                transition: all 0.3s;
+                background-color: rgba($color: #000000, $alpha: 0.1);
+              }
+            }
+            &:last-child {
+              > td {
+                border-bottom: none;
+              }
+            }
+          }
+        }
+      }
+      p {
+        > code {
+          margin: 0 2px;
+          padding: 3px;
+          border-radius: 5px;
+          @if $is-dark {
+            background-color: rgba($color: #000000, $alpha: 0.2);
+            color: rgba($color: #ffffff, $alpha: 0.8);
+          } @else {
+            background-color: rgba($color: #000000, $alpha: 0.1);
+            color: rgba($color: #000000, $alpha: 0.55);
+          }
+        }
+      }
+      pre {
+        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
+      }
+    }
+  }
+  // 评论 markdown
+}

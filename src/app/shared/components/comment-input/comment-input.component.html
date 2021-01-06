@@ -1,0 +1,27 @@
+<mat-tab-group color="accent" class="app-comment-input">
+  <mat-tab label="评论">
+    <div class="app-comment-input__content">
+      <mat-form-field
+        color="accent"
+        appearance="outline"
+        style="width: 100%; font-size: 18px"
+      >
+        <mat-label>要说点什么呢</mat-label>
+        <textarea
+          #textarea
+          matInput
+          [(ngModel)]="inputText"
+          placeholder="emmmmm"
+          style="min-height: 100px; max-height: 300px"
+        ></textarea>
+        <mat-hint align="start">和平评论哦 </mat-hint>
+        <mat-hint align="end">{{ textarea.value.length }}</mat-hint>
+      </mat-form-field>
+    </div>
+  </mat-tab>
+  <mat-tab label="预览">
+    <div class="app-comment-input__content">
+      <markdown [data]="inputText"></markdown>
+    </div>
+  </mat-tab>
+</mat-tab-group>

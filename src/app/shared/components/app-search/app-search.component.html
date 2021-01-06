@@ -1,0 +1,32 @@
+<div *ngIf="isShow" @openClose class="app-search" fxLayout="column" fxLayoutAlign="center center" fxFill>
+  <button mat-icon-button class="app-search__close-button"(click)="close()">
+    <mat-icon style="color: #fefefe;">clear</mat-icon>
+  </button>
+  <mat-form-field fxFlex="10" class="app-search__field" appearance="legacy" color="accent">
+    <mat-label>你渴望什么少年</mat-label>
+    <input matInput placeholder="power" />
+    <mat-icon matSuffix color="accent">search</mat-icon>
+  </mat-form-field>
+  <div fxFlex="85" class="app-search__result—list">
+    <div class="hidden-scroll-bar">
+      <mat-card *ngFor="let item of [1,2,3,4,5,4,5]">
+        <mat-card-content>
+          <p>
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+            我要讲好多话话我要讲好多话我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多我讲好多话
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

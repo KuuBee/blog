@@ -1,0 +1,15 @@
+<mat-card @openClose class="user-card no-select">
+  <div class="user-card__avatar"></div>
+  <mat-card-content class="user-card__content">
+    <div class="user-card__content__name">{{userInfo.userName}}</div>
+    <div class="user-card__content__motto">{{userInfo.motto}}</div>
+    <div class="user-card__content__address">{{userInfo.country}} {{userInfo.city}}</div>
+    <div class="user-card__content__article-info" fxLayout="row" fxLayoutAlign="space-evenly center">
+      <div *ngFor="let item of articleInfoIcons" [matTooltip]="item.tips" fxLayout="column"
+        fxLayoutAlign="center center" class="icon cursor-pointer">
+        <mat-icon size="20">{{item.icon}}</mat-icon>
+        <div class="text-overflow-ellipsis">0</div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,27 @@
+$slow-fast: cubic-bezier(0.96, 0.11, 0.69, 0.56);
+$fast-slow: cubic-bezier(0.17, 0.84, 0.69, 0.56);
+
+@keyframes increase_width {
+  0% {
+    right: 100%;
+  }
+  100% {
+    right: 0%;
+  }
+}
+
+@keyframes bouncy {
+  from,
+  to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.8, 1.2);
+  }
+  50% {
+    transform: scale(1.2, 0.8);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}

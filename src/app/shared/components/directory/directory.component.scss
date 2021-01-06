@@ -1,0 +1,46 @@
+@import '@app/theme/animations.scss';
+.directory {
+  max-height: 600px;
+  overflow-y: auto;
+  &__tree {
+    > span {
+      font-size: 20px;
+      span {
+        font-size: 15px;
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+    ul,
+    li {
+      margin-top: 0;
+      margin-bottom: 0;
+      list-style-type: none;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    &__text {
+      font-size: 16px;
+      // font-family: "NotoSerifSC-Light"!important;
+      // font-weight: lighter;
+    }
+    &--invisible {
+      display: none;
+    }
+    &--active {
+      position: relative;
+      // color: red;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid;
+        animation: 1s cubic-bezier(0.075, 0.82, 0.165, 1) increase_width;
+      }
+    }
+  }
+}

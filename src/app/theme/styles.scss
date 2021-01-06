@@ -1,0 +1,45 @@
+@import "~@angular/material/theming";
+
+@font-face {
+  font-family: "MaShanZheng-Regular";
+  src: url("https://autocode.icu/assets/fonts/MaShanZheng-Regular.ttf") format("TrueType");
+}
+@font-face {
+  font-family: "NotoSerifSC-Light";
+  src: url("https://autocode.icu/assets/fonts/NotoSerifSC-Light.otf") format("OpenType");
+}
+@font-face {
+  font-family: "ZCOOLQingKeHuangYou-Regular";
+  src: url("https://autocode.icu/assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf") format("TrueType");
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+// 全局样式
+.app {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.hidden-scroll-bar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100%;
+  margin-right: -17px;
+}
+.no-select {
+  user-select: none;
+}
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cursor-pointer {
+  cursor: pointer;
+}

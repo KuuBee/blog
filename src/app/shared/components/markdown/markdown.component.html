@@ -1,0 +1,29 @@
+<mat-card class="app-article article-markdown">
+  <mat-card-content class="app-article__content">
+    <app-skeleton *ngIf="loading" [count]="1" width="300px"></app-skeleton>
+    <app-skeleton *ngIf="loading" [count]="25"></app-skeleton>
+    <markdown
+      ngPreserveWhitespaces
+      #markdown
+      [src]="src"
+      (load)="onLoad(markdown)"
+      (error)="onError($event)"
+    >
+    </markdown>
+  </mat-card-content>
+  <mat-card-actions
+    *ngIf="!isShrink"
+    class="no-select"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <button mat-button (click)="changePage('previous')">
+      <mat-icon class="rotate-180">double_arrow</mat-icon>
+      上一篇
+    </button>
+    <button mat-button (click)="changePage('next')">
+      下一篇
+      <mat-icon>double_arrow</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

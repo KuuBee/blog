@@ -1,0 +1,12 @@
+<mat-card class="no-select recent-card">
+  <mat-card-header>
+    <mat-card-title>最近的文章</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="recent-card__block" [@recentCardAnimation]="listTotal" fxLayout="column" fxLayoutGap="10px">
+      <mat-card *ngFor="let item of list" class="cursor-pointer aim-tag">
+        <p class="text-overflow-ellipsis ">2231231231231ju312iu3b12b3i12b31b2i312b31i2b3b1i23bs</p>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

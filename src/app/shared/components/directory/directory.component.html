@@ -1,0 +1,37 @@
+<mat-card class="directory">
+  <mat-card-content>
+    <app-skeleton *ngIf="loading" [count]="7"></app-skeleton>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="directory__tree">
+      <!-- This is the tree node template for leaf nodes -->
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <li class="mat-tree-node cursor-pointer" (click)="scrollToTop(node.element)">
+          <!-- use a disabled button to provide padding for tree leaf -->
+          <!-- <button mat-icon-button disabled></button> -->
+          <span class="directory__tree__text  app-theme--border-color"
+            [class.app-theme__color-accent]="treeControl.isExpanded(node)"
+            [class.directory__tree--active]="treeControl.isExpanded(node)">{{node.id}}. {{node.title}}</span>
+        </li>
+      </mat-tree-node>
+      <!-- This is the tree node template for expandable nodes -->
+      <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+        <li>
+          <div class="mat-tree-node cursor-pointer" (click)="scrollToTop(node.element)">
+            <!-- <button mat-icon-button disabled matTreeNodeToggle>
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button> -->
+            <span class="directory__tree__text app-theme--border-color"
+              [class.app-theme__color-accent]="treeControl.isExpanded(node)"
+              [class.directory__tree--active]="treeControl.isExpanded(node)">
+              {{node.id}}. {{node.title}}
+            </span>
+          </div>
+          <ul [class.directory__tree--invisible]="!treeControl.isExpanded(node)">
+            <ng-container matTreeNodeOutlet></ng-container>
+          </ul>
+        </li>
+      </mat-nested-tree-node>
+    </mat-tree>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,81 @@
+// @import "../../../../../theme/animations.scss";
+@import "~@app/theme/animations.scss";
+@import "~@app/theme/theme.scss";
+$active-color: map-get(
+  $map: $mat-grey,
+  $key: 300,
+);
+$active-background-color: map-get(
+  $map: $mat-pink,
+  $key: 300,
+);
+$defalut-color: map-get(
+  $map: $mat-grey,
+  $key: 800,
+);
+$defalut-background-color: map-get(
+  $map: $mat-grey,
+  $key: 100,
+);
+
+.floating-action-button {
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  > button {
+    &:hover {
+      animation: 0.3s linear bouncy;
+    }
+  }
+  &__like,
+  &__dislike {
+    position: relative;
+    &--default {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        animation: 0.2s $slow-fast hide;
+        border-radius: 50%;
+      }
+    }
+    &--active {
+      color: $active-color !important;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        animation: 0.3s $fast-slow active;
+        background-color: $active-background-color;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+// background
+@keyframes active {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes hide {
+  from {
+    transform: scale(1);
+    background-color: $active-background-color;
+  }
+  to {
+    transform: scale(0);
+    background-color: $active-background-color;
+  }
+}

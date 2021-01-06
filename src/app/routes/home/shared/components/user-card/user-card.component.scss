@@ -1,0 +1,55 @@
+@import "~@angular/material/theming";
+$mat-grey-500: map-get($mat-grey, 500);
+.user-card {
+  text-align: center;
+  &__avatar {
+    transition: all 0.37s;
+    margin: 0 auto;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    background: url(~@assets/images/avatar.png) no-repeat center/cover;
+    box-shadow: 3px 3px 5px 3px rgba($color: #000000, $alpha: 0.2);
+    &:hover {
+      transform: rotate(1turn);
+      background-image: url(~@assets/images/avatar-hover.jpg);
+      // ~@assets/images/avatar-hover.jpg
+    }
+  }
+  &__content {
+    > div {
+      margin-top: 8px;
+    }
+    &__name {
+      padding-top: 10px;
+      color: map-get($mat-blue, 700);
+      font-size: 20px;
+    }
+    &__motto {
+      margin-top: 12px !important;
+      font-size: 12px;
+      color: map-get($mat-orange, 500);
+    }
+    &__address {
+      font-size: 13px;
+      color: $mat-grey-500;
+    }
+    &__article-info {
+      .icon {
+        max-width: 30%;
+        text-align: center;
+        > div {
+          max-width: 100%;
+          font-size: 22px;
+          // font-weight: bold;
+          font-family: "Gill Sans", sans-serif;
+        }
+        .mat-icon {
+          font-size: 26px;
+          padding-bottom: 7px;
+        }
+        color: $mat-grey-500;
+      }
+    }
+  }
+}
