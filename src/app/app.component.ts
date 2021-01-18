@@ -7,6 +7,7 @@ import { slideInAnimation } from './shared/animation/router.animation';
 import { AppSearchService } from './shared/services/app-search.service';
 import { AppThemeService } from './shared/services/app-theme.service';
 import { UserInfoService } from './shared/services/user-info.service';
+import { AppDialogService } from '@app/shared/services/app-dialog.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
   constructor(
     private _appThemeService: AppThemeService,
     private _appSearchService: AppSearchService,
-    private _userInfo: UserInfoService
+    private _userInfo: UserInfoService,
+    private _appDialogService: AppDialogService
   ) {}
   get isDark() {
     return this._appThemeService.themeType === 'dark';
@@ -65,5 +67,9 @@ export class AppComponent implements OnInit {
     return (
       outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
     );
+  }
+
+  bugReport() {
+    this._appDialogService.bugReport();
   }
 }

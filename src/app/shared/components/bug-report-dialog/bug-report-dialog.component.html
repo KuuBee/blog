@@ -1,0 +1,33 @@
+<div class="bug-report-dialog">
+  <div mat-dialog-title class="bug-report-dialog__title">异常汇报</div>
+  <div mat-dialog-content>
+    <form [formGroup]="bugForm" class="bug-report-dialog__content">
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>标题</mat-label>
+          <input
+            matInput
+            cdkFocusInitial
+            placeholder="请输入标题"
+            formControlName="title"
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>bug简述</mat-label>
+          <textarea
+            matInput
+            placeholder="在哪里遇见了什么问题。。"
+            formControlName="content"
+          ></textarea>
+        </mat-form-field>
+      </p>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <span class="toolbar-spacer"></span>
+    <button mat-button mat-dialog-close>取消</button>
+    <button mat-button (click)="submit()">提交</button>
+  </div>
+</div>

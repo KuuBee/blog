@@ -3,8 +3,9 @@
     <app-skeleton *ngIf="loading" [count]="1" width="300px"></app-skeleton>
     <app-skeleton *ngIf="loading" [count]="25"></app-skeleton>
     <markdown
-      ngPreserveWhitespaces
       #markdown
+      ngPreserveWhitespaces
+      emoji
       [src]="src"
       (load)="onLoad(markdown)"
       (error)="onError($event)"

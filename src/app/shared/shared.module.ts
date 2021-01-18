@@ -13,13 +13,17 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentInputComponent } from './components/comment-input/comment-input.component';
+import { CommentContentComponent } from './components/comment-content/comment-content.component';
+import { MarkdownEmojiComponent } from './components/markdown-emoji/markdown-emoji.component';
+import { BugReportDialogComponent } from './components/bug-report-dialog/bug-report-dialog.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
   const renderer = new MarkedRenderer();
+  // 删除线
   renderer.del = (text) => {
-    console.log(text);
-
     return `<span class="del">${text}</span>`;
   };
   return {
@@ -53,11 +57,15 @@ const COMPONENTS: any[] = [
   DirectoryComponent,
   SkeletonComponent,
   CommentComponent,
+  BugReportDialogComponent,
+  CommentInputComponent,
+  CommentContentComponent,
+  MarkdownEmojiComponent,
 ];
 const PROVIDERS: any[] = [];
 
 @NgModule({
-  declarations: [...COMPONENTS, CommentInputComponent],
+  declarations: [...COMPONENTS, LoginDialogComponent, RegisterDialogComponent],
   imports: [
     CommonModule,
     FormsModule,

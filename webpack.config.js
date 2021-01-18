@@ -3,7 +3,7 @@
  * @Author: 杨湛杰
  * @Date: 2020-12-11 15:00:17
  * @LastEditors: 杨湛杰
- * @LastEditTime: 2020-12-25 13:54:16
+ * @LastEditTime: 2021-01-07 10:00:37
  */
 const path = require("path");
 // const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
@@ -24,7 +24,7 @@ const path = require("path");
 // },
 module.exports = {
   resolve: {
-    // extensions: ['.ts', '.js', '.scss', '.html'],
+    extensions: ['.ts', '.js', '.scss', '.html'],
     alias: {
       // /Users/kuubee/Desktop/self_porject/fontend/ng-blog
       '@src': path.resolve(__dirname, 'src'),

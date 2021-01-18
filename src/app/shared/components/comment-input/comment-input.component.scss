@@ -1,5 +1,9 @@
 .app-comment-input {
   &__content {
-    padding: 10px;
+    padding: 10px 0;
+    min-height: 100px;
+    textarea {
+      min-height: 100px;
+    }
   }
 }

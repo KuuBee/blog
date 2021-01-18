@@ -1,27 +1,53 @@
 <mat-tab-group color="accent" class="app-comment-input">
-  <mat-tab label="评论">
-    <div class="app-comment-input__content">
-      <mat-form-field
-        color="accent"
-        appearance="outline"
-        style="width: 100%; font-size: 18px"
-      >
+  <mat-tab label="新建">
+    <div class="app-comment-input__content" fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field color="accent" appearance="outline" style="width: 100%">
         <mat-label>要说点什么呢</mat-label>
         <textarea
-          #textarea
+          #commentTextarea
           matInput
           [(ngModel)]="inputText"
-          placeholder="emmmmm"
-          style="min-height: 100px; max-height: 300px"
-        ></textarea>
-        <mat-hint align="start">和平评论哦 </mat-hint>
-        <mat-hint align="end">{{ textarea.value.length }}</mat-hint>
+          [placeholder]="placeholder"
+          style="max-height: 300px"
+        >
+        </textarea>
+        <mat-hint align="start">和平评论哦</mat-hint>
+        <mat-hint align="end">{{ commentTextarea.value.length }}</mat-hint>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between"
+          style="margin-top: 20px"
+        >
+          <button
+            mat-stroked-button
+            color="accent"
+            (click)="showEmoji = !showEmoji"
+          >
+            表情
+          </button>
+          <button mat-stroked-button color="accent" (click)="submit()">
+            提交
+          </button>
+        </div>
+        <div *ngIf="showEmoji" style="margin-top: 20px">
+          <app-markdown-emoji
+            (select)="emojiSelect($event)"
+          ></app-markdown-emoji>
+        </div>
       </mat-form-field>
     </div>
   </mat-tab>
   <mat-tab label="预览">
     <div class="app-comment-input__content">
-      <markdown [data]="inputText"></markdown>
+      <mat-card style="margin: 5px">
+        <mat-card-content>
+          <markdown
+            emoji
+            ngPreserveWhitespaces
+            [data]="markdownData"
+          ></markdown>
+        </mat-card-content>
+      </mat-card>
     </div>
   </mat-tab>
 </mat-tab-group>

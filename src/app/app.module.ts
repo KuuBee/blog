@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { TestService } from './test.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { httpInterceptorProviders } from '@app/core/interceptors/index';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,18 +25,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [TestService],
+  providers: [TestService, httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-interface A {
-  [keyss:string]:any
-  // say:()=>string;
-}
-const a:A = {
-  say(){
-    return '1'
-  }
-}
-a.say()

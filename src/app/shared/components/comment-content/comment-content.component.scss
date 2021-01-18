@@ -1,0 +1,60 @@
+@import "@app/theme/theme.scss";
+
+$avatar-radius: 70px;
+.app-comment-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  // font-family: "ZCOOLQingKeHuangYou-Regular";
+  // host-context 伪类选择器 总是选择组件内的全部元素
+  // 所以直接放在外面就好了
+  // https://angular.cn/guide/component-styles#host-context
+  :host-context(.light-theme) {
+    .app-comment-content__content__user-info {
+      color: map-get($map: $mat-deep-orange, $key: 600);
+    }
+    .app-comment-content__content__action {
+      .action-left,
+      .action-right {
+        color: rgba($color: #000000, $alpha: 0.4);
+      }
+    }
+  }
+  :host-context(.dark-theme) {
+    .app-comment-content__content__user-info {
+      color: map-get($map: $mat-deep-orange, $key: A200);
+    }
+    .app-comment-content__content__action {
+      .date,
+      .from {
+        color: rgba($color: #ffffff, $alpha: 0.4);
+      }
+    }
+  }
+  &__avatar {
+    margin-right: 16px;
+    width: $avatar-radius;
+    height: $avatar-radius;
+    border-radius: 50%;
+    background-color: pink;
+  }
+  &__content {
+    flex: 1;
+    min-height: 100px;
+    &__user-info {
+      font-size: 14px;
+      font-weight: bold;
+      padding: 7px 0;
+    }
+    &__action {
+      user-select: none;
+      padding-bottom: 16px;
+      .action-left {
+        .comment {
+          cursor: pointer;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+}

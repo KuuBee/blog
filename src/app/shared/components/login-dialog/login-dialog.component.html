@@ -1,0 +1,35 @@
+<div class="login-dialog">
+  <div mat-dialog-title class="login-dialog__title">
+    <h1>登陆</h1>
+  </div>
+  <div mat-dialog-content>
+    <form [formGroup]="loginForm" class="login-dialog__content">
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>昵称</mat-label>
+          <input matInput placeholder="" formControlName="name" />
+          <mat-error *ngIf="name?.valid">{{ nameErrorMessage }}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>密码</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder=""
+            formControlName="password"
+          />
+          <!-- <mat-hint> 2222 </mat-hint> -->
+          <mat-error> 请输入密码 </mat-error>
+        </mat-form-field>
+      </p>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="register()">注册</button>
+    <span class="toolbar-spacer"></span>
+    <button mat-button mat-dialog-close>取消</button>
+    <button mat-button (click)="submit()">提交</button>
+  </div>
+</div>

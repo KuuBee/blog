@@ -1,0 +1,42 @@
+<div class="app-comment-content">
+  <div class="app-comment-content__avatar" [style]="avatarStyle">
+    <!-- <img src="@assets/images/avatar.png" alt="我裂开了" /> -->
+  </div>
+  <div class="app-comment-content__content">
+    <div class="app-comment-content__content__user-info">我叫啥？</div>
+    <div class="app-comment-content__content__message">
+      <markdown emoji ngPreserveWhitespaces>
+        我说了啥.我说了啥我说了啥我说了啥
+        我，说了,啥我，说了啥，我说了,啥，我说了啥
+        我说了啥.我说了啥我说了啥我说了啥 我，说了,啥我，说了啥我说了,啥我说了啥
+        我说了啥.我说了啥我说了啥我说了啥 我说了,啥我，说了啥我说了,啥我说了啥
+        我说了啥.我说了啥我说了啥我说了啥
+      </markdown>
+    </div>
+    <div
+      class="app-comment-content__content__action"
+      fxLayout="row"
+      fxLayoutAlign="space-between"
+    >
+      <div class="action-left">
+        <span class="date">
+          {{ createDate | date: "yyyy/MM/dd/ HH:mm" }}
+        </span>
+        <span class="comment" (click)="showComment = !showComment">回复</span>
+      </div>
+      <div class="action-right">
+        <span class="from">
+          {{ browserInfoText }}
+        </span>
+      </div>
+    </div>
+    <app-comment-input
+      *ngIf="showComment"
+      placeholder="回复 @test:"
+    ></app-comment-input>
+    <app-comment-content
+      *ngIf="recursion"
+      [recursion]="false"
+    ></app-comment-content>
+  </div>
+</div>

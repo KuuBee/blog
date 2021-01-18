@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 路由动画
+ * @Author: 杨湛杰
+ * @Date: 2020-12-09 14:33:47
+ * @LastEditors: 杨湛杰
+ * @LastEditTime: 2020-12-14 13:51:07
+ */
 import {
   animate,
   animateChild,
@@ -9,13 +16,6 @@ import {
   trigger,
 } from '@angular/animations';
 
-/*
- * @Descripttion:
- * @Author: 杨湛杰
- * @Date: 2020-12-09 14:33:47
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2020-12-14 13:51:07
- */
 export const slideInAnimation = trigger('routeAnimations', [
   // transition('')
   transition('* <=> HomePage', [

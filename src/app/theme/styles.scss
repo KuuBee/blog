@@ -4,6 +4,7 @@
   font-family: "MaShanZheng-Regular";
   src: url("https://autocode.icu/assets/fonts/MaShanZheng-Regular.ttf") format("TrueType");
 }
+// 默认全局的
 @font-face {
   font-family: "NotoSerifSC-Light";
   src: url("https://autocode.icu/assets/fonts/NotoSerifSC-Light.otf") format("OpenType");
@@ -42,4 +43,7 @@ body {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
 }

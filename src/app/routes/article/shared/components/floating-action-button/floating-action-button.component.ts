@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import scrollIntoView from 'scroll-into-view-if-needed';
 import { AppScrollService } from '@app/shared/services/app-scroll.service';
 
 @Component({
