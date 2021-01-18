@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { markdownEmojiTrigger } from '@app/shared/animation/markdown-emoji.animation';
-import { LoginDialogComponent } from '@app/shared/components/login-dialog/login-dialog.component';
+import { AppDialogService } from '@app/shared/services/app-dialog.service';
 
 @Component({
   selector: 'app-comment-input',
@@ -10,7 +9,7 @@ import { LoginDialogComponent } from '@app/shared/components/login-dialog/login-
   animations: [markdownEmojiTrigger],
 })
 export class CommentInputComponent implements OnInit {
-  constructor(private _matDialog: MatDialog) {}
+  constructor(private _appDialogService: AppDialogService) {}
   @Input() placeholder = 'emmmm';
   @ViewChild('commentTextarea') textareaElementRef!: ElementRef;
   inputText: string = '';
@@ -41,9 +40,7 @@ export class CommentInputComponent implements OnInit {
   submit() {
     this.showEmoji = false;
     this.inputText = '';
-    this._matDialog.open(LoginDialogComponent, {
-      width: '20%',
-    });
+    this._appDialogService.login();
     setTimeout(() => {
       this.textarea.blur();
     }, 0);

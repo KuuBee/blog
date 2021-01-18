@@ -8,7 +8,7 @@
         <mat-form-field color="accent">
           <mat-label>昵称</mat-label>
           <input matInput placeholder="" formControlName="name" />
-          <mat-error *ngIf="name?.valid">{{ nameErrorMessage }}</mat-error>
+          <mat-error>{{ nameErrorMessage }}</mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -20,8 +20,7 @@
             placeholder=""
             formControlName="password"
           />
-          <!-- <mat-hint> 2222 </mat-hint> -->
-          <mat-error> 请输入密码 </mat-error>
+          <mat-error> {{ passwordErrorMessage }} </mat-error>
         </mat-form-field>
       </p>
     </form>
@@ -30,6 +29,8 @@
     <button mat-button (click)="register()">注册</button>
     <span class="toolbar-spacer"></span>
     <button mat-button mat-dialog-close>取消</button>
-    <button mat-button (click)="submit()">提交</button>
+    <button mat-button [disabled]="loginForm.invalid" (click)="submit()">
+      提交
+    </button>
   </div>
 </div>

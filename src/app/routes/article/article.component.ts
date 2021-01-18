@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiUserService } from '@app/core/api/api-user.service';
+import { UserApiService } from '@app/core/api/user-api.service';
 
 @Component({
   selector: 'app-article',
@@ -7,11 +7,11 @@ import { ApiUserService } from '@app/core/api/api-user.service';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-  constructor(private _apiUser: ApiUserService) {}
+  constructor(private _UserApi: UserApiService) {}
 
   ngOnInit(): void {
     console.log('开始请求');
-    // this._apiUser.create().subscribe((res) => {
+    // this._UserApi.create().subscribe((res) => {
     //   console.log(res);
     // });
   }

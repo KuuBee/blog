@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export namespace ApiUserType {
+export namespace UserApiType {
   export interface Create {
     name: string;
     // 暂不考虑头像问题
@@ -15,10 +15,10 @@ export namespace ApiUserType {
 @Injectable({
   providedIn: 'root',
 })
-export class ApiUserService {
+export class UserApiService {
   constructor(private _http: HttpClient) {}
   private readonly _moduleUrl = '/user';
-  create(data: ApiUserType.Create) {
+  create(data: UserApiType.Create) {
     return this._http.post(this._moduleUrl, data);
   }
 }

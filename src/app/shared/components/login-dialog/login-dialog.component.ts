@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AppDialogService } from '@app/shared/services/app-dialog.service';
+import { AppDialogType } from '@app/shared/services/app-dialog.service';
 import { noJavaScript } from '@app/shared/validators/index';
 
 @Component({
@@ -12,28 +12,48 @@ import { noJavaScript } from '@app/shared/validators/index';
 export class LoginDialogComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
-    private _matDialogRef: MatDialogRef<LoginDialogComponent>,
-    private _appDialogService: AppDialogService
+    private _matDialogRef: MatDialogRef<
+      LoginDialogComponent,
+      AppDialogType.Response
+    >
+    // private _AuthApi
   ) {}
   loginForm = this._formBuilder.group({
     name: ['', [Validators.required, noJavaScript()]],
-    password: ['', Validators.required],
+    password: ['', [Validators.required, noJavaScript()]],
   });
   get name() {
     return this.loginForm.get('name');
   }
   get nameErrorMessage() {
-    console.log(this.name?.hasError('aaaa'));
-
-    return '';
+    if (this.name?.hasError('noJavaScript')) {
+      return '拜托请不要写一些奇奇怪怪的东西';
+    } else if (this.name?.hasError('required')) {
+      return '请输入昵称';
+    }
+    return '未知错误';
+  }
+  get passwordErrorMessage() {
+    if (this.name?.hasError('noJavaScript')) {
+      return '拜托请不要写一些奇奇怪怪的东西';
+    } else if (this.name?.hasError('required')) {
+      return '请输入密码';
+    }
+    return '未知错误';
   }
 
   ngOnInit(): void {}
   submit() {
-    this._matDialogRef.close();
+    
+    // this._matDialogRef.close({
+    //   code: 1,
+    //   data: null,
+    // });
   }
   register() {
-    this._matDialogRef.close();
-    this._appDialogService.register();
+    this._matDialogRef.close({
+      code: 2,
+      data: null,
+    });
   }
 }
