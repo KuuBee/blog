@@ -2,8 +2,8 @@
   <div mat-dialog-title class="register-dialog__title">
     <h1>注册</h1>
   </div>
-  <div mat-dialog-content>
-    <form [formGroup]="registerForm" class="register-dialog__content">
+  <div mat-dialog-content class="register-dialog__content">
+    <form [formGroup]="registerForm">
       <p>
         <mat-form-field color="accent">
           <mat-label>邮箱</mat-label>
@@ -11,14 +11,21 @@
             matInput
             cdkFocusInitial
             placeholder=""
+            type="email"
             formControlName="email"
           />
+          <mat-error>
+            {{ emailErrorMsg }}
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field color="accent">
           <mat-label>想叫啥</mat-label>
           <input matInput placeholder="" formControlName="name" />
+          <mat-error>
+            {{ nameErrorMsg }}
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -30,14 +37,66 @@
             placeholder=""
             formControlName="password"
           />
+          <mat-error>
+            {{ passwordErrorMsg }}
+          </mat-error>
         </mat-form-field>
       </p>
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>头像(可选)</mat-label>
+          <ngx-mat-file-input
+            #removableInput
+            formControlName="avatar"
+            accept=".png, .jpg, .jpeg"
+            (input)="fileInput()"
+          ></ngx-mat-file-input>
+          <mat-error>{{ avatarErrorMsg }}</mat-error>
+          <button
+            mat-icon-button
+            matSuffix
+            *ngIf="!removableInput.empty"
+            (click)="removableInput.clear($event); selectdefaultAvatarIndex = 0"
+          >
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+      <div class="defalut-avatar">
+        <div class="defalut-avatar__header">
+          <div>或者你也可以选一个默认头像</div>
+          <button
+            mat-mini-fab
+            color="accent"
+            (click)="defaultAvatarIndex = defaultAvatarIndex + 1"
+          >
+            <mat-icon>loop</mat-icon>
+          </button>
+        </div>
+        <div class="defalut-avatar__content">
+          <div
+            *ngFor="let item of defaultAvatar; let i = index"
+            class="defalut-avatar__content__item"
+            [class.defalut-avatar__content__item--active]="
+              i === selectdefaultAvatarIndex
+            "
+            (click)="
+              selectdefaultAvatarIndex = i;
+              registerForm.get('avatar')?.setValue(null)
+            "
+          >
+            <img [src]="item" alt="img" />
+          </div>
+        </div>
+      </div>
     </form>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="login()">有账号?登陆</button>
     <span class="toolbar-spacer"></span>
     <button mat-button mat-dialog-close>取消</button>
-    <button mat-button (click)="submit()">提交</button>
+    <button mat-button [disabled]="registerForm.invalid" (click)="submit()">
+      提交
+    </button>
   </div>
 </div>

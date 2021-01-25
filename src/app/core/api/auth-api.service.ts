@@ -3,13 +3,19 @@ import { Injectable } from '@angular/core';
 import { ApiType } from '.';
 
 export namespace AuthApiType {
-  export interface Create {
-    name: string;
-    password: string;
+  export namespace Parameter {
+    export interface Create {
+      name: string;
+      password: string;
+    }
   }
-  export type CreateResponse = ApiType.SuccessResponse<CreateResponseData>;
-  export interface CreateResponseData {
-    accessToken: string;
+  export namespace Response {
+    export type Create = ApiType.SuccessResponse<CreateData>;
+    export interface CreateData {
+      name: string;
+      avatar: string | null;
+      accessToken: string;
+    }
   }
 }
 
@@ -21,7 +27,7 @@ export class AuthApiService {
   private readonly _moduleUrl = '/auth';
   // 狭义上的登陆
   // 在restful的角度上也可以理解为创建登陆状态
-  create(data: AuthApiType.Create) {
-    return this._http.post<AuthApiType.CreateResponse>(this._moduleUrl, data);
+  create(data: AuthApiType.Parameter.Create) {
+    return this._http.post<AuthApiType.Response.Create>(this._moduleUrl, data);
   }
 }

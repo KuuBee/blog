@@ -32,10 +32,7 @@ export class DirectoryComponent implements OnInit, OnDestroy {
   loading = true;
 
   ngOnInit(): void {
-    console.log('DirectoryComponent init');
-
     this._appMarkdownService.markdownDirectoryRenderData$.subscribe((res) => {
-      console.log(res);
       this.renderData = res;
       this.dataSource.data = res;
       this.treeControl.dataNodes = res;

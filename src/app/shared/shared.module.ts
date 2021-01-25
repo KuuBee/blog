@@ -18,6 +18,9 @@ import { MarkdownEmojiComponent } from './components/markdown-emoji/markdown-emo
 import { BugReportDialogComponent } from './components/bug-report-dialog/bug-report-dialog.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
+import { SnackBarRefComponent } from './components/snack-bar-ref/snack-bar-ref.component';
+import { AuthDialogRefComponent } from './components/auth-dialog-ref/auth-dialog-ref.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -40,6 +43,7 @@ const MODULES: any[] = [
   MaterialModule,
   FlexLayoutModule,
   NgxSkeletonLoaderModule,
+  MaterialFileInputModule,
   MarkdownModule.forRoot({
     // 开启远程加载
     loader: HttpClient,
@@ -61,11 +65,15 @@ const COMPONENTS: any[] = [
   CommentInputComponent,
   CommentContentComponent,
   MarkdownEmojiComponent,
+  LoginDialogComponent,
+  RegisterDialogComponent,
+  SnackBarRefComponent,
+  AuthDialogRefComponent,
 ];
 const PROVIDERS: any[] = [];
 
 @NgModule({
-  declarations: [...COMPONENTS, LoginDialogComponent, RegisterDialogComponent],
+  declarations: [...COMPONENTS],
   imports: [
     CommonModule,
     FormsModule,

@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     return this._appSearchService.isShow;
   }
   get name() {
-    return this._userInfo.userName;
+    return this._userInfo.ownerName;
   }
   ngOnInit() {
     // 初始化的时候给body添加主题类名

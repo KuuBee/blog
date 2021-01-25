@@ -1,0 +1,8 @@
+<app-login-dialog
+  *ngIf="isShowLogin"
+  (toRegister)="isShowLogin = false"
+></app-login-dialog>
+<app-register-dialog
+  *ngIf="!isShowLogin"
+  (toLogin)="isShowLogin = true"
+></app-register-dialog>

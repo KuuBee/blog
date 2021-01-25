@@ -3,7 +3,7 @@
  * @Author: 杨湛杰
  * @Date: 2021-01-17 10:16:44
  * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-17 14:56:48
+ * @LastEditTime: 2021-01-19 11:33:06
  */
 
 import { Injectable } from '@angular/core';
@@ -14,11 +14,11 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from '@app/shared/services/auth.service';
+import { UserInfoService } from '@app/shared/services/user-info.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private _authService: AuthService) {}
+  constructor(private _userInfoService: UserInfoService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -27,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const req = request.clone({
       headers: request.headers.set(
         'Authorization',
-        this._authService.authorizationToken
+        this._userInfoService.token
       ),
     });
     return next.handle(req);

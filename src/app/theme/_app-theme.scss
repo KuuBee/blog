@@ -1,0 +1,53 @@
+@import "~@angular/material/theming";
+
+@mixin app-theme($is-dark, $primary, $accent, $warn) {
+  $snack-bar-background-color: #ffffff;
+  $snack-bar-color: #333333;
+  @if $is-dark {
+    $snack-bar-background-color: #323232;
+    $snack-bar-color: #eeeeee;
+  }
+
+  .app-snack-bar {
+    background-color: $snack-bar-background-color;
+    color: $snack-bar-color;
+    .mat-simple-snackbar-action {
+      color: $accent;
+    }
+    &--success {
+      background-color: map-get($map: $mat-green, $key: 500);
+      color: #ffffff;
+    }
+    &--warning {
+      background-color: map-get($map: $mat-amber, $key: 700);
+      color: #ffffff;
+    }
+    &--error {
+      background-color: map-get($map: $mat-red, $key: A700);
+      color: #ffffff;
+    }
+  }
+  .app-theme {
+    &__color-primary {
+      color: $primary;
+    }
+    &__color-accent {
+      color: $accent;
+    }
+    &__color-warn {
+      color: $warn;
+    }
+    &__bgc-primary {
+      background-color: $primary;
+    }
+    &__bgc-accent {
+      background-color: $accent !important;
+    }
+    &__bgc-warn {
+      background-color: $warn;
+    }
+    &--text {
+      color: $accent;
+    }
+  }
+}

@@ -26,6 +26,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "styles": [
               "src/assets/css/googleapis-css.css",
               "src/assets/css/googleapis-icon.css",

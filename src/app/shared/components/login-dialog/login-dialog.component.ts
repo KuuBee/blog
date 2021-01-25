@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AppDialogType } from '@app/shared/services/app-dialog.service';
-import { noJavaScript } from '@app/shared/validators/index';
+import { noJavaScript, NO_JS_ERROR_MESAGE } from '@app/shared/validators/index';
+import { AuthApiService } from '@app/core/api/auth-api.service';
+import { ApiType } from '@app/core/api';
+import { AppSnackBarService } from '@app/shared/services/app-snack-bar.service';
+import { UserInfoService } from '@app/shared/services/user-info.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -15,45 +19,63 @@ export class LoginDialogComponent implements OnInit {
     private _matDialogRef: MatDialogRef<
       LoginDialogComponent,
       AppDialogType.Response
-    >
-    // private _AuthApi
+    >,
+    private _authApiService: AuthApiService,
+    private _appSnackBarService: AppSnackBarService,
+    private _userInfoService: UserInfoService
   ) {}
+  @Output()
+  toRegister = new EventEmitter<boolean>();
   loginForm = this._formBuilder.group({
-    name: ['', [Validators.required, noJavaScript()]],
-    password: ['', [Validators.required, noJavaScript()]],
+    name: ['test', [Validators.required, noJavaScript()]],
+    password: ['123456', [Validators.required, noJavaScript()]],
   });
   get name() {
     return this.loginForm.get('name');
   }
+  get password() {
+    return this.loginForm.get('password');
+  }
   get nameErrorMessage() {
     if (this.name?.hasError('noJavaScript')) {
-      return '拜托请不要写一些奇奇怪怪的东西';
-    } else if (this.name?.hasError('required')) {
-      return '请输入昵称';
+      return NO_JS_ERROR_MESAGE;
     }
-    return '未知错误';
+    return '请输入昵称';
   }
   get passwordErrorMessage() {
-    if (this.name?.hasError('noJavaScript')) {
-      return '拜托请不要写一些奇奇怪怪的东西';
-    } else if (this.name?.hasError('required')) {
-      return '请输入密码';
+    if (this.password?.hasError('noJavaScript')) {
+      return NO_JS_ERROR_MESAGE;
     }
-    return '未知错误';
+    return '请输入密码';
   }
 
   ngOnInit(): void {}
   submit() {
-    
-    // this._matDialogRef.close({
-    //   code: 1,
-    //   data: null,
-    // });
+    this._authApiService
+      .create({
+        name: this.name?.value,
+        password: this.password?.value,
+      })
+      .subscribe((res) => {
+        console.log(res);
+        const { accessToken, name, avatar } = res.data;
+        this._userInfoService.setUserInfo({
+          token: accessToken,
+          avatar,
+          name,
+        });
+        this._matDialogRef.close({
+          code: AppDialogType.responseCode.DEFAULT,
+          data: null,
+        });
+        // this._appSnackBarService.success(res.message);
+      });
   }
   register() {
-    this._matDialogRef.close({
-      code: 2,
-      data: null,
-    });
+    this.toRegister.emit();
+    // this._matDialogRef.close({
+    //   code: AppDialogType.responseCode.OPEN_REGISTER,
+    //   data: null,
+    // });
   }
 }

@@ -1,6 +1,7 @@
 @import "~@angular/material/theming";
 @import "./styles.scss";
-@import "./markdown.scss";
+@import "./_markdown.scss";
+@import "./app-theme.scss";
 
 @include mat-core();
 $app-light-primary: mat-palette($mat-blue, 700);
@@ -16,6 +17,8 @@ $app-dark-theme: mat-dark-theme($app-dark-primary, $app-dark-warn, $app-dark-war
 // 字体
 $custom-typography: mat-typography-config(
   $font-family: "NotoSerifSC-Light, Roboto, monospace",
+  // 因为字体的原因 行高必须设置成1
+  $input: mat-typography-level(inherit, 1.4, 400),
 ); // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
 @include mat-base-typography($custom-typography);
 
@@ -51,45 +54,6 @@ $dark-warn: map-get(
   $key: default,
 );
 
-@mixin app-theme($is-dark, $primary, $accent, $warn) {
-  $snack-bar-background-color: #ffffff;
-  $snack-bar-color: #333333;
-  @if $is-dark {
-    $snack-bar-background-color: #323232;
-    $snack-bar-color: #eeeeee;
-  }
-
-  .app-snack-bar {
-    background-color: $snack-bar-background-color;
-    color: $snack-bar-color;
-    .mat-simple-snackbar-action {
-      color: $accent;
-    }
-  }
-  .app-theme {
-    &__color-primary {
-      color: $primary;
-    }
-    &__color-accent {
-      color: $accent;
-    }
-    &__color-warn {
-      color: $warn;
-    }
-    &__bgc-primary {
-      background-color: $primary;
-    }
-    &__bgc-accent {
-      background-color: $accent !important;
-    }
-    &__bgc-warn {
-      background-color: $warn;
-    }
-    &--text {
-      color: $accent;
-    }
-  }
-}
 .dark-theme {
   @include angular-material-color($app-dark-theme);
 
