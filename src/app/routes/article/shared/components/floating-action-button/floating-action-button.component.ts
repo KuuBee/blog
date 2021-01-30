@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppScrollService } from '@app/shared/services/app-scroll.service';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-floating-action-button',
@@ -29,6 +30,12 @@ export class FloatingActionButtonComponent implements OnInit {
   ngOnInit(): void {
     // 锚点DOM肯定存在 所以直接 as 了
     this.anchorDom = document.getElementById('app__anchor') as Element;
+  }
+  init() {
+    // const SCROLL_DOM: Element = document.getElementsByClassName(
+    //   'app__content'
+    // )[0];
+    // fromEvent(SCROLL_DOM,'scroll')
   }
   clickButton(type: 'like' | 'dislike' | 'bug' = 'like') {
     console.log(type);

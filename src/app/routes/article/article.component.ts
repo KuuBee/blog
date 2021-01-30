@@ -14,14 +14,18 @@ export class ArticleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const key = this._appCryptoService.generateKey();
-    const encryptRes = this._appCryptoService.aesEncrypt('111', key);
-    const decryptRes = this._appCryptoService.aesDecrypt(encryptRes, key);
-    console.log(encryptRes);
-    console.log(decryptRes);
+    // const key = this._appCryptoService.generateKey();
+    // const encryptRes = this._appCryptoService.aesEncrypt('2', key);
+    // const decryptRes = this._appCryptoService.aesDecrypt(encryptRes, key);
+    // console.log('encryptRes:', encryptRes);
+    // console.log('decryptRes:', decryptRes);
+    // console.log('rsa:', this._appCryptoService.rsaEncrypt('222'));
 
     this._UserApi.test().subscribe((res) => {
       console.log(res);
     });
+    // this._UserApi.test2().subscribe((res) => {
+    //   console.log(res);
+    // });
   }
 }

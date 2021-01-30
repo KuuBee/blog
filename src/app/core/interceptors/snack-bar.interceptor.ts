@@ -26,14 +26,16 @@ export class SnackBarInterceptor implements HttpInterceptor {
           const responseBody = val.body as ApiType.SuccessResponse | string;
           if (
             typeof responseBody !== 'string' &&
-            responseBody.message !== 'success' &&
-            responseBody.message.length
+            responseBody?.message !== 'success' &&
+            responseBody?.message.length
           )
             this._appSnackBarService.success(responseBody.message);
         }
       }),
       catchError((err: ApiType.ErrorResponse) => {
-        this._appSnackBarService.error(err.error.message.toString());
+        console.log('err::', err);
+
+        this._appSnackBarService.error(err?.error?.message?.toString());
         return throwError(err);
       })
     );

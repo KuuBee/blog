@@ -6,7 +6,8 @@ export namespace UserApiType {
   export namespace Parameter {
     export interface Create {
       name: string;
-      avatar?: File;
+      // 头像文件
+      file?: File;
       defaultAvatar?: string;
       password: string;
       email: string;
@@ -38,7 +39,13 @@ export class UserApiService {
     return this._http.post(
       '/',
       {
-        aa: '11',
+        aa: {
+          key: 1234312312312,
+          wowo: `
+          cmxznmidosnadnowneoinwiaondioasnioncmozxncozxi
+          `,
+          c3: '549i0239450309',
+        },
       },
       {
         params: {
@@ -48,5 +55,14 @@ export class UserApiService {
         },
       }
     );
+  }
+  test2() {
+    return this._http.get('/', {
+      params: {
+        a: '1',
+        b: '2',
+        cd: '3',
+      },
+    });
   }
 }

@@ -91,7 +91,7 @@ export class RegisterDialogComponent implements OnInit {
     this._userApiService
       .create({
         name,
-        avatar: avatar?.files?.[0],
+        file: avatar?.files?.[0],
         defaultAvatar: this.defaultAvatar[this.selectdefaultAvatarIndex],
         password,
         email,

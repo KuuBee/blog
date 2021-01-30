@@ -41,7 +41,7 @@ export class CommentInputComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._appDialogService.login();
+    // this._appDialogService.login();
   }
   ngOnDestroy() {
     this.dialogSubscription?.unsubscribe();

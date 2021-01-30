@@ -15,8 +15,6 @@ export class NoopInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log('拦截成功');
-
     return next.handle(request);
   }
 }

@@ -18,11 +18,6 @@ export class FormDataInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // const en = aes.encrypt('我我22xxcc', 'abc').toString();
-    // const re = aes.decrypt(en, 'abc').toString(Utf8);
-    // console.log('en', en);
-    // console.log('re', re);
-
     if (request.method === ('POST' || 'PUT' || 'PATCH' || 'DELETE')) {
       // 有body的清除空
       const originBody = this._appUtilsService.removeNil(
@@ -33,8 +28,6 @@ export class FormDataInterceptor implements HttpInterceptor {
         for (const key in originBody) {
           if (Object.prototype.hasOwnProperty.call(originBody, key)) {
             const element = originBody[key];
-            console.log('element', element);
-
             body.append(key, element);
           }
         }
