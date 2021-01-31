@@ -30,8 +30,12 @@
     matTooltip="返回顶部"
     matTooltipPosition="left"
     class="app-theme__bgc-accent"
+    @floatingActionButtonRemoveTrigger
+    *ngIf="isShowBackTop"
     (click)="scollTop()"
   >
+    <!-- 
+    [style.display]="isShowBackTop ? 'block' : 'none'" -->
     <mat-icon>keyboard_arrow_up</mat-icon>
   </button>
 </div>
