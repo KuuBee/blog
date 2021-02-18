@@ -3,7 +3,7 @@
  * @Author: 杨湛杰
  * @Date: 2021-01-25 11:50:23
  * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-29 11:19:21
+ * @LastEditTime: 2021-02-01 14:12:09
  */
 import { Injectable } from '@angular/core';
 import {
@@ -111,11 +111,13 @@ export class EncryptInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       concatMap((val) => {
         if (val instanceof HttpResponse) {
-          const res = JSON.parse(
-            this._appCryptoService.aesDecrypt(val.body, aesKey, aesIv)
-          );
-          console.log('请求结果:', res);
-
+          // 这里返回的必须是 HttpResponse 类型
+          const res: HttpResponse<GlobalType.StrKeyObj> = val.clone({
+            body: JSON.parse(
+              this._appCryptoService.aesDecrypt(val.body, aesKey, aesIv)
+            ),
+          });
+          console.log('请求结果:', res.body);
           return of(res);
         } else {
           return of(val);

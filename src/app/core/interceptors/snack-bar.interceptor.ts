@@ -21,22 +21,23 @@ export class SnackBarInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<ApiType.SuccessResponse>> {
     return next.handle(request).pipe(
+      catchError((err: ApiType.ErrorResponse) => {
+        console.log('err::', err);
+
+        this._appSnackBarService.error(err?.error?.message?.toString());
+        return throwError(err);
+      }),
       tap((val) => {
         if (val instanceof HttpResponse) {
           const responseBody = val.body as ApiType.SuccessResponse | string;
           if (
             typeof responseBody !== 'string' &&
             responseBody?.message !== 'success' &&
-            responseBody?.message.length
+            responseBody?.message?.length
           )
             this._appSnackBarService.success(responseBody.message);
         }
-      }),
-      catchError((err: ApiType.ErrorResponse) => {
-        console.log('err::', err);
-
-        this._appSnackBarService.error(err?.error?.message?.toString());
-        return throwError(err);
+        return of(val);
       })
     );
   }

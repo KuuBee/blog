@@ -7,6 +7,7 @@ import { AuthApiService } from '@app/core/api/auth-api.service';
 import { ApiType } from '@app/core/api';
 import { AppSnackBarService } from '@app/shared/services/app-snack-bar.service';
 import { UserInfoService } from '@app/shared/services/user-info.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-dialog',
@@ -27,8 +28,14 @@ export class LoginDialogComponent implements OnInit {
   @Output()
   toRegister = new EventEmitter<boolean>();
   loginForm = this._formBuilder.group({
-    name: ['test', [Validators.required, noJavaScript()]],
-    password: ['123456', [Validators.required, noJavaScript()]],
+    name: [
+      environment.production ? '' : 'test',
+      [Validators.required, noJavaScript()],
+    ],
+    password: [
+      environment.production ? '' : '123456',
+      [Validators.required, noJavaScript()],
+    ],
   });
   get name() {
     return this.loginForm.get('name');
@@ -57,7 +64,7 @@ export class LoginDialogComponent implements OnInit {
         password: this.password?.value,
       })
       .subscribe((res) => {
-        console.log(res);
+        console.log('create', res);
         const { accessToken, name, avatar } = res.data;
         this._userInfoService.setUserInfo({
           token: accessToken,

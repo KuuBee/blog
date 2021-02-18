@@ -1,6 +1,6 @@
 @import "~@angular/material/theming";
 @import "./styles.scss";
-@import "./_markdown.scss";
+@import "./markdown.scss";
 @import "./app-theme.scss";
 
 @include mat-core();
@@ -9,10 +9,6 @@ $app-light-accent: mat-palette($mat-green, 600);
 $app-light-warn: mat-palette($mat-red);
 $app-light-theme: mat-light-theme($app-light-primary, $app-light-accent, $app-light-warn);
 @include angular-material-theme($app-light-theme);
-$app-dark-primary: mat-palette($mat-blue-grey, 900);
-$app-dark-accent: mat-palette($mat-deep-orange, 900);
-$app-dark-warn: mat-palette($mat-red, A700);
-$app-dark-theme: mat-dark-theme($app-dark-primary, $app-dark-warn, $app-dark-warn);
 
 // 字体
 $custom-typography: mat-typography-config(
@@ -41,28 +37,33 @@ $light-warn: map-get(
   $map: $app-light-warn,
   $key: default,
 );
-$dark-primary: map-get(
-  $map: $app-dark-primary,
-  $key: default,
-);
-$dark-accent: map-get(
-  $map: $app-dark-accent,
-  $key: default,
-);
-$dark-warn: map-get(
-  $map: $app-dark-warn,
-  $key: default,
-);
 
 .dark-theme {
-  @include angular-material-color($app-dark-theme);
+  $app-dark-primary: mat-palette($mat-blue-grey, 900);
+  $app-dark-accent: mat-palette($mat-deep-orange, 900);
+  $app-dark-warn: mat-palette($mat-red, A700);
+  $theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
+  $primary: map-get(
+    $map: $app-dark-primary,
+    $key: default,
+  );
+  $accent: map-get(
+    $map: $app-dark-accent,
+    $key: default,
+  );
+  $warn: map-get(
+    $map: $app-dark-warn,
+    $key: default,
+  );
 
-  @include markdown(true, $dark-primary, $dark-accent, $dark-warn);
-  @include app-theme(true, $dark-primary, $dark-accent, $dark-warn);
+  @include angular-material-color($theme);
+  @include markdown(true, $primary, $accent, $warn);
+  @include app-theme(true, $primary, $accent, $warn);
+  @include angular-material-theme($theme);
 
   ::selection {
     // background-color: map-get($mat-deep-orange, 700);
-    background-color: $dark-accent;
+    background-color: $accent;
     color: #ffffff;
   }
   &::before {

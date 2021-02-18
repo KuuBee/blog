@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve -o",
     "prebuild": "echo I run before the build script",
-    "build": "ng build --prod --optimization",
+    "build": "ng build --prod --optimization --base-href /blog/",
     "build:analysis": "ng build --prod --optimization --source-map",
     "deploy": "./deploy.sh",
     "check": "./node_modules/.bin/source-map-explorer dist/ng-blog/main*",

@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { enableProdMode, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommonModule } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { httpInterceptorProviders } from '@app/core/interceptors/index';
 
+// enableProdMode();
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,7 +26,14 @@ import { httpInterceptorProviders } from '@app/core/interceptors/index';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [TestService, httpInterceptorProviders],
+  providers: [
+    TestService,
+    ...httpInterceptorProviders,
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/blog',
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
