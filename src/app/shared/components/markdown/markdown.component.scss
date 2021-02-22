@@ -1,3 +1,4 @@
+@import "@app/theme/theme.scss";
 .app-article {
   position: relative;
   &--loading {
@@ -7,8 +8,71 @@
     bottom: 0;
     top: 0;
   }
+  &__subtitle,
+  &__title,
+  &__tag,
+  &__class {
+    user-select: none;
+  }
   &__title {
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 25px 0 15px 0;
     text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+
+    &::before {
+      content: "「";
+      position: relative;
+      top: -4px;
+      left: 0px;
+      font-size: 40px;
+    }
+    &::after {
+      content: "」";
+      position: relative;
+      bottom: -4px;
+      right: 0px;
+      font-size: 40px;
+    }
+  }
+  &__subtitle {
+    text-align: center;
+  }
+  :host-context(.light-theme) {
+    .app-article {
+      &__title {
+        &:hover {
+          color: $light-accent;
+        }
+      }
+      &__tag,
+      &__class {
+        background-color: $light-accent;
+        color: #333;
+      }
+    }
+  }
+  :host-context(.dark-theme) {
+    .app-article {
+      &__title {
+        &:hover {
+          color: $dark-accent;
+        }
+      }
+      &__tag,
+      &__class {
+        background-color: $dark-accent;
+      }
+    }
+  }
+  &__tag,
+  &__class {
+    cursor: pointer;
+    padding: 0 10px 0 4px;
+    border-radius: 5px;
+    color: #fff !important;
   }
   .rotate-180 {
     transform: rotate(180deg);

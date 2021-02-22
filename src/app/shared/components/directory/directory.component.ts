@@ -7,10 +7,8 @@ import {
   AppMarkdownService,
   DirectoryType,
 } from '@app/shared/services/app-markdown.service';
-import { AppScrollService } from '@app/shared/services/app-scroll.service';
+import { AppUtilsService } from '@app/shared/services/app-utils.service';
 import { combineLatest, fromEvent, Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import scrollIntoView from 'scroll-into-view-if-needed';
 
 @Component({
   selector: 'app-directory',
@@ -20,7 +18,7 @@ import scrollIntoView from 'scroll-into-view-if-needed';
 export class DirectoryComponent implements OnInit, OnDestroy {
   constructor(
     private _appMarkdownService: AppMarkdownService,
-    private _appScrollService: AppScrollService
+    private _appUtils: AppUtilsService
   ) {}
   renderData: DirectoryType[] = [];
   dataSource = new MatTreeNestedDataSource<DirectoryType>();
@@ -53,9 +51,7 @@ export class DirectoryComponent implements OnInit, OnDestroy {
     let newContext: Element[][];
     let laysIndex: number | null = null;
     let targetContext: DirectoryType | null = null;
-    const ROOT_DOM: Element = document.getElementsByClassName(
-      'app__content'
-    )[0];
+    const ROOT_DOM: Element = this._appUtils.contentDom;
     const ROOT_DOM_TOP: number = ROOT_DOM.getClientRects()[0].top;
     this.scrollSubscription = combineLatest([
       this._appMarkdownService.markdownHeadDom$,
@@ -162,6 +158,6 @@ export class DirectoryComponent implements OnInit, OnDestroy {
 
   // 滚动至顶
   scrollToTop(node: Element) {
-    this._appScrollService.scrollIntoView(node);
+    this._appUtils.scrollIntoView(node);
   }
 }

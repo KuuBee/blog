@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AppScrollService } from '@app/shared/services/app-scroll.service';
-import { fromEvent } from 'rxjs';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
 import { AppDomService } from '@app/shared/services/app-dom.service';
 import { floatingActionButtonRemoveTrigger } from '../../animation/floating-action-button';
+import { AppUtilsService } from '@app/shared/services/app-utils.service';
 
 @Component({
   selector: 'app-floating-action-button',
@@ -10,15 +10,17 @@ import { floatingActionButtonRemoveTrigger } from '../../animation/floating-acti
   styleUrls: ['./floating-action-button.component.scss'],
   animations: [floatingActionButtonRemoveTrigger],
 })
-export class FloatingActionButtonComponent implements OnInit {
+export class FloatingActionButtonComponent
+  implements OnInit, AfterViewInit, OnDestroy {
   constructor(
-    private _appScrollService: AppScrollService,
-    private _appDomService: AppDomService
+    private _appDomService: AppDomService,
+    private _appUtils: AppUtilsService
   ) {}
   likeButtonStatus: boolean | null = null;
   dislikeButtonStatus: boolean | null = null;
   anchorDom?: Element;
   isShowBackTop = false;
+  scrollSubscription?: Subscription;
   get likeButtonClass() {
     return {
       'floating-action-button__like--active': this.likeButtonStatus,
@@ -40,11 +42,18 @@ export class FloatingActionButtonComponent implements OnInit {
     this.anchorDom = document.getElementById('app__anchor') as Element;
     this.showBackTop();
   }
+  ngAfterViewInit() {
+    // 按钮一初始化就执行一次跳转顶部
+    setTimeout(() => {
+      this.scollTop();
+    }, 500);
+  }
+  ngOnDestroy() {
+    if (this.scrollSubscription) this.scrollSubscription.unsubscribe();
+  }
   showBackTop() {
-    const SCROLL_DOM: Element = document.getElementsByClassName(
-      'app__content'
-    )[0];
-    fromEvent(SCROLL_DOM, 'scroll').subscribe(() => {
+    const SCROLL_DOM: Element = this._appUtils.contentDom;
+    this.scrollSubscription = fromEvent(SCROLL_DOM, 'scroll').subscribe(() => {
       this.isShowBackTop =
         (this.anchorDom?.getClientRects()[0].top ?? 0) <
         -(this._appDomService.bodyheight ?? 500);
@@ -79,6 +88,6 @@ export class FloatingActionButtonComponent implements OnInit {
     if (!this.anchorDom) {
       this.anchorDom = document.getElementById('app__anchor') as Element;
     }
-    this._appScrollService.scrollIntoView(this.anchorDom);
+    this._appUtils.scrollIntoView(this.anchorDom);
   }
 }

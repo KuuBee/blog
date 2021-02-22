@@ -17,8 +17,15 @@
   >
     <app-markdown
       fxFill
-      src="https://autocode.icu/assets/markdown/test_markdown.md"
+      [articleId]="articleId"
+      [loading]="loading"
+      [articleTitle]="articleInfo?.title"
+      [date]="articleInfo?.updatedAt"
+      [tagArr]="articleInfo?.tag"
+      [classification]="articleInfo?.classification"
+      [src]="articleLink"
     ></app-markdown>
+    <!-- https://autocode.icu/assets/markdown/test_markdown.md -->
     <app-comment fxFill></app-comment>
   </div>
   <div fxFlex="18"></div>

@@ -10,10 +10,11 @@ export class SkeletonComponent implements OnInit {
   constructor(private _appTheme: AppThemeService) {}
   @Input() count: number = 1;
   @Input() width: string = '100%';
+  @Input() height: string = '30px';
   get theme() {
     const defalutCss: any = {
       width: this.width,
-      height: '30px',
+      height: this.height,
       outline: 'none',
       'animation-duration': '2s',
     };

@@ -1,16 +1,70 @@
 <mat-card class="app-article article-markdown">
-  <mat-card-content class="app-article__content">
-    <app-skeleton *ngIf="loading" [count]="1" width="300px"></app-skeleton>
-    <app-skeleton *ngIf="loading" [count]="25"></app-skeleton>
-    <markdown
-      #markdown
-      ngPreserveWhitespaces
-      emoji
-      [src]="src"
-      (load)="onLoad(markdown)"
-      (error)="onError($event)"
+  <mat-card-title
+    *ngIf="articleTitle"
+    class="app-article__title"
+    [routerLink]="['/article', articleId]"
+  >
+    {{ articleTitle }}
+  </mat-card-title>
+  <mat-card-subtitle
+    *ngIf="date"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center"
+    class="app-article__subtitle"
+  >
+    <span fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+      <mat-icon>today</mat-icon>
+      <span>{{ date }}</span>
+    </span>
+  </mat-card-subtitle>
+  <mat-card-subtitle
+    *ngIf="!isShrink"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center"
+  >
+    <app-tag
+      *ngFor="let item of tagArr; trackBy: trackById"
+      [content]="item.name"
+      >tag
+    </app-tag>
+    <app-tag *ngIf="classification" [content]="classification.content"
+      >class</app-tag
     >
-    </markdown>
+  </mat-card-subtitle>
+  <mat-card-content class="app-article__content">
+    <app-skeleton
+      *ngIf="loading || outerLoading"
+      [count]="1"
+      width="300px"
+    ></app-skeleton>
+    <app-skeleton *ngIf="loading || outerLoading" [count]="25"></app-skeleton>
+    <!-- 
+    这里是两种类型的 渲染方式 
+    1. src 远程链接渲染
+    2. data 字符串
+    -->
+    <ng-container *ngIf="!outerLoading">
+      <markdown
+        *ngIf="src"
+        #markdownSrc
+        ngPreserveWhitespaces
+        emoji
+        [src]="src"
+        (load)="onLoad(markdownSrc)"
+        (error)="onError($event)"
+      >
+      </markdown>
+      <markdown
+        *ngIf="!src && markdownContent"
+        #markdown
+        ngPreserveWhitespaces
+        emoji
+        [data]="markdownContent"
+      >
+      </markdown>
+    </ng-container>
   </mat-card-content>
   <mat-card-actions
     *ngIf="!isShrink"
@@ -26,5 +80,16 @@
       下一篇
       <mat-icon>double_arrow</mat-icon>
     </button>
+  </mat-card-actions>
+  <mat-card-actions fxLayout="row" fxLayoutGap="10px" *ngIf="isShrink">
+    <app-tag
+      *ngFor="let item of tagArr; trackBy: trackById"
+      [content]="item.name"
+      >tag
+    </app-tag>
+    <span fxFlex></span>
+    <app-tag *ngIf="classification" [content]="classification.content"
+      >class</app-tag
+    >
   </mat-card-actions>
 </mat-card>

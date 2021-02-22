@@ -21,6 +21,7 @@ import { RegisterDialogComponent } from './components/register-dialog/register-d
 import { SnackBarRefComponent } from './components/snack-bar-ref/snack-bar-ref.component';
 import { AuthDialogRefComponent } from './components/auth-dialog-ref/auth-dialog-ref.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { TagComponent } from './components/tag/tag.component';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -28,6 +29,18 @@ export function markedOptionsFactory(): MarkedOptions {
   // 删除线
   renderer.del = (text) => {
     return `<span class="del">${text}</span>`;
+  };
+  renderer.image = (href, _title, text) => {
+    return `
+      <p class="image" ${text ? 'title="' + text + '"' : ''}>
+        <img src="${href}" alt="${text}"  ondragstart="return false">
+      </p>
+    `;
+  };
+  renderer.hr = () => {
+    return `
+      <div class="hr"></div>
+    `;
   };
   return {
     renderer: renderer,
@@ -69,6 +82,7 @@ const COMPONENTS: any[] = [
   RegisterDialogComponent,
   SnackBarRefComponent,
   AuthDialogRefComponent,
+  TagComponent,
 ];
 const PROVIDERS: any[] = [];
 

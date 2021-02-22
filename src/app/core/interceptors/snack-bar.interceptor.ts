@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { ApiType } from '../api/index';
+import { ApiType, AppHttpErrorResponse } from '../api/index';
 import { AppSnackBarService } from '../../shared/services/app-snack-bar.service';
 
 @Injectable()
@@ -21,10 +21,18 @@ export class SnackBarInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<ApiType.SuccessResponse>> {
     return next.handle(request).pipe(
-      catchError((err: ApiType.ErrorResponse) => {
+      catchError((err: AppHttpErrorResponse | HttpErrorResponse) => {
         console.log('err::', err);
-
-        this._appSnackBarService.error(err?.error?.message?.toString());
+        if (err instanceof AppHttpErrorResponse) {
+          let errorMsg = err?.error?.message?.toString() ?? '未知错误！';
+          this._appSnackBarService.error(errorMsg);
+          return throwError(err);
+        }
+        if (err instanceof HttpErrorResponse) {
+          this._appSnackBarService.error(err.message);
+          return throwError(err);
+        }
+        this._appSnackBarService.error('未知错误！');
         return throwError(err);
       }),
       tap((val) => {

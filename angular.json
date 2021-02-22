@@ -33,7 +33,7 @@
               "src/assets/css/googleapis-css.css",
               "src/assets/css/googleapis-icon.css",
               "src/assets/css/root-loading.css",
-              "src/app/theme/theme.scss",
+              "src/app/style.scss",
               "node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css"
@@ -83,7 +83,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "ng-blog:build:development",
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "proxy.conf.js"
           },
           "configurations": {
             "production": {

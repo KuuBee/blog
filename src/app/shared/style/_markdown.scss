@@ -2,8 +2,8 @@
  * @Descripttion: markdown 样式
  * @Author: 杨湛杰
  * @Date: 2020-12-15 10:51:40
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-06 16:56:50
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-02-19 15:38:36
  */
 @import "~@angular/material/theming";
 
@@ -31,7 +31,17 @@
   // 公共部分
   markdown {
     .del {
-      text-decoration: line-through;
+      text-decoration: line-through $accent wavy;
+    }
+    .image {
+      text-align: center;
+    }
+    .hr {
+      width: 100%;
+      height: 1px;
+      background-color: $accent;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
     }
   }
   // 文章 markdown
@@ -45,50 +55,53 @@
       h6 {
         font-weight: 100;
       }
-      h1,
-      h2 {
-        text-align: center;
-      }
       h1 {
-        font-size: 36px;
-        transition: all 0.3s;
-        cursor: pointer;
-        &:hover {
-          color: $accent;
-        }
-        &::before {
-          content: "「";
-          position: relative;
-          top: -4px;
-          left: 0px;
-          font-size: 40px;
-        }
+        font-size: 28px;
+        margin-bottom: 20px;
         &::after {
-          content: "」";
+          content: "";
+          display: block;
           position: relative;
-          bottom: -4px;
-          right: 0px;
-          font-size: 40px;
+          bottom: -10px;
+          background-color: #eaecef;
+          width: 100%;
+          height: 1px;
         }
       }
       h2 {
-        font-size: 32px;
+        font-size: 25px;
         &::after {
           content: "";
           border-bottom: $h2-border;
         }
       }
       h3 {
-        font-size: 28px;
+        font-size: 22px;
       }
       h4 {
-        font-size: 20px;
-      }
-      h5 {
         font-size: 18px;
       }
+      h5 {
+        font-size: 15px;
+      }
       h6 {
-        font-size: 16px;
+        font-size: 12px;
+      }
+      // 增加背景阴影
+      img,
+      blockquote,
+      table,
+      pre {
+        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
+      }
+      img {
+        border-radius: 5px;
+        max-width: 100%;
+        transition: all 0.3s;
+        &:hover {
+          transform: scale(1.02);
+          @include mat-elevation(7, map-get($map: $mat-grey, $key: 800));
+        }
       }
       blockquote {
         > p {
@@ -100,7 +113,6 @@
         background-color: rgba($color: #000000, $alpha: 0.1);
         // color: #ccc;
         border-radius: 5px;
-        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
       }
       table {
         box-sizing: border-box;
@@ -110,7 +122,6 @@
         border-spacing: 0;
         border-radius: 5px;
         background-color: rgba($color: #000000, $alpha: 0.08);
-        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
         thead {
           text-align: left;
           tr {
@@ -164,9 +175,6 @@
             color: rgba($color: #000000, $alpha: 0.55);
           }
         }
-      }
-      pre {
-        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
       }
     }
   }

@@ -3,6 +3,7 @@ import {
   animateChild,
   group,
   query,
+  stagger,
   style,
   transition,
   trigger,
@@ -29,25 +30,43 @@ export const homePageAnimation = trigger('homePageAnimation', [
       ]),
     ]),
   ]),
-  transition(':leave', [
-    group([
-      query('.home-module__content', [
-        animate(SHORT_TIME, style({ width: '1000px' })),
-      ]),
-      query('.home-module__left', [
-        style({ opacity: 1, transform: 'none' }),
-        animate(
-          ANIMATE_TIEM,
-          style({ opacity: 0, transform: 'translateX(-100px)' })
-        ),
-      ]),
-      query('.home-module__right', [
-        style({ opacity: 1, transform: 'none' }),
-        animate(
-          ANIMATE_TIEM,
-          style({ opacity: 0, transform: 'translateX(100px)' })
-        ),
-      ]),
-    ]),
+  // transition(':leave', [
+  //   group([
+  //     query('.home-module__content', [
+  //       animate(SHORT_TIME, style({ width: '1000px' })),
+  //     ]),
+  //     query('.home-module__left', [
+  //       style({ opacity: 1, transform: 'none' }),
+  //       animate(
+  //         ANIMATE_TIEM,
+  //         style({ opacity: 0, transform: 'translateX(-100px)' })
+  //       ),
+  //     ]),
+  //     query('.home-module__right', [
+  //       style({ opacity: 1, transform: 'none' }),
+  //       animate(
+  //         ANIMATE_TIEM,
+  //         style({ opacity: 0, transform: 'translateX(100px)' })
+  //       ),
+  //     ]),
+  //   ]),
+  // ]),
+]);
+
+export const articleCardAnimation = trigger('articleCardAnimation', [
+  transition(':increment', [
+    query(
+      ':enter',
+      [
+        style({ opacity: 0, transform: 'scale(.5) translateY(-200px)' }),
+        stagger(100, [
+          animate(
+            '370ms ease-out',
+            style({ opacity: 1, transform: 'scale(1) translateY(0)' })
+          ),
+        ]),
+      ],
+      { optional: true }
+    ),
   ]),
 ]);

@@ -1,14 +1,10 @@
 @import "~@angular/material/theming";
-@import "./styles.scss";
-@import "./markdown.scss";
-@import "./app-theme.scss";
+@import "../shared/style/markdown.scss";
+@import "./style/app-theme.scss";
+@import "./style/dark-theme.scss";
+@import "./style/light-theme.scss";
 
 @include mat-core();
-$app-light-primary: mat-palette($mat-blue, 700);
-$app-light-accent: mat-palette($mat-green, 600);
-$app-light-warn: mat-palette($mat-red);
-$app-light-theme: mat-light-theme($app-light-primary, $app-light-accent, $app-light-warn);
-@include angular-material-theme($app-light-theme);
 
 // 字体
 $custom-typography: mat-typography-config(
@@ -23,76 +19,3 @@ $custom-typography: mat-typography-config(
 
 // Override typography for all Angular Material, including mat-base-typography and all components.
 @include angular-material-typography($custom-typography);
-
-// 颜色值
-$light-primary: map-get(
-  $map: $app-light-primary,
-  $key: default,
-);
-$light-accent: map-get(
-  $map: $app-light-accent,
-  $key: default,
-);
-$light-warn: map-get(
-  $map: $app-light-warn,
-  $key: default,
-);
-
-.dark-theme {
-  $app-dark-primary: mat-palette($mat-blue-grey, 900);
-  $app-dark-accent: mat-palette($mat-deep-orange, 900);
-  $app-dark-warn: mat-palette($mat-red, A700);
-  $theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
-  $primary: map-get(
-    $map: $app-dark-primary,
-    $key: default,
-  );
-  $accent: map-get(
-    $map: $app-dark-accent,
-    $key: default,
-  );
-  $warn: map-get(
-    $map: $app-dark-warn,
-    $key: default,
-  );
-
-  @include angular-material-color($theme);
-  @include markdown(true, $primary, $accent, $warn);
-  @include app-theme(true, $primary, $accent, $warn);
-  @include angular-material-theme($theme);
-
-  ::selection {
-    // background-color: map-get($mat-deep-orange, 700);
-    background-color: $accent;
-    color: #ffffff;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -20px;
-    bottom: -20px;
-    right: -20px;
-    filter: blur(4px);
-    background: url(~@assets/images/dark-theme-background.jpg) no-repeat center/cover;
-  }
-}
-.light-theme {
-  @include markdown(false, $light-primary, $light-accent, $light-warn);
-  @include app-theme(false, $light-primary, $light-accent, $light-warn);
-  ::selection {
-    // background-color: map-get($mat-green, 500);
-    background-color: $light-accent;
-    color: #ffffff;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -20px;
-    bottom: -20px;
-    right: -20px;
-    filter: blur(4px);
-    background: no-repeat url(~@assets/images/light-theme-background.jpg) center/cover;
-  }
-}

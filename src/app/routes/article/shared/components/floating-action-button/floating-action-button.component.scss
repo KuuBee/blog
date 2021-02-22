@@ -1,5 +1,5 @@
 // @import "../../../../../theme/animations.scss";
-@import "~@app/theme/animations.scss";
+@import "~@app/shared/style/index.scss";
 @import "~@app/theme/theme.scss";
 $active-color: map-get(
   $map: $mat-grey,

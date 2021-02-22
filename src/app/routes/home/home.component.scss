@@ -6,4 +6,33 @@
     position: sticky;
     top: 20px;
   }
+  &__content {
+    // app-markdown-card {
+    //   margin-bottom: 16px;
+    // }
+    &__end {
+      text-align: center;
+    }
+  }
+}
+
+// :host-context(.light-theme) {
+//   .home-module {
+//     &__content {
+//       &__end {
+//         // color: #;
+//       }
+//     }
+//   }
+// }
+:host-context(.dark-theme) {
+  .home-module {
+    &__content {
+      &__end {
+        color: #fff;
+      }
+    }
+    transform: scale(0.1);
+    transform: translateY(0);
+  }
 }

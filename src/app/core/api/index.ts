@@ -13,13 +13,49 @@ export namespace ApiType {
     message: string;
     code: number;
   }
-  export interface ErrorResponse<T = null> extends HttpErrorResponse {
-    error: _ErrorType<T>;
+  export interface ErrorResponse<T = null> extends AppHttpErrorResponse {
+    // error: _ErrorType<T>;
   }
   interface _ErrorType<T> {
     data: T;
     message: string | string[];
     path: string;
     statusCode: number;
+  }
+  export interface PaginationParameter {
+    page: string | number;
+    pageSize: string | number;
+  }
+  export interface PaginationResponse<T> {
+    data: T[];
+    pagination: Pagination;
+  }
+  export interface Pagination {
+    count: number;
+    currentPage: number;
+    perPage: number;
+    total: number;
+    totalPages: number;
+    isLast: boolean;
+  }
+}
+export class ApiBase {
+  constructor(baseUrl: string) {
+    this._baseUrl = baseUrl;
+  }
+  protected _baseUrl: string;
+}
+
+interface ErrorType<T = null> {
+  data: T;
+  message: string | string[];
+  path: string;
+  statusCode: number;
+}
+export class AppHttpErrorResponse extends HttpErrorResponse {
+  constructor(opt: ErrorType) {
+    super({
+      error: opt,
+    });
   }
 }

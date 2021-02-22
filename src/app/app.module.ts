@@ -11,6 +11,8 @@ import { TestService } from './test.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { httpInterceptorProviders } from '@app/core/interceptors/index';
+import { appInitializerProviders } from '@app/core/initializers';
+import { ThemeModule } from '@app/theme/theme.module';
 
 // enableProdMode();
 @NgModule({
@@ -25,10 +27,12 @@ import { httpInterceptorProviders } from '@app/core/interceptors/index';
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
+    ThemeModule,
   ],
   providers: [
     TestService,
-    ...httpInterceptorProviders,
+    httpInterceptorProviders,
+    appInitializerProviders,
     {
       provide: APP_BASE_HREF,
       useValue: '/blog',

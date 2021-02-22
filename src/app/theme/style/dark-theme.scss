@@ -1,0 +1,38 @@
+$app-dark-primary: mat-palette($mat-blue-grey, 900);
+$app-dark-accent: mat-palette($mat-deep-orange, 900);
+$app-dark-warn: mat-palette($mat-red, A700);
+$theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
+$dark-primary: map-get(
+  $map: $app-dark-primary,
+  $key: default,
+);
+$dark-accent: map-get(
+  $map: $app-dark-accent,
+  $key: default,
+);
+$dark-warn: map-get(
+  $map: $app-dark-warn,
+  $key: default,
+);
+.dark-theme {
+  @include angular-material-color($theme);
+  @include markdown(true, $dark-primary, $dark-accent, $dark-warn);
+  @include app-theme(true, $dark-primary, $dark-accent, $dark-warn);
+  @include angular-material-theme($theme);
+
+  ::selection {
+    // background-color: map-get($mat-deep-orange, 700);
+    background-color: $dark-accent;
+    color: #ffffff;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -20px;
+    bottom: -20px;
+    right: -20px;
+    filter: blur(4px);
+    background: url(~@assets/images/dark-theme-background.jpg) no-repeat center/cover;
+  }
+}

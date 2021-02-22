@@ -1,0 +1,19 @@
+@import "@app/theme/theme.scss";
+:host-context(.light-theme) {
+  .app-tag {
+    background-color: $light-accent;
+    color: #333;
+  }
+}
+:host-context(.dark-theme) {
+  .app-tag {
+    background-color: $dark-accent;
+  }
+}
+
+.app-tag {
+  cursor: pointer;
+  padding: 0 10px 0 4px;
+  border-radius: 5px;
+  color: #fff !important;
+}

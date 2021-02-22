@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ArticleApiType } from '@app/core/api/article-api.service';
+import { SearchApiType } from '@app/core/api/search-api.service';
 import { AppMarkdownService } from '@app/shared/services/app-markdown.service';
 import { MarkdownComponent } from 'ngx-markdown';
 
@@ -20,10 +22,34 @@ export class AppMarkdownComponent implements OnInit {
   ) {}
   // 是否需要收缩
   @Input() isShrink: boolean = false;
-  // 远程数据地址
-  @Input() src!: string;
+  // 远程数据地址 远程数据优先级更高
+  @Input() src?: string;
+  // 本地数据内容
+  @Input() content?: string;
+  // 文章id
+  @Input() articleId!: number | string;
+  // 文章标题
+  @Input() articleTitle?: string = '';
+  // tagid列表
+  @Input() tagArr?: SearchApiType.Response.IndexData[] = [];
+  // 分类信息
+  @Input() classification?: ArticleApiType.Response.Classification;
+  // 创建日期
+  @Input() date?: string;
+
+  @Input('loading') outerLoading = false;
+
   loading = true;
-  ngOnInit(): void {}
+
+  get markdownContent() {
+    if (this.src) return '';
+    return this.content;
+  }
+  ngOnInit(): void {
+    if (!this.src) {
+      this.loading = false;
+    }
+  }
   onLoad(markdownComponent: MarkdownComponent) {
     this.loading = false;
     if (this.isShrink) return;
@@ -42,8 +68,11 @@ export class AppMarkdownComponent implements OnInit {
   }
   changePage(type: 'previous' | 'next') {
     this.snackBar.open(
-      `你已经走到世界的尽头了${type === 'next' ? '(○´･д･)ﾉ' : 'ヽ(･д･`●)'}`,
+      `你已经达到世界的尽头了${type === 'next' ? '(○´･д･)ﾉ' : 'ヽ(･д･`●)'}`,
       '关闭'
     );
+  }
+  trackById(index: number, item: SearchApiType.Response.IndexData) {
+    return item.id;
   }
 }

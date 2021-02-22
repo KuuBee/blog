@@ -18,7 +18,7 @@ export class UrlInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const requestUrl = request.url;
     let req: HttpRequest<unknown>;
-    if (/^(https:\/\/)|(http:\/\/)/.test(requestUrl)) {
+    if (/^(http|https):\/\/|^(\.|\.\.)\//.test(requestUrl)) {
       req = request;
     } else {
       req = request.clone({
