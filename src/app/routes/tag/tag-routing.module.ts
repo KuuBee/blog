@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ArticleComponent } from './index/article.component';
+import { TagComponent } from './index/tag.component';
 
-const routes: Routes = [{ path: ':id', component: ArticleComponent }];
+const routes: Routes = [{ path: '', component: TagComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ArticleRoutingModule {}
+export class TagRoutingModule {}

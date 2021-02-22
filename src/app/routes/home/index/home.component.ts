@@ -9,7 +9,7 @@ import {
 import {
   articleCardAnimation,
   homePageAnimation,
-} from './shared/animation/home.animation';
+} from '../shared/animation/home.animation';
 import {
   ArticleApiService,
   ArticleApiType,

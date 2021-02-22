@@ -37,36 +37,39 @@ const routes: Routes = [
             (m) => m.ArticleModule
           ),
       },
+      {
+        path: 'tag',
+        loadChildren: () =>
+          import('./routes/tag/tag.module').then((m) => m.TagModule),
+      },
+      {
+        path: 'classification',
+        loadChildren: () =>
+          import('./routes/classification/classification.module').then(
+            (m) => m.ClassificationModule
+          ),
+      },
+      {
+        path: 'friend-link',
+        loadChildren: () =>
+          import('./routes/friend-link/friend-link.module').then(
+            (m) => m.FriendLinkModule
+          ),
+      },
+      {
+        path: 'archive',
+        loadChildren: () =>
+          import('./routes/archive/archive.module').then(
+            (m) => m.ArchiveModule
+          ),
+      },
+      {
+        path: 'about',
+        loadChildren: () =>
+          import('./routes/about/about.module').then((m) => m.AboutModule),
+      },
     ],
   },
-  // {
-  //   path: 'customers',
-  //   loadChildren: () =>
-  //     import('./routes/customers/customers.module').then(
-  //       (m) => m.CustomersModule
-  //     ),
-  // },
-  // {
-  //   path: 'orders',
-  //   loadChildren: () =>
-  //     import('./routes/orders/orders.module').then((m) => m.OrdersModule),
-  //   data: {
-  //     animation: 'OrderPage',
-  //   },
-  // },
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./routes/home/home.module').then((m) => m.HomeModule),
-  //   data: {
-  //     animation: 'HomePage',
-  //   },
-  // },
-  // {
-  //   path: 'article',
-  //   loadChildren: () =>
-  //     import('./routes/article/article.module').then((m) => m.ArticleModule),
-  // },
 ];
 
 @NgModule({
