@@ -1,1 +1,17 @@
-<p>classification works!</p>
+<div class="classification-module" fxFill>
+  <mat-card>
+    <mat-card-title class="no-select classification-module__title">
+      <mat-icon>class</mat-icon>
+      <span>分类</span>
+    </mat-card-title>
+    <mat-card-content class="classification-module__content">
+      <span
+        class="no-select"
+        [ngStyle]="setStyle(item)"
+        *ngFor="let item of classArr; let i = index; trackBy: trackById"
+      >
+        {{ item.content }}
+      </span>
+    </mat-card-content>
+  </mat-card>
+</div>

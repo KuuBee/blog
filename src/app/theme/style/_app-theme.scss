@@ -49,5 +49,11 @@
     &--text {
       color: $accent;
     }
+    &--border-color {
+      border-color: $accent;
+      &::after {
+        border-color: $accent;
+      }
+    }
   }
 }

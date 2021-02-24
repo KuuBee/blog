@@ -1,4 +1,4 @@
-.classification-module {
+.tag-module {
   &__title {
     display: flex;
     justify-content: center;
@@ -8,6 +8,9 @@
     display: flex;
     align-items: baseline;
     flex-flow: wrap;
+    > app-chip {
+      margin: 5px;
+    }
     > span {
       cursor: pointer;
       margin: 10px 15px;

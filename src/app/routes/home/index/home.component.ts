@@ -22,7 +22,8 @@ type ArticleIndexData = ArticleApiType.Response.IndexData;
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [homePageAnimation, articleCardAnimation],
+  animations: [articleCardAnimation],
+  // homePageAnimation
 })
 export class HomeComponent implements OnInit {
   constructor(
@@ -30,8 +31,8 @@ export class HomeComponent implements OnInit {
     private _appUtils: AppUtilsService
   ) {}
   @ViewChild('loading') loadingRef!: ElementRef;
-  @HostBinding('@homePageAnimation')
-  animatePage = true;
+  // @HostBinding('@homePageAnimation')
+  // animatePage = true;
   currentPage = 0;
   articleArr: ArticleIndexData[] = [];
   isLast = true;
@@ -60,25 +61,30 @@ export class HomeComponent implements OnInit {
   }
   requestArticleIndex(page = 0) {
     this.loading = true;
-    this._articleApi.index(page).subscribe((res) => {
-      console.log(res);
-      const data = res.data;
-      this.articleArr.push(...data.data);
-      this.currentPage = data.pagination.currentPage;
-      this.isLast = data.pagination.isLast;
-      this.loading = false;
-      setTimeout(() => {
-        if (this.isLast) {
-          // this.intersectionObserver?.unobserve(this.loadingRef.nativeElement);
-          this.intersectionObserver?.disconnect();
-          return;
-        }
-        if (this.needWatch) {
-          this.intersectionObserver?.observe(this.loadingRef.nativeElement);
-          this.needWatch = false;
-        }
-      }, 100);
-    });
+    this._articleApi
+      .index({
+        page,
+        pageSize: 5,
+      })
+      .subscribe((res) => {
+        console.log(res);
+        const data = res.data;
+        this.articleArr.push(...data.data);
+        this.currentPage = data.pagination.currentPage;
+        this.isLast = data.pagination.isLast;
+        this.loading = false;
+        setTimeout(() => {
+          if (this.isLast) {
+            // this.intersectionObserver?.unobserve(this.loadingRef.nativeElement);
+            this.intersectionObserver?.disconnect();
+            return;
+          }
+          if (this.needWatch) {
+            this.intersectionObserver?.observe(this.loadingRef.nativeElement);
+            this.needWatch = false;
+          }
+        }, 100);
+      });
   }
   trackById(index: number, item: ArticleIndexData) {
     return item.articleId;

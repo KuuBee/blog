@@ -1,0 +1,20 @@
+<div class="tag-module" fxFill>
+  <mat-card>
+    <mat-card-title class="no-select tag-module__title">
+      <mat-icon>tag</mat-icon>
+      <span>标签</span>
+    </mat-card-title>
+    <mat-card-content class="tag-module__content">
+      <!-- <app-chip *ngFor="let item of tagArr; trackBy: trackById">{{
+        item.content
+      }}</app-chip> -->
+      <span
+        class="no-select"
+        [ngStyle]="setStyle(item)"
+        *ngFor="let item of tagArr; let i = index; trackBy: trackById"
+      >
+        {{ item.content }}
+      </span>
+    </mat-card-content>
+  </mat-card>
+</div>

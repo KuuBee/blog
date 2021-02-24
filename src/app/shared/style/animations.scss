@@ -9,6 +9,16 @@ $fast-slow: cubic-bezier(0.17, 0.84, 0.69, 0.56);
     right: 0%;
   }
 }
+@keyframes increase_width_from_middle {
+  0% {
+    left: 50%;
+    width: 0;
+  }
+  100% {
+    left: 0;
+    width: 100%;
+  }
+}
 
 @keyframes bouncy {
   from,

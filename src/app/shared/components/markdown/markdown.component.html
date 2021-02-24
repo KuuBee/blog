@@ -1,10 +1,6 @@
 <mat-card class="app-article article-markdown">
-  <mat-card-title
-    *ngIf="articleTitle"
-    class="app-article__title"
-    [routerLink]="['/article', articleId]"
-  >
-    {{ articleTitle }}
+  <mat-card-title *ngIf="articleTitle" class="app-article__title">
+    <span [routerLink]="['/article', articleId]">{{ articleTitle }}</span>
   </mat-card-title>
   <mat-card-subtitle
     *ngIf="date"
@@ -24,14 +20,12 @@
     fxLayoutGap="10px"
     fxLayoutAlign="center"
   >
-    <app-tag
-      *ngFor="let item of tagArr; trackBy: trackById"
-      [content]="item.name"
-      >tag
-    </app-tag>
-    <app-tag *ngIf="classification" [content]="classification.content"
-      >class</app-tag
-    >
+    <app-chip *ngFor="let item of tagArr; trackBy: trackById" icon="tag"
+      >{{ item.name }}
+    </app-chip>
+    <app-chip *ngIf="classification" icon="class">{{
+      classification.content
+    }}</app-chip>
   </mat-card-subtitle>
   <mat-card-content class="app-article__content">
     <app-skeleton
@@ -82,14 +76,12 @@
     </button>
   </mat-card-actions>
   <mat-card-actions fxLayout="row" fxLayoutGap="10px" *ngIf="isShrink">
-    <app-tag
-      *ngFor="let item of tagArr; trackBy: trackById"
-      [content]="item.name"
-      >tag
-    </app-tag>
+    <app-chip *ngFor="let item of tagArr; trackBy: trackById" icon="tag"
+      >{{ item.name }}
+    </app-chip>
     <span fxFlex></span>
-    <app-tag *ngIf="classification" [content]="classification.content"
-      >class</app-tag
-    >
+    <app-chip *ngIf="classification" icon="class">{{
+      classification.content
+    }}</app-chip>
   </mat-card-actions>
 </mat-card>

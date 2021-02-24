@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MarkdownCardComponent } from './markdown-card.component';
+import { ArticleAccordionComponent } from './article-accordion.component';
 
-describe('MarkdownCardComponent', () => {
-  let component: MarkdownCardComponent;
-  let fixture: ComponentFixture<MarkdownCardComponent>;
+describe('ArticleAccordionComponent', () => {
+  let component: ArticleAccordionComponent;
+  let fixture: ComponentFixture<ArticleAccordionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MarkdownCardComponent ]
+      declarations: [ ArticleAccordionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MarkdownCardComponent);
+    fixture = TestBed.createComponent(ArticleAccordionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

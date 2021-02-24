@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { UserInfoService } from 'src/app/shared/services/user-info.service';
+import { UserInfoService } from '../../services/user-info.service';
 
 @Component({
   selector: 'app-user-card',

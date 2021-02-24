@@ -1,5 +1,6 @@
 <div id="app__anchor"></div>
-<div
+<app-floating-action-button></app-floating-action-button>
+<!-- <div
   class="article-module"
   fxLayout="row"
   fxLayoutGap="20px"
@@ -25,11 +26,28 @@
       [classification]="articleInfo?.classification"
       [src]="articleLink"
     ></app-markdown>
-    <!-- https://autocode.icu/assets/markdown/test_markdown.md -->
     <app-comment fxFill></app-comment>
   </div>
   <div fxFlex="18"></div>
+</div> -->
+
+<!-- https://autocode.icu/assets/markdown/test_markdown.md -->
+
+<div
+  class="article-module"
+  fxLayout="column"
+  fxLayoutGap="20px"
+  fxLayoutAlign="center start"
+>
+  <app-markdown
+    fxFill
+    [articleId]="articleId"
+    [loading]="loading"
+    [articleTitle]="articleInfo?.title"
+    [date]="articleInfo?.updatedAt"
+    [tagArr]="articleInfo?.tag"
+    [classification]="articleInfo?.classification"
+    [src]="articleLink"
+  ></app-markdown>
+  <app-comment fxFill></app-comment>
 </div>
-<!-- 
-<div class="aa"></div>
-<div class="bb"></div> -->

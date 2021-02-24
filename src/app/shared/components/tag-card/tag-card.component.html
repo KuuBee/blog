@@ -1,0 +1,23 @@
+<mat-card class="tag-card no-select">
+  <mat-card-title fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+    <mat-icon>tag</mat-icon>
+    <span>标签</span>
+  </mat-card-title>
+  <mat-card-content class="tag-card__content">
+    <!-- <mat-chip-list>
+      <mat-chip
+        selected
+        color="accent"
+        *ngFor="let item of tagArr; trackBy: trackById"
+      >
+        {{ item.name }}
+      </mat-chip>
+    </mat-chip-list> -->
+    <div
+      class="tag-card__content__tag app-theme--border-color"
+      *ngFor="let item of tagArr; trackBy: trackById"
+    >
+      {{ item.name }}
+    </div>
+  </mat-card-content>
+</mat-card>

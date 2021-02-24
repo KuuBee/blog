@@ -22,10 +22,7 @@ $defalut-background-color: map-get(
   position: fixed;
   bottom: 100px;
   right: 50px;
-
-  // test
-  // transform: scale(0);
-  // transform: rotate(45deg);
+  z-index: 10;
   > button {
     &:hover {
       animation: 0.3s linear bouncy;

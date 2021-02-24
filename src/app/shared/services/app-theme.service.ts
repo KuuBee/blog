@@ -2,8 +2,8 @@
  * @Descripttion: 主题服务
  * @Author: 杨湛杰
  * @Date: 2020-12-04 13:42:33
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-04 14:53:07
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-02-23 11:34:46
  */
 import { Component, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -60,9 +60,9 @@ export class AppThemeService {
     }
     this.appConfiguration.setValue('theme', this._themeType);
     console.log(document.body.className);
-    // document.body.className = 'a';
-    this.snackBar.open(`切换至${message}模式`, '关闭', {
-      duration: 1500,
-    });
+    // 暂时不开启提示
+    // this.snackBar.open(`切换至${message}模式`, '关闭', {
+    //   duration: 1500,
+    // });
   }
 }

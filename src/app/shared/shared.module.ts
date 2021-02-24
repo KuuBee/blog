@@ -21,7 +21,11 @@ import { RegisterDialogComponent } from './components/register-dialog/register-d
 import { SnackBarRefComponent } from './components/snack-bar-ref/snack-bar-ref.component';
 import { AuthDialogRefComponent } from './components/auth-dialog-ref/auth-dialog-ref.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { TagComponent } from './components/tag/tag.component';
+import { ChipComponent } from './components/chip/chip.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { RecentCardComponent } from './components/recent-card/recent-card.component';
+import { TagCardComponent } from './components/tag-card/tag-card.component';
+import { ArticleAccordionComponent } from './components/article-accordion/article-accordion.component';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -82,7 +86,11 @@ const COMPONENTS: any[] = [
   RegisterDialogComponent,
   SnackBarRefComponent,
   AuthDialogRefComponent,
-  TagComponent,
+  ChipComponent,
+  UserCardComponent,
+  RecentCardComponent,
+  TagCardComponent,
+  ArticleAccordionComponent,
 ];
 const PROVIDERS: any[] = [];
 

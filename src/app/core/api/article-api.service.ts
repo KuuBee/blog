@@ -7,6 +7,12 @@ import { ApiBase, ApiType } from '.';
 import { SearchApiType } from './search-api.service';
 
 export namespace ArticleApiType {
+  export namespace Parameter {
+    export interface Index extends ApiType.PaginationParameter {
+      tagId?: string;
+      classificationId?: string;
+    }
+  }
   export namespace Response {
     export type Index = ApiType.SuccessResponse<
       ApiType.PaginationResponse<IndexData>
@@ -49,14 +55,12 @@ export class ArticleApiService extends ApiBase {
   ) {
     super('/article');
   }
-  index(page: number = 0) {
+  index(query: ArticleApiType.Parameter.Index) {
     return combineLatest([
       this._http.get<ArticleApiType.Response.Index>(this._baseUrl, {
-        params: {
-          page: page.toString(),
-        },
+        params: query as any,
       }),
-      this._searchList.tagSub$.pipe(take(1)),
+      this._searchList.tagObs$.pipe(take(1)),
     ]).pipe<ArticleApiType.Response.Index>(
       concatMap((res) => {
         const [articleRes, tagRes] = res;
@@ -76,7 +80,7 @@ export class ArticleApiService extends ApiBase {
   info(id: string) {
     return combineLatest([
       this._http.get<ArticleApiType.Response.Info>(`${this._baseUrl}/${id}`),
-      this._searchList.tagSub$.pipe(take(1)),
+      this._searchList.tagObs$.pipe(take(1)),
     ]).pipe(
       concatMap((res) => {
         const [articleRes, tagRes] = res;
@@ -88,5 +92,26 @@ export class ArticleApiService extends ApiBase {
         return of(articleRes);
       })
     );
+  }
+
+  sortFromYearPipe() {
+    return concatMap((val: ArticleApiType.Response.Index) => {
+      const data = val.data.data;
+      let currentYear = NaN;
+      let res: ArticleApiType.Response.IndexData[][] = [];
+      let currentIndex = NaN;
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i];
+        const _currentYear = new Date(item.createdAt).getFullYear();
+        if (currentYear !== _currentYear) {
+          currentYear = _currentYear;
+          currentIndex = Number.isNaN(currentIndex) ? 0 : currentIndex + 1;
+          res.push([item]);
+        } else {
+          res[currentIndex].push(item);
+        }
+      }
+      return of(res);
+    });
   }
 }

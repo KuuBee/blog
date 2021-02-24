@@ -20,9 +20,9 @@ export class SearchListService {
   ) {}
 
   // BehaviorSubject 用于缓存上一次的值
-  tagSub$ = new BehaviorSubject<SearchData>([]);
-  classificationSub$ = new BehaviorSubject<SearchData>([]);
-  articleSub$ = new BehaviorSubject<SearchData>([]);
+  tagObs$ = new BehaviorSubject<SearchData>([]);
+  classificationObs$ = new BehaviorSubject<SearchData>([]);
+  articleObs$ = new BehaviorSubject<SearchData>([]);
 
   // 初始化
   init() {
@@ -38,8 +38,8 @@ export class SearchListService {
             { data: classificationData },
             // { data: articleData },
           ] = res;
-          this.tagSub$.next(tagData);
-          this.classificationSub$.next(classificationData);
+          this.tagObs$.next(tagData);
+          this.classificationObs$.next(classificationData);
           // this.articleSub$.next(articleData);
           subscription.unsubscribe();
           obs.next();
