@@ -27,7 +27,9 @@
             "tsConfig": "tsconfig.json",
             "aot": true,
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "crypto-js/enc-utf8",
+              "crypto-js/aes"
             ],
             "styles": [
               "src/assets/css/googleapis-css.css",

@@ -4,7 +4,10 @@ import {
   ArticleApiService,
   ArticleApiType,
 } from '@app/core/api/article-api.service';
-import { TagApiService, TagApiType } from '@app/core/api/tag-api.service';
+import {
+  ClassificationApiService,
+  ClassificationApiType,
+} from '@app/core/api/classification-api.service';
 
 @Component({
   selector: 'app-info',
@@ -14,37 +17,38 @@ import { TagApiService, TagApiType } from '@app/core/api/tag-api.service';
 export class InfoComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
-    private _tagApi: TagApiService,
+    private _classificationApi: ClassificationApiService,
     private _articleApi: ArticleApiService
   ) {}
-  id?: string;
-  tagInfo?: TagApiType.Response.InfoData;
-  archiveArr: ArticleApiType.Response.IndexData[][] = [];
+
+  classId?: string;
+  classInfo?: ClassificationApiType.Response.InfoData;
+  articleArr: ArticleApiType.Response.IndexData[][] = [];
+
   ngOnInit(): void {
     this._route.params.subscribe((res) => {
-      this.id = res.id;
-      this.requestTagInfo();
+      this.classId = res.id;
+      this.requestClassInfo();
       this.requestArticleIndex();
     });
   }
-  requestTagInfo() {
-    if (!this.id) throw new Error('id 丢失');
-    this._tagApi.info(this.id).subscribe((res) => {
-      console.log(res);
-      this.tagInfo = res.data;
+  requestClassInfo() {
+    if (!this.classId) throw new Error('缺少 classId ！');
+    this._classificationApi.info(this.classId).subscribe((res) => {
+      this.classInfo = res.data;
     });
   }
   requestArticleIndex() {
+    if (!this.classId) throw new Error('缺少 classId ！');
     this._articleApi
       .index({
-        page: 0,
         pageSize: 9999,
-        tagId: this.id,
+        page: 0,
+        classificationId: this.classId,
       })
       .pipe(this._articleApi.sortFromYearPipe())
       .subscribe((res) => {
-        console.log(res);
-        this.archiveArr = res;
+        this.articleArr = res;
       });
   }
 }

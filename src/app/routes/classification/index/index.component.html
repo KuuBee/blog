@@ -9,6 +9,7 @@
         class="no-select"
         [ngStyle]="setStyle(item)"
         *ngFor="let item of classArr; let i = index; trackBy: trackById"
+        [routerLink]="['./', item.classificationId]"
       >
         {{ item.content }}
       </span>

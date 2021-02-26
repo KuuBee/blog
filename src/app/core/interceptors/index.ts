@@ -18,7 +18,7 @@ export const httpInterceptorProviders = [
   // 请求时 变更 url                      返回时 无用
   { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
   // 请求时 加密全部请求数据                返回时 解密返回数据
-  // { provide: HTTP_INTERCEPTORS, useClass: EncryptInterceptor, multi: true }
+  { provide: HTTP_INTERCEPTORS, useClass: EncryptInterceptor, multi: true },
   // 请求时 对请求数据进行 formData 封装     返回时 无用
   { provide: HTTP_INTERCEPTORS, useClass: FormDataInterceptor, multi: true },
 ];

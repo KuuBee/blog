@@ -7,10 +7,10 @@ import {
 type ClassIndexData = ClassificationApiType.Response.IndexData;
 @Component({
   selector: 'app-classification',
-  templateUrl: './classification.component.html',
-  styleUrls: ['./classification.component.scss'],
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss'],
 })
-export class ClassificationComponent implements OnInit {
+export class IndexComponent implements OnInit {
   constructor(private _classificationApi: ClassificationApiService) {}
   classArr: ClassIndexData[] = [];
 

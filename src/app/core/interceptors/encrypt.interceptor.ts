@@ -2,8 +2,8 @@
  * @Descripttion: 加密拦截器
  * @Author: 杨湛杰
  * @Date: 2021-01-25 11:50:23
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-02-01 14:12:09
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-02-25 11:21:06
  */
 import { Injectable } from '@angular/core';
 import {
@@ -18,7 +18,8 @@ import {
 import { Observable, of, throwError } from 'rxjs';
 import { AppCryptoService } from '@app/shared/services/app-crypto.service';
 import { GlobalType } from '@app/shared/interface';
-import { tap, concatMap, catchError } from 'rxjs/operators';
+import { concatMap, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class EncryptInterceptor implements HttpInterceptor {
@@ -33,6 +34,9 @@ export class EncryptInterceptor implements HttpInterceptor {
     request: HttpRequest<GlobalType.StrKeyObj>,
     next: HttpHandler
   ): Observable<HttpEvent<GlobalType.StrKeyObj>> {
+    if (!environment.production) {
+      return next.handle(request);
+    }
     let req: HttpRequest<GlobalType.StrKeyObj> = request.clone();
     let encryptParams: GlobalType.StrKeyObj = {};
     let body: GlobalType.StrKeyObj = request.body ?? {};

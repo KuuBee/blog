@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title fxLayoutAlign="center">
+    <mat-icon>class</mat-icon>
+    <span>{{ classInfo?.content }}</span>
+  </mat-card-title>
+  <mat-card-subtitle fxLayoutAlign="center">
+    <mat-icon>today</mat-icon>
+    <span>{{ classInfo?.createdAt }}</span>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <app-article-accordion [archiveArr]="articleArr"></app-article-accordion>
+  </mat-card-content>
+</mat-card>

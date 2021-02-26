@@ -1,10 +1,8 @@
 <mat-accordion class="article-accordion" multi>
   <mat-expansion-panel *ngFor="let item of archiveArr">
     <mat-expansion-panel-header>
-      <mat-panel-title> {{ getYear(item[0].createdAt) }} </mat-panel-title>
-      <mat-panel-description>
-        一共{{ item.length }}篇文章
-      </mat-panel-description>
+      <mat-panel-title> {{ getYear(item[0].createdAt) }}年 </mat-panel-title>
+      <mat-panel-description> 共{{ item.length }}篇文章 </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
       <mat-list-item
@@ -14,7 +12,9 @@
         [routerLink]="['/article', subItem.articleId]"
       >
         <div mat-line>{{ subItem.title }}</div>
-        <div mat-line class="article-accordion__list-item--subline">{{ subItem.createdAt }}</div>
+        <div mat-line class="article-accordion__list-item--subline">
+          {{ subItem.createdAt }}
+        </div>
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>

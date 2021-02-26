@@ -8,19 +8,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="" />
-    <!-- <link rel="stylesheet" href="./assets/css/root-loading.css"> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   </head>
+  <style>
+    #root-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+    }
+    #root-loading h1 {
+      padding: 20px;
+      font-size: 50px;
+      font-weight: lighter;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: repeating-linear-gradient(
+        to right,
+        #f44336,
+        #9c27b0,
+        #3f51b5,
+        #03a9f4,
+        #009688,
+        #8bc34a,
+        #ffeb3b,
+        #ff9800
+      );
+      background-size: 750% auto;
+      background-position: 0 100%;
+      animation: gradient 20s infinite;
+      animation-fill-mode: forwards;
+      animation-timing-function: linear;
+    }
+    @keyframes gradient {
+      0% {
+        background-position: 0 0;
+      }
 
+      100% {
+        background-position: -750% 0;
+      }
+    }
+  </style>
   <body class="mat-typography">
-    <div id="root-loading">好耶！\(o_o)/</div>
-    <!-- <canvas id="riveCanvas"></canvas> -->
+    <div id="root-loading">
+      <h1>加载中</h1>
+    </div>
     <app-root id="root" style="display: none"></app-root>
+    <!-- <canvas id="riveCanvas"></canvas> -->
   </body>
+  <script>
+    const h1 = document.querySelector("#root-loading h1");
+    const defalutText = h1.innerText;
+    let times = 0;
+    const timer = setInterval(() => {
+      if (times > 3) times = 0;
+      h1.innerText = defalutText.padEnd(defalutText.length + times, ".");
+      times += 1;
+      if (!document.querySelector("#root-loading h1")) clearInterval(timer);
+    }, 1000);
+  </script>
   <!-- <script src="https://unpkg.com/rive-canvas@0.6.5/rive.js"></script> -->
   <script>
-    const riveFile = new Request("./assets/rive/Trim.flr2d");
+    // const riveFile = new Request("./assets/rive/Trim.flr2d");
     window.onload = () => {
       // Rive({
       //   locateFile: (file) => 'https://unpkg.com/rive-canvas@0.6.5/' + file,

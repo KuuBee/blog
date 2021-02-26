@@ -3,12 +3,13 @@
 @import "./style/app-theme.scss";
 @import "./style/dark-theme.scss";
 @import "./style/light-theme.scss";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap");
 
 @include mat-core();
 
 // 字体
 $custom-typography: mat-typography-config(
-  $font-family: "NotoSerifSC-Light, Roboto, monospace",
+  $font-family: 'Noto Serif SC,Roboto, "Helvetica Neue", sans-serif',
   // 因为字体的原因 行高必须设置成1
   $input: mat-typography-level(inherit, 1.4, 400),
 ); // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).

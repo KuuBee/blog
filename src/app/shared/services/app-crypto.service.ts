@@ -2,17 +2,13 @@
  * @Descripttion: 加密服务
  * @Author: 杨湛杰
  * @Date: 2021-01-24 22:44:42
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-28 13:57:24
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-02-25 11:18:35
  */
 import { Injectable } from '@angular/core';
 import aes from 'crypto-js/aes';
 import Utf8 from 'crypto-js/enc-utf8';
-import Base64 from 'crypto-js/enc-base64';
-import Hex from 'crypto-js/enc-hex';
-import Utf16 from 'crypto-js/enc-utf16';
-import CryptoJS from 'crypto-js';
-import jsencrypt, { JSEncrypt } from 'jsencrypt';
+import { JSEncrypt } from 'jsencrypt';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

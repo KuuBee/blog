@@ -1,18 +1,19 @@
 @import "~@angular/material/theming";
 
-@font-face {
-  font-family: "MaShanZheng-Regular";
-  src: url("https://autocode.icu/assets/fonts/MaShanZheng-Regular.ttf") format("TrueType");
-}
-// 默认全局的
-@font-face {
-  font-family: "NotoSerifSC-Light";
-  src: url("https://autocode.icu/assets/fonts/NotoSerifSC-Light.otf") format("OpenType");
-}
-@font-face {
-  font-family: "ZCOOLQingKeHuangYou-Regular";
-  src: url("https://autocode.icu/assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf") format("TrueType");
-}
+// @font-face {
+//   font-family: "MaShanZheng-Regular";
+//   src: url("https://autocode.icu/assets/fonts/MaShanZheng-Regular.ttf") format("TrueType");
+// }
+// // 默认全局的
+// @font-face {
+// NotoSerifSC-Light
+//   font-family: "NotoSerifSC-Light";
+//   src: url("https://autocode.icu/assets/fonts/NotoSerifSC-Light.otf") format("OpenType");
+// }
+// @font-face {
+//   font-family: "ZCOOLQingKeHuangYou-Regular";
+//   src: url("https://autocode.icu/assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf") format("TrueType");
+// }
 
 html,
 body {

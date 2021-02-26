@@ -1,28 +1,31 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {PreloadAllModules} from '@angular/router';
-import {LayoutComponent, LayoutComponents} from './theme/layout/layout.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { PreloadAllModules } from '@angular/router';
+import {
+  LayoutComponent,
+  LayoutComponents,
+} from './theme/layout/layout.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      {
-        path: 'customers',
-        loadChildren: () =>
-          import('./routes/customers/customers.module').then(
-            (m) => m.CustomersModule
-          ),
-      },
-      {
-        path: 'orders',
-        loadChildren: () =>
-          import('./routes/orders/orders.module').then((m) => m.OrdersModule),
-        data: {
-          animation: 'OrderPage',
-        },
-      },
+      // {
+      //   path: 'customers',
+      //   loadChildren: () =>
+      //     import('./routes/customers/customers.module').then(
+      //       (m) => m.CustomersModule
+      //     ),
+      // },
+      // {
+      //   path: 'orders',
+      //   loadChildren: () =>
+      //     import('./routes/orders/orders.module').then((m) => m.OrdersModule),
+      //   data: {
+      //     animation: 'OrderPage',
+      //   },
+      // },
       {
         path: '',
         loadChildren: () =>
@@ -128,5 +131,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

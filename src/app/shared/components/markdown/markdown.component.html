@@ -20,7 +20,10 @@
     fxLayoutGap="10px"
     fxLayoutAlign="center"
   >
-    <app-chip *ngFor="let item of tagArr; trackBy: trackById" icon="tag"
+    <app-chip
+      *ngFor="let item of tagArr; trackBy: trackById"
+      icon="tag"
+      [routerLink]="['/tag', item.id]"
       >{{ item.name }}
     </app-chip>
     <app-chip *ngIf="classification" icon="class">{{
@@ -76,7 +79,10 @@
     </button>
   </mat-card-actions>
   <mat-card-actions fxLayout="row" fxLayoutGap="10px" *ngIf="isShrink">
-    <app-chip *ngFor="let item of tagArr; trackBy: trackById" icon="tag"
+    <app-chip
+      *ngFor="let item of tagArr; trackBy: trackById"
+      icon="tag"
+      [routerLink]="['/tag', item.id]"
       >{{ item.name }}
     </app-chip>
     <span fxFlex></span>

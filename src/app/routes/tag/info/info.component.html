@@ -1,1 +1,12 @@
-<p>info works!</p>
+<mat-card class="no-select">
+  <mat-card-title fxLayoutAlign="center" fxLayout="row">
+    <mat-icon>tag</mat-icon>
+    <span>{{ tagInfo?.content }}</span>
+  </mat-card-title>
+  <mat-card-subtitle fxLayoutAlign="center">
+    <mat-icon>today</mat-icon>
+    <span>{{ tagInfo?.createdAt }}</span>
+  </mat-card-subtitle>
+
+  <app-article-accordion [archiveArr]="archiveArr"></app-article-accordion>
+</mat-card>
