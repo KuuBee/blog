@@ -2,8 +2,8 @@
  * @Descripttion: 公共验证器
  * @Author: 杨湛杰
  * @Date: 2021-01-17 22:36:01
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-22 11:13:58
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-03-01 11:56:18
  */
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
@@ -13,7 +13,8 @@ export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
     return forbidden ? { forbiddenName: { value: control.value } } : null;
   };
 }
-export const NO_JS_ERROR_MESAGE = '拜托请不要写一些奇奇怪怪的东西'
+export const NO_JS_ERROR_MESSAGE = '拜托请不要写一些奇奇怪怪的东西';
+export const HTTPS_ONLY_MESSAGE = 'httpsOnly';
 export function noJavaScript() {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const NO_TAG_REG = /<.{0,30}>/;
@@ -25,6 +26,21 @@ export function noJavaScript() {
     ) {
       return {
         noJavaScript: true,
+      };
+    } else {
+      return null;
+    }
+  };
+}
+export function httpsOnly() {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const HTTPS_ONLY_REG = /^https:\/\//;
+    if (
+      !HTTPS_ONLY_REG.test(control.value)
+      // true
+    ) {
+      return {
+        httpsOnly: true,
       };
     } else {
       return null;

@@ -1,0 +1,78 @@
+<div class="create-link-dialog-ref">
+  <div mat-dialog-title>申请友链</div>
+  <div mat-dialog-content>
+    <form class="create-link-dialog-ref__content" [formGroup]="linkForm">
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>url</mat-label>
+          <input matInput formControlName="link" placeholder="仅限https" />
+          <mat-error> {{ linkErrorMsg }} </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>名称</mat-label>
+          <input
+            matInput
+            formControlName="title"
+            placeholder="你的博客叫什么呢"
+          />
+          <mat-error> {{ titleErrorMsg }} </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field color="accent">
+          <mat-label>描述</mat-label>
+          <input
+            matInput
+            formControlName="subtitle"
+            placeholder="一句话描述一下你的博客吧"
+          />
+          <mat-error> {{ subtitleErrorMsg }} </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <!-- <mat-form-field color="accent">
+          <mat-label>头像链接</mat-label>
+          <mat-slide-toggle formControlName="isUseAvatar">
+            Slide me!
+          </mat-slide-toggle>
+        </mat-form-field> -->
+        <mat-slide-toggle
+          color="accent"
+          formControlName="isUseAvatar"
+          (change)="slideChange($event)"
+        >
+          使用用户头像
+        </mat-slide-toggle>
+      </p>
+      <p *ngIf="avatarLink">
+        <mat-form-field color="accent">
+          <mat-label>头像链接</mat-label>
+          <input
+            matInput
+            formControlName="avatarLink"
+            placeholder="仅支持https"
+          />
+          <mat-error>{{ avatarLinkErrorMsg }}</mat-error>
+        </mat-form-field>
+      </p>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-footer>
+    <h3 style="margin-top: 16px">预览(不保证为实际显示效果)</h3>
+    <app-friend-card
+      [title]="linkForm.get('title')?.value"
+      [subtitle]="linkForm.get('subtitle')?.value"
+      [avatar]="avatar"
+      [mode]="previewMode"
+    ></app-friend-card>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="close()">取消</button>
+    <button mat-button [disabled]="linkForm.invalid" (click)="submit()">
+      提交
+    </button>
+  </div>
+</div>

@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { UserApiService } from '@app/core/api/user-api.service';
 import { AppDialogType } from '@app/shared/services/app-dialog.service';
 import { UserInfoService } from '@app/shared/services/user-info.service';
-import { noJavaScript, NO_JS_ERROR_MESAGE } from '@app/shared/validators';
+import { noJavaScript, NO_JS_ERROR_MESSAGE } from '@app/shared/validators';
 import { FileValidator } from 'ngx-material-file-input';
 
 @Component({
@@ -54,7 +54,7 @@ export class RegisterDialogComponent implements OnInit {
     if (email?.hasError('email')) {
       return '你这是个邮箱!?';
     } else if (email?.hasError('noJavaScript')) {
-      return NO_JS_ERROR_MESAGE;
+      return NO_JS_ERROR_MESSAGE;
     }
     return '请填写邮箱';
   }
@@ -63,14 +63,14 @@ export class RegisterDialogComponent implements OnInit {
     if (name?.hasError('maxlength')) {
       return '你的名字也太长了吧,少点..';
     } else if (name?.hasError('noJavaScript')) {
-      return NO_JS_ERROR_MESAGE;
+      return NO_JS_ERROR_MESSAGE;
     }
     return '请填写昵称';
   }
   get passwordErrorMsg() {
     const password = this.registerForm.get('password');
     if (password?.hasError('noJavaScript')) {
-      return NO_JS_ERROR_MESAGE;
+      return NO_JS_ERROR_MESSAGE;
     }
     return '请填写密码';
   }
@@ -82,9 +82,7 @@ export class RegisterDialogComponent implements OnInit {
     console.log(this.defaultAvatar);
   }
   fileInput() {
-    // console.log(this.registerForm.get('avatar')?.value);
     this.selectdefaultAvatarIndex = NaN;
-    // this.registerForm.get('avatar')?.setValue(null);
   }
   submit() {
     const { name, password, email, avatar } = this.registerForm.value;

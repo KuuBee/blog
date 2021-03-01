@@ -20,6 +20,8 @@ export class InfoComponent implements OnInit {
   id?: string;
   tagInfo?: TagApiType.Response.InfoData;
   archiveArr: ArticleApiType.Response.IndexData[][] = [];
+  loading = false;
+
   ngOnInit(): void {
     this._route.params.subscribe((res) => {
       this.id = res.id;
@@ -35,6 +37,7 @@ export class InfoComponent implements OnInit {
     });
   }
   requestArticleIndex() {
+    this.loading = true;
     this._articleApi
       .index({
         page: 0,
@@ -42,9 +45,13 @@ export class InfoComponent implements OnInit {
         tagId: this.id,
       })
       .pipe(this._articleApi.sortFromYearPipe())
-      .subscribe((res) => {
-        console.log(res);
-        this.archiveArr = res;
-      });
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.archiveArr = res;
+        },
+        () => {},
+        () => (this.loading = false)
+      );
   }
 }

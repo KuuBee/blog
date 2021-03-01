@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AppDialogType } from '@app/shared/services/app-dialog.service';
-import { noJavaScript, NO_JS_ERROR_MESAGE } from '@app/shared/validators/index';
+import { noJavaScript, NO_JS_ERROR_MESSAGE } from '@app/shared/validators/index';
 import { AuthApiService } from '@app/core/api/auth-api.service';
 import { ApiType } from '@app/core/api';
 import { AppSnackBarService } from '@app/shared/services/app-snack-bar.service';
@@ -45,13 +45,13 @@ export class LoginDialogComponent implements OnInit {
   }
   get nameErrorMessage() {
     if (this.name?.hasError('noJavaScript')) {
-      return NO_JS_ERROR_MESAGE;
+      return NO_JS_ERROR_MESSAGE;
     }
     return '请输入昵称';
   }
   get passwordErrorMessage() {
     if (this.password?.hasError('noJavaScript')) {
-      return NO_JS_ERROR_MESAGE;
+      return NO_JS_ERROR_MESSAGE;
     }
     return '请输入密码';
   }

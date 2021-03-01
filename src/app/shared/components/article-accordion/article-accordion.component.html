@@ -8,7 +8,7 @@
       <mat-list-item
         matRipple
         *ngFor="let subItem of item"
-        class="cursor-pointer"
+        class="pointer"
         [routerLink]="['/article', subItem.articleId]"
       >
         <div mat-line>{{ subItem.title }}</div>

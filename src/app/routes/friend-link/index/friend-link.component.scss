@@ -1,18 +1,5 @@
 .friend-link {
-  &__list {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: start;
-    align-items: center;
-    > mat-card {
-      margin-top: 20px;
-      margin-right: 20px;
-      width: calc(33.3% - 32px - 20px);
-      min-width: 100%;
-    }
-    mat-card:nth-child(3n) {
-      margin-right: 0;
-      width: calc(33.3% - 32px);
-    }
+  .mat-grid-tile {
+    // padding-bottom: 20px;
   }
 }

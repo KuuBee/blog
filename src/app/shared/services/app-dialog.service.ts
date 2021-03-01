@@ -12,6 +12,7 @@ import { BugReportDialogComponent } from '../components/bug-report-dialog/bug-re
 import { LoginDialogComponent } from '../components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from '../components/register-dialog/register-dialog.component';
 import { AuthDialogRefComponent } from '../components/auth-dialog-ref/auth-dialog-ref.component';
+import { CreateLinkDialogRefComponent } from '@app/routes/friend-link/shared/components/create-link-dialog-ref/create-link-dialog-ref.component';
 
 export namespace AppDialogType {
   export enum responseCode {
@@ -44,6 +45,12 @@ export class AppDialogService {
       any,
       AppDialogType.Response
     >(AuthDialogRefComponent, this.dialogOptions);
+  }
+  createFriendLink() {
+    return this._matDialog.open(
+      CreateLinkDialogRefComponent,
+      this.dialogOptions
+    );
   }
   // register() {
   //   console.log('注册');

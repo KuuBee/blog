@@ -1,0 +1,17 @@
+<mat-card class="friend-card pointer" (click)="openLink()">
+  <mat-card-content
+    class="friend-card__content"
+    fxLayout="row"
+    fxLayoutGap="16px"
+  >
+    <div class="avatar">
+      <img ondragstart="return false" [src]="imgSrc" alt="🐶" />
+    </div>
+    <div class="info" fxLayout="column" fxLayoutGap="16px">
+      <div class="title app-theme__color-accent text-overflow-ellipsis">
+        {{ title }}
+      </div>
+      <div class="subtitle text-overflow-ellipsis">{{ subtitle }}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

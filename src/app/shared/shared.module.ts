@@ -26,6 +26,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { RecentCardComponent } from './components/recent-card/recent-card.component';
 import { TagCardComponent } from './components/tag-card/tag-card.component';
 import { ArticleAccordionComponent } from './components/article-accordion/article-accordion.component';
+import { FriendCardComponent } from './components/friend-card/friend-card.component';
+import { NoContentComponent } from './components/no-content/no-content.component';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -91,6 +93,8 @@ const COMPONENTS: any[] = [
   RecentCardComponent,
   TagCardComponent,
   ArticleAccordionComponent,
+  FriendCardComponent,
+  NoContentComponent,
 ];
 const PROVIDERS: any[] = [];
 

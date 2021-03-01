@@ -9,4 +9,9 @@
   </mat-card-subtitle>
 
   <app-article-accordion [archiveArr]="archiveArr"></app-article-accordion>
+
+  <app-no-content
+    *ngIf="!archiveArr.length && !loading"
+    message="这个标签下一篇文章都没有！"
+  ></app-no-content>
 </mat-card>

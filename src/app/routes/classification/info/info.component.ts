@@ -24,6 +24,7 @@ export class InfoComponent implements OnInit {
   classId?: string;
   classInfo?: ClassificationApiType.Response.InfoData;
   articleArr: ArticleApiType.Response.IndexData[][] = [];
+  loading = false;
 
   ngOnInit(): void {
     this._route.params.subscribe((res) => {
@@ -40,6 +41,7 @@ export class InfoComponent implements OnInit {
   }
   requestArticleIndex() {
     if (!this.classId) throw new Error('缺少 classId ！');
+    this.loading = true;
     this._articleApi
       .index({
         pageSize: 9999,
@@ -47,8 +49,12 @@ export class InfoComponent implements OnInit {
         classificationId: this.classId,
       })
       .pipe(this._articleApi.sortFromYearPipe())
-      .subscribe((res) => {
-        this.articleArr = res;
-      });
+      .subscribe(
+        (res) => {
+          this.articleArr = res;
+        },
+        () => {},
+        () => (this.loading = false)
+      );
   }
 }

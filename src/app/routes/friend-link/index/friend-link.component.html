@@ -1,16 +1,26 @@
-<mat-card class="friend-link">
+<mat-card class="friend-link no-select">
+  <mat-card-title fxLayoutAlign="center" fxLayout="row">
+    <mat-icon>link</mat-icon>
+    <span>友链</span>
+  </mat-card-title>
   <mat-card-content>
-    <div class="friend-link__list">
-      <mat-card *ngFor="let item of [1, 3, 4, 5, 6, 7, 8, 9]">
-        <mat-card-header>
-          <img
-            mat-card-avatar
-            src="https://material.angular.io/assets/img/examples/shiba1.jpg"
-          />
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
+    <div #friendCard>
+      <mat-grid-list [cols]="cols" rowHeight="118">
+        <mat-grid-tile *ngFor="let item of [1, 3, 4, 5, 6, 7, 8, 9]">
+          <app-friend-card style="width: calc(100% - 16px)"></app-friend-card>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
   </mat-card-content>
+  <mat-card-actions>
+    <!-- <span fxFlex></span> -->
+    <p>
+      申请友链需要添加我的博客为友链并且文章数不少于3篇就可以啦，数量有限先到先得哦。友链申请后通过会通过邮箱通知哒(^-^)！
+    </p>
+    <p>明文规定是如此，最重要的是我喜欢才行 :-P</p>
+    <button mat-button color="accent" (click)="openDialog()">
+      点我申请友链
+    </button>
+  </mat-card-actions>
 </mat-card>
+<!-- https://material.angular.io/assets/img/examples/shiba1.jpg" -->
