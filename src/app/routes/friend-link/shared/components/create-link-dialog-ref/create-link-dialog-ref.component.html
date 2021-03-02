@@ -4,7 +4,7 @@
     <form class="create-link-dialog-ref__content" [formGroup]="linkForm">
       <p>
         <mat-form-field color="accent">
-          <mat-label>url</mat-label>
+          <mat-label>博客地址</mat-label>
           <input matInput formControlName="link" placeholder="仅限https" />
           <mat-error> {{ linkErrorMsg }} </mat-error>
         </mat-form-field>
@@ -32,12 +32,6 @@
         </mat-form-field>
       </p>
       <p>
-        <!-- <mat-form-field color="accent">
-          <mat-label>头像链接</mat-label>
-          <mat-slide-toggle formControlName="isUseAvatar">
-            Slide me!
-          </mat-slide-toggle>
-        </mat-form-field> -->
         <mat-slide-toggle
           color="accent"
           formControlName="isUseAvatar"

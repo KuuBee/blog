@@ -6,11 +6,16 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { FriendCardComponent } from '@app/shared/components/friend-card/friend-card.component';
+import {
+  FriendLinkApiService,
+  FriendLinkApiType,
+} from '@app/core/api/friend-link-api.service';
+import {
+  FriendCardComponent,
+  FRIEND_CARD_COMPONENT_MIN_WIDTH,
+} from '@app/shared/components/friend-card/friend-card.component';
 import { AppDialogService } from '@app/shared/services/app-dialog.service';
 import { fromEvent, Subscription } from 'rxjs';
-import { CreateLinkDialogRefComponent } from '../shared/components/create-link-dialog-ref/create-link-dialog-ref.component';
 
 @Component({
   selector: 'app-friend-link',
@@ -18,22 +23,28 @@ import { CreateLinkDialogRefComponent } from '../shared/components/create-link-d
   styleUrls: ['./friend-link.component.scss'],
 })
 export class FriendLinkComponent implements OnInit, AfterViewInit, OnDestroy {
-  constructor(private _appDialog: AppDialogService) {}
+  constructor(
+    private _appDialog: AppDialogService,
+    private _friednLinkApi: FriendLinkApiService
+  ) {}
+
   @ViewChild('friendCard') friendCardRef!: ElementRef<HTMLElement>;
   @ViewChild(FriendCardComponent) friendCard!: FriendCardComponent;
   cols = 3;
   eventSub?: Subscription;
+  friednLinkArr: FriendLinkApiType.Response.IndexData[] = [];
   get friendCardDom() {
     return this.friendCardRef.nativeElement;
   }
   get minimumFriendCardWidth() {
-    return this.cols * this.friendCard.MIN_WINTH;
+    return this.cols * FRIEND_CARD_COMPONENT_MIN_WIDTH;
   }
 
   ngOnInit(): void {
     this.eventSub = fromEvent(window, 'resize').subscribe(() => {
       this.calcCols();
     });
+    this.requestFriendLinkIndex();
   }
   ngAfterViewInit() {
     setTimeout(() => {
@@ -43,9 +54,15 @@ export class FriendLinkComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     if (this.eventSub) this.eventSub.unsubscribe();
   }
+  requestFriendLinkIndex() {
+    this._friednLinkApi.index().subscribe((res) => {
+      console.log(res);
+      this.friednLinkArr = res.data;
+    });
+  }
   calcCols() {
     this.cols = Math.floor(
-      this.friendCardDom.clientWidth / this.friendCard.MIN_WINTH
+      this.friendCardDom.clientWidth / FRIEND_CARD_COMPONENT_MIN_WIDTH
     );
   }
   openDialog() {
