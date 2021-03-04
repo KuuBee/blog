@@ -2,8 +2,11 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AppDialogType } from '@app/shared/services/app-dialog.service';
-import { noJavaScript, NO_JS_ERROR_MESSAGE } from '@app/shared/validators/index';
-import { AuthApiService } from '@app/core/api/auth-api.service';
+import {
+  noJavaScript,
+  NO_JS_ERROR_MESSAGE,
+} from '@app/shared/validators/index';
+import { TokenApiService } from '@app/core/api/token-api.service';
 import { ApiType } from '@app/core/api';
 import { AppSnackBarService } from '@app/shared/services/app-snack-bar.service';
 import { UserInfoService } from '@app/shared/services/user-info.service';
@@ -21,7 +24,7 @@ export class LoginDialogComponent implements OnInit {
       LoginDialogComponent,
       AppDialogType.Response
     >,
-    private _authApiService: AuthApiService,
+    private _tokenApi: TokenApiService,
     private _appSnackBarService: AppSnackBarService,
     private _userInfoService: UserInfoService
   ) {}
@@ -58,7 +61,7 @@ export class LoginDialogComponent implements OnInit {
 
   ngOnInit(): void {}
   submit() {
-    this._authApiService
+    this._tokenApi
       .create({
         name: this.name?.value,
         password: this.password?.value,
