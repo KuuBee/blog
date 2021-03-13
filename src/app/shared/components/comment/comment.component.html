@@ -1,9 +1,28 @@
 <mat-card>
   <mat-card-title>评论</mat-card-title>
   <mat-card-content>
-    <app-comment-input></app-comment-input>
-    <hr style="margin-bottom: 16px;" />
-    <app-comment-content>
+    <app-comment-input
+      type="comment"
+      [articleId]="articleId"
+    ></app-comment-input>
+    <mat-divider></mat-divider>
+    <app-comment-content
+      *ngFor="let item of commentDataArr; trackBy: trackByItem"
+      [comment]="item"
+      [articleId]="articleId"
+    >
     </app-comment-content>
+    <div style="padding-bottom: 16px"></div>
+    <mat-spinner
+      *ngIf="loading"
+      style="margin: 0 auto"
+      [diameter]="40"
+      [strokeWidth]="5"
+      color="accent"
+    ></mat-spinner>
+    <app-no-content
+      *ngIf="!loading && !commentDataArr?.length"
+      message="这里空空如也，不来评个论吗( ´ ▽ ` )ﾉ"
+    ></app-no-content>
   </mat-card-content>
 </mat-card>

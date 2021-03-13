@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { UserInfoService } from '../../services/user-info.service';
 
 @Component({
@@ -20,8 +20,7 @@ import { UserInfoService } from '../../services/user-info.service';
 })
 export class UserCardComponent implements OnInit {
   constructor(public userInfo: UserInfoService) {}
-  // @HostBinding('@openClose')
-  // a = true;
+  @Input() isShowBoxShadow = true;
   readonly articleInfoIcons = [
     {
       icon: 'article',
@@ -32,9 +31,16 @@ export class UserCardComponent implements OnInit {
       tips: '分类',
     },
     {
-      icon: 'label',
+      icon: 'tag',
       tips: '标签',
     },
   ];
+  get cardStyle() {
+    if (!this.isShowBoxShadow)
+      return {
+        'box-shadow': 'none',
+      };
+    return {};
+  }
   ngOnInit(): void {}
 }

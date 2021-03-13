@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ArticleComponent } from './index/article.component';
+import { ArticleComponent } from './info/article.component';
 
 const routes: Routes = [{ path: ':id', component: ArticleComponent }];
 

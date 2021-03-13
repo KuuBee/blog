@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, of, Subscription } from 'rxjs';
 import { AppDomService } from '@app/shared/services/app-dom.service';
 import { floatingActionButtonRemoveTrigger } from '../../animation/floating-action-button';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
+import { concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-floating-action-button',
@@ -13,8 +14,8 @@ import { AppUtilsService } from '@app/shared/services/app-utils.service';
 export class FloatingActionButtonComponent
   implements OnInit, AfterViewInit, OnDestroy {
   constructor(
-    private _appDomService: AppDomService,
-    private _appUtils: AppUtilsService
+    private _domService: AppDomService,
+    private _utils: AppUtilsService
   ) {}
   likeButtonStatus: boolean | null = null;
   dislikeButtonStatus: boolean | null = null;
@@ -49,15 +50,22 @@ export class FloatingActionButtonComponent
     }, 500);
   }
   ngOnDestroy() {
-    if (this.scrollSubscription) this.scrollSubscription.unsubscribe();
+    this.scrollSubscription?.unsubscribe();
   }
   showBackTop() {
-    const SCROLL_DOM: Element = this._appUtils.contentDom;
-    this.scrollSubscription = fromEvent(SCROLL_DOM, 'scroll').subscribe(() => {
-      this.isShowBackTop =
-        (this.anchorDom?.getClientRects()[0].top ?? 0) <
-        -(this._appDomService.bodyheight ?? 500);
-    });
+    // TODO 其实这里我不太清楚是否会导致事件的重复监听有空研究一下
+    this.scrollSubscription = this._utils.contentDom$
+      .pipe(
+        concatMap((val) => {
+          if (!val) return of(null);
+          return fromEvent(val, 'scroll');
+        })
+      )
+      .subscribe(() => {
+        this.isShowBackTop =
+          (this.anchorDom?.getClientRects()[0].top ?? 0) <
+          -(this._domService.bodyheight ?? 500);
+      });
   }
   clickButton(type: 'like' | 'dislike' | 'bug' = 'like') {
     console.log(type);
@@ -88,6 +96,6 @@ export class FloatingActionButtonComponent
     if (!this.anchorDom) {
       this.anchorDom = document.getElementById('app__anchor') as Element;
     }
-    this._appUtils.scrollIntoView(this.anchorDom);
+    this._utils.scrollIntoView(this.anchorDom);
   }
 }

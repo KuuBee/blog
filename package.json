@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "ngcc --properties es2015 browser module main --first-only",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4202",
     "prebuild": "echo I run before the build script",
     "build": "ng build --prod --optimization --base-href /blog/",
     "build:analysis": "ng build --prod --optimization --source-map",

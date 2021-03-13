@@ -1,4 +1,5 @@
 @import "~@angular/material/theming";
+@import "./animations.scss";
 
 // @font-face {
 //   font-family: "MaShanZheng-Regular";
@@ -15,19 +16,32 @@
 //   src: url("https://autocode.icu/assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf") format("TrueType");
 // }
 
+// 全局样式
 html,
 body {
   margin: 0;
   height: 100%;
   overflow: hidden;
 }
-
-// 全局样式
+a {
+  text-decoration: none;
+}
 .app {
   position: relative;
   height: 100%;
   overflow: hidden;
 }
+.light-theme {
+  a {
+    color: map-get($map: $mat-green, $key: 600);
+  }
+}
+.dark-theme {
+  a {
+    color: map-get($map: $mat-deep-orange, $key: A200);
+  }
+}
+// 全局类名
 .hidden-scroll-bar {
   overflow-x: hidden;
   overflow-y: scroll;

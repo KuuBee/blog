@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ArticleRoutingModule } from './article-routing.module';
-import { ArticleComponent } from './index/article.component';
+import { ArticleComponent } from './info/article.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { FloatingActionButtonComponent } from './shared/components/floating-action-button/floating-action-button.component';

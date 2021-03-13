@@ -26,9 +26,12 @@
       [routerLink]="['/tag', item.id]"
       >{{ item.name }}
     </app-chip>
-    <app-chip *ngIf="classification" icon="class">{{
-      classification.content
-    }}</app-chip>
+    <app-chip
+      *ngIf="classification"
+      icon="class"
+      [routerLink]="['/classification', classification.classificationId]"
+      >{{ classification.content }}</app-chip
+    >
   </mat-card-subtitle>
   <mat-card-content class="app-article__content">
     <app-skeleton
@@ -86,8 +89,11 @@
       >{{ item.name }}
     </app-chip>
     <span fxFlex></span>
-    <app-chip *ngIf="classification" icon="class">{{
-      classification.content
-    }}</app-chip>
+    <app-chip
+      *ngIf="classification"
+      icon="class"
+      [routerLink]="['/classification', classification.classificationId]"
+      >{{ classification.content }}</app-chip
+    >
   </mat-card-actions>
 </mat-card>

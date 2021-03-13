@@ -1,18 +1,34 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {searchBarBlurAnimation} from '@app/shared/animation/app-search.animation';
-import {AppDialogService} from '@app/shared/services/app-dialog.service';
-import {AppSearchService} from '@app/shared/services/app-search.service';
-import {AppThemeService} from '@app/shared/services/app-theme.service';
-import {UserInfoService} from '@app/shared/services/user-info.service';
-import {concatMap, delay, filter, take} from 'rxjs/operators';
-import {environment} from 'src/environments/environment';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { MediaObserver } from '@angular/flex-layout';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { searchBarBlurAnimation } from '@app/shared/animation/app-search.animation';
+import { AppDialogService } from '@app/shared/services/app-dialog.service';
+import { AppSearchService } from '@app/shared/services/app-search.service';
+import { AppThemeService } from '@app/shared/services/app-theme.service';
+import { AppUtilsService } from '@app/shared/services/app-utils.service';
+import { UserInfoService } from '@app/shared/services/user-info.service';
+import { link } from 'fs';
+import { Subscription } from 'rxjs';
+import { concatMap, delay, filter, take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 export enum LayoutComponents {
   USER_CARD,
   TAG_CARD,
   RECENT_CARD,
   DIRECTORY,
+}
+export interface ToolbarInfoType {
+  icon?: string;
+  text: string;
+  link: string;
 }
 
 @Component({
@@ -21,22 +37,58 @@ export enum LayoutComponents {
   styleUrls: ['./layout.component.scss'],
   animations: [searchBarBlurAnimation],
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
-    private _appThemeService: AppThemeService,
     private _appSearchService: AppSearchService,
+    private _appThemeService: AppThemeService,
+    private _mediaObserver: MediaObserver,
     private _userInfo: UserInfoService,
-    private _appDialogService: AppDialogService,
     private _route: ActivatedRoute,
-    private _router: Router
-  ) {
-  }
+    private _router: Router,
+    private _utils: AppUtilsService
+  ) {}
+  @ViewChild('content')
+  private _content?: ElementRef;
 
   layoutComponents: number[] = [];
   hasUserCard = false;
   hasDirectory = false;
   hasRecentCard = false;
   hasTagCard = false;
+  isXs = false;
+  mediaSub?: Subscription;
+  readonly toolbarInfo: ToolbarInfoType[] = [
+    {
+      icon: 'home',
+      text: '主页',
+      link: '/',
+    },
+    {
+      icon: 'class',
+      text: '分类',
+      link: '/classification',
+    },
+    {
+      icon: 'tag',
+      text: '标签',
+      link: '/tag',
+    },
+    {
+      icon: 'archive',
+      text: '归档',
+      link: '/archive',
+    },
+    {
+      icon: 'link',
+      text: '友链',
+      link: '/friend-link',
+    },
+    {
+      icon: 'info',
+      text: '关于',
+      link: '/about',
+    },
+  ];
 
   get isDark() {
     return this._appThemeService.themeType === 'dark';
@@ -52,6 +104,8 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.initRoute();
+    this.initMedia();
+
     // 初始化的时候给body添加主题类名
     if (this.isDark) {
       document.body.className += ' dark-theme';
@@ -77,6 +131,12 @@ export class LayoutComponent implements OnInit {
       rootLoadingParent.removeChild(rootLoading);
     }
   }
+  ngAfterViewInit() {
+    this._utils.contentDom$.next(this._content?.nativeElement);
+  }
+  ngOnDestroy() {
+    this.mediaSub?.unsubscribe();
+  }
 
   initRoute() {
     // 初始化的时候手动读取一次值
@@ -95,6 +155,15 @@ export class LayoutComponent implements OnInit {
       });
   }
 
+  // 初始化媒体监听
+  initMedia() {
+    this.isXs = this._mediaObserver.isActive('xs');
+    this.mediaSub = this._mediaObserver.asObservable().subscribe(() => {
+      // 监听断点改变
+      this.isXs = this._mediaObserver.isActive('xs');
+    });
+  }
+
   changeComponents() {
     const hasIncludes = (data: LayoutComponents): boolean =>
       this.layoutComponents.includes(data);
@@ -102,17 +171,5 @@ export class LayoutComponent implements OnInit {
     this.hasDirectory = hasIncludes(LayoutComponents.DIRECTORY);
     this.hasTagCard = hasIncludes(LayoutComponents.TAG_CARD);
     this.hasRecentCard = hasIncludes(LayoutComponents.RECENT_CARD);
-  }
-
-  changeTheme() {
-    this._appThemeService.changeTheme();
-  }
-
-  showSearch() {
-    this._appSearchService.changeStatus(true);
-  }
-
-  bugReport() {
-    this._appDialogService.bugReport();
   }
 }

@@ -2,7 +2,8 @@
   &__content {
     padding: 0 20px;
     transition: all 0.3s;
-    height: calc(100vh - 64px);
+    // height: 100vh;
+    // height: calc(100vh - 64px);
     // height: calc(100vh - 20px - 64px);
     overflow: auto;
     &__left,

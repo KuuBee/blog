@@ -1,3 +1,4 @@
+@import "@app/shared/style/animations";
 .tag-card {
   &__content {
     display: flex;
@@ -5,20 +6,10 @@
     flex-flow: wrap;
     &__tag {
       cursor: pointer;
-      position: relative;
       padding: 5px 10px;
       margin: 5px;
       &:hover {
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: -3px;
-          left: 0;
-          width: 100%;
-          border-bottom-width: 1px;
-          border-bottom-style: solid;
-          animation: 1s cubic-bezier(0.075, 0.82, 0.165, 1) increase_width_from_middle;
-        }
+        @include under-line-from-middle();
       }
     }
   }

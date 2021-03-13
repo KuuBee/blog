@@ -11,7 +11,15 @@
           style="max-height: 300px"
         >
         </textarea>
-        <mat-hint align="start">和平评论哦</mat-hint>
+        <mat-hint align="start"
+          >和平评论哦
+          <a
+            *ngIf="isShowTips"
+            href="https://github.com/younghz/Markdown"
+            target="_blank"
+            >什么是 markdown ?</a
+          ></mat-hint
+        >
         <mat-hint align="end">{{ commentTextarea.value.length }}</mat-hint>
         <div
           fxLayout="row"
@@ -25,7 +33,12 @@
           >
             表情
           </button>
-          <button mat-stroked-button color="accent" (click)="submit()">
+          <button
+            mat-stroked-button
+            [disabled]="!commentTextarea.value.length"
+            color="accent"
+            (click)="submit()"
+          >
             提交
           </button>
         </div>

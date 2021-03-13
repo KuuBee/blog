@@ -1,6 +1,41 @@
+/*
+ * @Descripttion: 存放一些公共动画
+ * @Author: KuuBee
+ * @Date: 2021-01-04 23:00:15
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-03-11 16:30:05
+ */
+//  变量
 $slow-fast: cubic-bezier(0.96, 0.11, 0.69, 0.56);
 $fast-slow: cubic-bezier(0.17, 0.84, 0.69, 0.56);
+//
+@mixin under-line-from-middle($time: 1s) {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    animation: $time cubic-bezier(0.075, 0.82, 0.165, 1) increase_width_from_middle;
+  }
+}
+@mixin under-line-from-start($time: 1s) {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid;
+    animation: $time cubic-bezier(0.075, 0.82, 0.165, 1) increase_width;
+  }
+}
 
+// 动画
 @keyframes increase_width {
   0% {
     right: 100%;

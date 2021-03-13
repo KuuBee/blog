@@ -17,11 +17,10 @@ export class TagCardComponent implements OnInit, OnDestroy {
     this.requestTagArr();
   }
   ngOnDestroy() {
-    if (this.tagSub$) this.tagSub$.unsubscribe();
+    this.tagSub$?.unsubscribe();
   }
   requestTagArr() {
     this.tagSub$ = this._searchList.tagObs$.subscribe((res) => {
-      console.log(res);
       this.tagArr = res;
     });
   }

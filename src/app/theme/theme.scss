@@ -3,6 +3,8 @@
 @import "./style/app-theme.scss";
 @import "./style/dark-theme.scss";
 @import "./style/light-theme.scss";
+@import "./style/mat-theme.scss";
+// google 字体
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap");
 
 @include mat-core();

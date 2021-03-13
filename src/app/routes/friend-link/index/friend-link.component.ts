@@ -52,7 +52,7 @@ export class FriendLinkComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
   ngOnDestroy() {
-    if (this.eventSub) this.eventSub.unsubscribe();
+    this.eventSub?.unsubscribe();
   }
   requestFriendLinkIndex() {
     this._friednLinkApi.index().subscribe((res) => {

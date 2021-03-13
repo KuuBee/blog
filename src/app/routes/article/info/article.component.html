@@ -48,6 +48,12 @@
     [tagArr]="articleInfo?.tag"
     [classification]="articleInfo?.classification"
     [src]="articleLink"
+    (load)="onLoad()"
   ></app-markdown>
-  <app-comment fxFill></app-comment>
+  <app-comment
+    fxFill
+    [articleId]="articleId"
+    [commentDataArr]="commentDataArr"
+    [loading]="commentLoading"
+  ></app-comment>
 </div>

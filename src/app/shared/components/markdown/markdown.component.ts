@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ArticleApiType } from '@app/core/api/article-api.service';
 import { SearchApiType } from '@app/core/api/search-api.service';
@@ -39,6 +40,8 @@ export class AppMarkdownComponent implements OnInit {
 
   @Input('loading') outerLoading = false;
 
+  @Output() load = new EventEmitter<MarkdownComponent>();
+
   loading = true;
 
   get markdownContent() {
@@ -62,6 +65,7 @@ export class AppMarkdownComponent implements OnInit {
     this.appMarkdownService.markdownDom$.next(
       markdownComponent.element.nativeElement
     );
+    this.load.emit(markdownComponent);
   }
   onError(err: any) {
     console.log(err);

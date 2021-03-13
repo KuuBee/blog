@@ -39,16 +39,12 @@ export class HomeComponent implements OnInit {
   intersectionObserver?: IntersectionObserver;
   needWatch = true;
   loading = false;
-
-  get isShowEnd(): boolean {
-    const hasScroll = this._appUtils.hasScroll();
-    return this.isLast && hasScroll && !!this.articleArr.length;
-  }
+  isShowEnd = false;
 
   ngOnInit(): void {
     this.intersectionObserver = new IntersectionObserver(
-      () => {
-        if (!this.loading) {
+      ([first]) => {
+        if (!this.loading && first.isIntersecting) {
           this.requestArticleIndex(this.currentPage + 1);
         }
       },
@@ -56,7 +52,6 @@ export class HomeComponent implements OnInit {
         threshold: 0.1,
       }
     );
-    // obs.observe(document.)
     this.requestArticleIndex();
   }
   requestArticleIndex(page = 0) {
@@ -75,7 +70,6 @@ export class HomeComponent implements OnInit {
         this.loading = false;
         setTimeout(() => {
           if (this.isLast) {
-            // this.intersectionObserver?.unobserve(this.loadingRef.nativeElement);
             this.intersectionObserver?.disconnect();
             return;
           }
@@ -83,10 +77,15 @@ export class HomeComponent implements OnInit {
             this.intersectionObserver?.observe(this.loadingRef.nativeElement);
             this.needWatch = false;
           }
+          this.calcIsShowEnd();
         }, 100);
       });
   }
-  trackById(index: number, item: ArticleIndexData) {
+  trackById(_index: number, item: ArticleIndexData) {
     return item.articleId;
+  }
+  async calcIsShowEnd() {
+    const hasScroll = await this._appUtils.hasScroll();
+    this.isShowEnd = this.isLast && hasScroll && !!this.articleArr.length;
   }
 }

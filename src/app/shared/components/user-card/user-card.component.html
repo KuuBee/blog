@@ -1,11 +1,10 @@
-<mat-card class="user-card no-select">
-  <!-- @openClose -->
+<mat-card class="user-card no-select" [ngStyle]="cardStyle">
   <mat-card-content class="user-card__content">
     <div class="user-card__content__name">{{ userInfo.ownerName }}</div>
     <div class="user-card__content__motto">{{ userInfo.motto }}</div>
-    <div class="user-card__content__address">
+    <!-- <div class="user-card__content__address">
       {{ userInfo.country }} {{ userInfo.city }}
-    </div>
+    </div> -->
     <div
       class="user-card__content__article-info"
       fxLayout="row"

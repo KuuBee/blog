@@ -5,12 +5,15 @@ import omitBy from 'lodash/omitBy';
 import isNil from 'lodash/isNil';
 
 import scrollIntoView, { Options } from 'scroll-into-view-if-needed';
+import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppUtilsService {
   private _contentDom?: Element;
+  contentDom$ = new BehaviorSubject<null | Element>(null);
 
   get contentDom(): Element {
     if (!this._contentDom) {
@@ -18,17 +21,27 @@ export class AppUtilsService {
         '.app-layout__content'
       ) as Element;
       if (!this._contentDom) {
-        throw new Error('app-layout__content 类名不存在！请检查layout！');
+        setTimeout(() => {
+          this.contentDom;
+        }, 10);
+        // throw new Error('app-layout__content 类名不存在！请检查layout！');
       }
     }
     return this._contentDom;
   }
+  // get contentDom$() {
+  //   if (!this._contentDom$) this._contentDom$ = new BehaviorSubject(null);
+  //   return this._contentDom$;
+  // }
   /**
    * @description: 页面是否存在滚动条
-   * @param target 默认是根元素(不是body 是 app__content)
+   * @param target 默认是根元素(不是body 是 app-layout__content)
    * @return true存在滚动条 false不存在滚动条
    */
-  hasScroll(target = this.contentDom): boolean {
+  async hasScroll(target?: Element): Promise<boolean> {
+    if (!target) {
+      target = (await this.contentDom$.toPromise()) as Element;
+    }
     const windowHeight = window.innerHeight;
     return (target?.scrollHeight ?? 0) > windowHeight;
   }

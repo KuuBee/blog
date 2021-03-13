@@ -1,0 +1,54 @@
+<mat-toolbar
+  [ngStyle.xs]="toolbarStyle"
+  class="app__toolbar no-select"
+  color="primary"
+>
+  <button fxShow.xs fxHide mat-icon-button (click)="drawer?.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{ name }}的猫窝</span>
+  <div fxShow.xs fxHide>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu>
+      <button mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>登陆</span>
+      </button>
+      <button mat-menu-item (click)="changeTheme()">
+        <mat-icon>{{ isDark ? "wb_sunny" : "bedtime" }}</mat-icon>
+        <span>模式</span>
+      </button>
+      <!-- TODO 跳转github issue -->
+      <button mat-menu-item>
+        <mat-icon>bug_report</mat-icon>
+        <span>异常</span>
+      </button>
+      <button mat-menu-item (click)="showSearch()">
+        <mat-icon>search</mat-icon>
+        <span>搜索</span>
+      </button>
+    </mat-menu>
+  </div>
+  <ng-container *ngIf="!isXs">
+    <button mat-button routerLink="/">主页</button>
+    <button mat-button routerLink="/classification">分类</button>
+    <button mat-button routerLink="/tag">标签</button>
+    <button mat-button routerLink="/archive">归档</button>
+    <span class="toolbar-spacer"></span>
+    <button mat-button routerLink="/friend-link">友链</button>
+    <button mat-button routerLink="/about">关于</button>
+    <button mat-button>登陆</button>
+    <button mat-icon-button (click)="changeTheme()">
+      <mat-icon>{{ isDark ? "wb_sunny" : "bedtime" }}</mat-icon>
+    </button>
+    <!-- TODO 跳转github issue -->
+    <button mat-icon-button>
+      <mat-icon>bug_report</mat-icon>
+    </button>
+    <button mat-icon-button (click)="showSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>

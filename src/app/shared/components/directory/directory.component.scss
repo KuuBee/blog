@@ -23,24 +23,12 @@
     }
     &__text {
       font-size: 16px;
-      // font-family: "NotoSerifSC-Light"!important;
-      // font-weight: lighter;
     }
     &--invisible {
       display: none;
     }
     &--active {
-      position: relative;
-      // color: red;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -3px;
-        left: 0;
-        right: 0;
-        border-bottom: 1px solid;
-        animation: 1s cubic-bezier(0.075, 0.82, 0.165, 1) increase_width;
-      }
+      @include under-line-from-start();
     }
   }
 }

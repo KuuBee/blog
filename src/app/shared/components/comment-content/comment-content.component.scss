@@ -1,7 +1,8 @@
 @import "@app/theme/theme.scss";
 
-$avatar-radius: 70px;
+$avatar-radius: 50px;
 .app-comment-content {
+  margin-top: 16px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -37,6 +38,7 @@ $avatar-radius: 70px;
     height: $avatar-radius;
     border-radius: 50%;
     background-color: pink;
+    // background: url("") no-repeat center/cover;
   }
   &__content {
     flex: 1;
