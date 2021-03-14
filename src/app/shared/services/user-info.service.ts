@@ -28,6 +28,7 @@ export class UserInfoService {
       name: name ?? '',
     };
   }
+  // TODO 这里关于权限的东西应该迁移值 auth service 中
   get isLogin(): boolean {
     return !!this.token.split('Bearer ')[1];
   }

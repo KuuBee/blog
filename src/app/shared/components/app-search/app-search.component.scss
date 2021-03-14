@@ -13,11 +13,11 @@
   }
   &__result—list {
     overflow: hidden;
-    width: 60vw;
+    // width: 60vw;
     .mat-card {
       margin: 0 auto;
       margin-bottom: 20px;
-      width: calc(60vw - 100px);
+      width: calc(100vw - 100px);
     }
   }
   &__field{
@@ -25,6 +25,6 @@
   }
   .mat-form-field {
     margin-top: 100px;
-    min-width: 26vw;
+    // min-width: 26vw;
   }
 }

@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { AppDialogService } from '@app/shared/services/app-dialog.service';
 import { AppSearchService } from '@app/shared/services/app-search.service';
 import { AppThemeService } from '@app/shared/services/app-theme.service';
 import { UserInfoService } from '@app/shared/services/user-info.service';
+import { AuthService } from '@app/shared/services/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,9 +13,11 @@ import { UserInfoService } from '@app/shared/services/user-info.service';
 })
 export class ToolbarComponent implements OnInit {
   constructor(
-    private _appThemeService: AppThemeService,
-    private _appSearchService: AppSearchService,
-    private _userInfo: UserInfoService
+    private _themeService: AppThemeService,
+    private _searchService: AppSearchService,
+    private _userInfo: UserInfoService,
+    private _dialog: AppDialogService,
+    private _auth: AuthService
   ) {}
   @Input() isXs = false;
   @Input() drawer?: MatDrawer;
@@ -21,24 +25,33 @@ export class ToolbarComponent implements OnInit {
     'justify-content': 'space-between',
   };
   get isDark() {
-    return this._appThemeService.themeType === 'dark';
+    return this._themeService.ThemeType === 'dark';
   }
 
   get isShowSearch(): boolean {
-    return this._appSearchService.isShow;
+    return this._searchService.isShow;
   }
 
   get name() {
     return this._userInfo.ownerName;
   }
+  get isLogin() {
+    return this._auth.isLogin;
+  }
 
   ngOnInit(): void {}
 
   changeTheme() {
-    this._appThemeService.changeTheme();
+    this._themeService.changeTheme();
   }
 
   showSearch() {
-    this._appSearchService.changeStatus(true);
+    this._searchService.changeStatus(true);
+  }
+  login() {
+    this._dialog.login();
+  }
+  logout() {
+    this._auth.logout();
   }
 }

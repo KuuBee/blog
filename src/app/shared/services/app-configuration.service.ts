@@ -6,11 +6,11 @@
  * @LastEditTime: 2020-12-04 14:29:31
  */
 import { Injectable } from '@angular/core';
-import { themeType } from './app-theme.service';
+import { ThemeType } from './app-theme.service';
 
 // 配置项
 interface ConfigurationType {
-  theme: themeType;
+  theme: ThemeType;
 }
 type configurationTypeKey = keyof ConfigurationType;
 

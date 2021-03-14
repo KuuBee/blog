@@ -2,8 +2,8 @@
  * @Descripttion: 用于管理一些 app 级别的dialog
  * @Author: 杨湛杰
  * @Date: 2021-01-18 11:18:07
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-21 21:32:04
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-03-14 16:20:48
  */
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -13,6 +13,7 @@ import { LoginDialogComponent } from '../components/login-dialog/login-dialog.co
 import { RegisterDialogComponent } from '../components/register-dialog/register-dialog.component';
 import { AuthDialogRefComponent } from '../components/auth-dialog-ref/auth-dialog-ref.component';
 import { CreateLinkDialogRefComponent } from '@app/routes/friend-link/shared/components/create-link-dialog-ref/create-link-dialog-ref.component';
+import { MediaObserver } from '@angular/flex-layout';
 
 export namespace AppDialogType {
   export enum responseCode {
@@ -34,11 +35,22 @@ export namespace AppDialogType {
   providedIn: 'root',
 })
 export class AppDialogService {
-  constructor(private _matDialog: MatDialog) {}
-  private readonly dialogOptions: MatDialogConfig = {
-    width: '30%',
-    disableClose: true,
-  };
+  constructor(private _matDialog: MatDialog, private _media: MediaObserver) {}
+  // private readonly dialogOptions: MatDialogConfig = {
+  //   width: '30%',
+  //   disableClose: true,
+  // };
+  get dialogOptions() {
+    const opt: any = {
+      disableClose: true,
+    };
+    if (!this._media.isActive('xs')) {
+      opt.width = '30%';
+    } else {
+      opt.width = '80vw';
+    }
+    return opt;
+  }
   login() {
     return this._matDialog.open<
       AuthDialogRefComponent,

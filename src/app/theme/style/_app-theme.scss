@@ -47,7 +47,11 @@
       background-color: $warn;
     }
     &--text {
-      color: $accent;
+      @if $is-dark {
+        color: white;
+      } @else {
+        color: rgba($color: #000000, $alpha: 0.87);
+      }
     }
     &--border-color {
       border-color: $accent;

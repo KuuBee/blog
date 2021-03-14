@@ -1,6 +1,6 @@
 .drawer {
-  background: url(~@assets/images/K-ON.png) no-repeat right bottom;
-  background-size: 30%;
+  // background: url(~@assets/images/K-ON.png) no-repeat right bottom;
+  // background-size: 30%;
   width: 70vw;
   height: 100vh;
   .title {
@@ -13,11 +13,22 @@
     height: 100%;
     .list {
       .list-item {
-        color: #333;
         mat-icon {
           margin-right: 16px;
         }
       }
     }
+  }
+}
+:host-context(.light-theme) {
+  .drawer {
+    background: url(~@assets/images/K-ON.png) no-repeat right bottom;
+    background-size: 30%;
+  }
+}
+:host-context(.dark-theme) {
+  .drawer {
+    background: url(~@assets/images/K-ON-AZ.png) no-repeat right bottom;
+    background-size: 50%;
   }
 }

@@ -18,6 +18,7 @@ import { link } from 'fs';
 import { Subscription } from 'rxjs';
 import { concatMap, delay, filter, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { CursorService } from '@app/shared/services/cursor.service';
 
 export enum LayoutComponents {
   USER_CARD,
@@ -45,7 +46,8 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     private _userInfo: UserInfoService,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _utils: AppUtilsService
+    private _utils: AppUtilsService,
+    private _cursor: CursorService
   ) {}
   @ViewChild('content')
   private _content?: ElementRef;
@@ -91,7 +93,7 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   get isDark() {
-    return this._appThemeService.themeType === 'dark';
+    return this._appThemeService.ThemeType === 'dark';
   }
 
   get isShowSearch(): boolean {
@@ -158,6 +160,8 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   // 初始化媒体监听
   initMedia() {
     this.isXs = this._mediaObserver.isActive('xs');
+    // 改变指针的服务只在非移动端开启
+    if (!this.isXs) this._cursor.init();
     this.mediaSub = this._mediaObserver.asObservable().subscribe(() => {
       // 监听断点改变
       this.isXs = this._mediaObserver.isActive('xs');

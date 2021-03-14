@@ -1,4 +1,5 @@
 <mat-card class="user-card no-select" [ngStyle]="cardStyle">
+  <div class="user-card__avatar"></div>
   <mat-card-content class="user-card__content">
     <div class="user-card__content__name">{{ userInfo.ownerName }}</div>
     <div class="user-card__content__motto">{{ userInfo.motto }}</div>
@@ -15,7 +16,7 @@
         [matTooltip]="item.tips"
         fxLayout="column"
         fxLayoutAlign="center center"
-        class="icon pointer"
+        class="icon"
       >
         <mat-icon size="20">{{ item.icon }}</mat-icon>
         <div class="text-overflow-ellipsis">0</div>

@@ -19,7 +19,7 @@ export class SkeletonComponent implements OnInit {
       'animation-duration': '2s',
     };
     let resCss: any;
-    if (this._appTheme.themeType === 'dark') {
+    if (this._appTheme.ThemeType === 'dark') {
       resCss = Object.assign(defalutCss, {
         'background-color': '#323232',
         border: '1px solid #323232',

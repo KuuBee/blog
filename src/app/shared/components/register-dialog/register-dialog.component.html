@@ -79,7 +79,7 @@
             class="defalut-avatar__content__item"
             [class.defalut-avatar__content__item--active]="
               i === selectdefaultAvatarIndex
-            "
+            " 
             (click)="
               selectdefaultAvatarIndex = i;
               registerForm.get('avatar')?.setValue(null)

@@ -15,12 +15,11 @@
     user-select: none;
   }
   &__title {
-    cursor: pointer;
     transition: all 0.3s;
     padding: 25px 0 15px 0;
     text-align: center;
     font-size: 30px;
-    cursor: pointer;
+    // cursor: pointer;
 
     &::before {
       content: "「";
@@ -69,7 +68,7 @@
   }
   &__tag,
   &__class {
-    cursor: pointer;
+    // cursor: pointer;
     padding: 0 10px 0 4px;
     border-radius: 5px;
     color: #fff !important;
