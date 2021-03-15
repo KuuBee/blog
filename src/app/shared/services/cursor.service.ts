@@ -9,6 +9,7 @@ export class CursorService {
   constructor(private _theme: AppThemeService) {}
   mouseSub?: Subscription;
   private ele?: HTMLElement;
+  // 初始化服务
   init() {
     if (!this.ele) this.ele = document.createElement('div');
     const DIAMETER = 30;
@@ -19,8 +20,8 @@ export class CursorService {
     this.ele.style.borderRadius = '99px';
     this.ele.style.border = '2px solid #1976D1';
     this.ele.style.position = 'fixed';
-    this.ele.style.top = '0px';
-    this.ele.style.left = '0px';
+    this.ele.style.top = '-100px';
+    this.ele.style.left = '-100px';
     // 忽略指针事件
     this.ele.style.pointerEvents = 'none';
     document.body.appendChild(this.ele);

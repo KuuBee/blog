@@ -1,0 +1,15 @@
+<mat-card class="favorite">
+  <mat-card-title style="text-align: center"> 大家都是我翅膀 </mat-card-title>
+  <mat-card-content>
+    <div
+      class="favorite__girls"
+      *ngFor="let item of favorite"
+      (click)="pullUp(item.link)"
+    >
+      <div class="avatar">
+        <app-image [src]="item.avatar"></app-image>
+      </div>
+      <div class="name">{{ item.name }}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

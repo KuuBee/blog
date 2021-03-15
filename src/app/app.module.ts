@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { enableProdMode, NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routes/app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,13 +13,14 @@ import { SharedModule } from './shared/shared.module';
 import { httpInterceptorProviders } from '@app/core/interceptors/index';
 import { appInitializerProviders } from '@app/core/initializers';
 import { ThemeModule } from '@app/theme/theme.module';
+import { RoutesModule } from './routes/routes.module';
 
 // enableProdMode();
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RoutesModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

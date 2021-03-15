@@ -29,10 +29,15 @@
         <mat-icon>bug_report</mat-icon>
         <span>异常</span>
       </button>
-      <button mat-menu-item (click)="showSearch()">
+      <button mat-menu-item routerLink="/favorite">
+        <mat-icon>favorite</mat-icon>
+        <span>翅膀</span>
+      </button>
+      <!-- TODO search 功能先雪藏 -->
+      <!-- <button mat-menu-item (click)="showSearch()">
         <mat-icon>search</mat-icon>
         <span>搜索</span>
-      </button>
+      </button> -->
     </mat-menu>
   </div>
   <ng-container *ngIf="!isXs">
@@ -52,8 +57,12 @@
     <button mat-icon-button>
       <mat-icon>bug_report</mat-icon>
     </button>
-    <button mat-icon-button (click)="showSearch()">
-      <mat-icon>search</mat-icon>
+    <button mat-icon-button routerLink="/favorite">
+      <mat-icon>favorite</mat-icon>
     </button>
+    <!-- TODO search 功能先雪藏 -->
+    <!-- <button mat-icon-button (click)="showSearch()">
+      <mat-icon>search</mat-icon>
+    </button> -->
   </ng-container>
 </mat-toolbar>

@@ -30,6 +30,7 @@ import { FriendCardComponent } from './components/friend-card/friend-card.compon
 import { NoContentComponent } from './components/no-content/no-content.component';
 import { DrawerContentComponent } from './components/drawer-content/drawer-content.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ImageComponent } from './components/image/image.component';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -99,6 +100,7 @@ const COMPONENTS: any[] = [
   NoContentComponent,
   DrawerContentComponent,
   ToolbarComponent,
+  ImageComponent,
 ];
 const PROVIDERS: any[] = [];
 

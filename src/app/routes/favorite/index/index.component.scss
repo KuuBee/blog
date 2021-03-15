@@ -1,0 +1,29 @@
+@import "~@angular/material/theming";
+.favorite {
+  $diameter: 100px;
+  mat-card-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: wrap;
+    .favorite__girls {
+      padding: 8px;
+      width: $diameter;
+      .avatar {
+        transition: all 0.3s;
+        overflow: hidden;
+        width: $diameter;
+        height: $diameter;
+        border-radius: 999px;
+        @include mat-elevation(3);
+        &:hover {
+          @include mat-elevation(7);
+        }
+      }
+      .name {
+        text-align: center;
+        font-size: 18px;
+      }
+    }
+  }
+}

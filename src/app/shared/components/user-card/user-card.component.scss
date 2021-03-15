@@ -8,7 +8,8 @@ $mat-grey-500: map-get($mat-grey, 500);
     height: 130px;
     width: 130px;
     border-radius: 50%;
-    background: url(~@assets/images/avatar.png) no-repeat center/cover;
+    background: url("https://material.angular.io/assets/img/examples/shiba2.jpg") no-repeat center/cover;
+    // ~@assets/images/avatar.png
     box-shadow: 3px 3px 5px 3px rgba($color: #000000, $alpha: 0.2);
     &:hover {
       transform: rotate(1turn);
