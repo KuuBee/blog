@@ -1,4 +1,10 @@
 .tag-module {
+  mat-card {
+    background-image: url(~@assets/images/K-ON-L.webp);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 40%;
+  }
   &__title {
     display: flex;
     justify-content: center;
@@ -8,6 +14,7 @@
     display: flex;
     align-items: baseline;
     flex-flow: wrap;
+    min-height: 70vh;
     > app-chip {
       margin: 5px;
     }

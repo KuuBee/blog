@@ -1,4 +1,10 @@
 .classification-module {
+  mat-card {
+    background-image: url(~@assets/images/K-ON0.webp);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 50%;
+  }
   &__title {
     display: flex;
     justify-content: center;
@@ -8,6 +14,7 @@
     display: flex;
     align-items: baseline;
     flex-flow: wrap;
+    min-height: 70vh;
     > span {
       // cursor: pointer;
       margin: 10px 15px;

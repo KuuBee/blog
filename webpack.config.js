@@ -2,8 +2,8 @@
  * @Descripttion: 
  * @Author: 杨湛杰
  * @Date: 2020-12-11 15:00:17
- * @LastEditors: 杨湛杰
- * @LastEditTime: 2021-01-07 10:00:37
+ * @LastEditors: KuuBee
+ * @LastEditTime: 2021-03-16 11:48:46
  */
 const path = require("path");
 // const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');

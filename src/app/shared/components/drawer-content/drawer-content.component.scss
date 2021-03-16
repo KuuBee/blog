@@ -22,13 +22,13 @@
 }
 :host-context(.light-theme) {
   .drawer {
-    background: url(~@assets/images/K-ON.png) no-repeat right bottom;
+    background: url(~@assets/images/K-ON.webp) no-repeat right bottom;
     background-size: 30%;
   }
 }
 :host-context(.dark-theme) {
   .drawer {
-    background: url(~@assets/images/K-ON-AZ.png) no-repeat right bottom;
+    background: url(~@assets/images/K-ON-AZ.webp) no-repeat right bottom;
     background-size: 50%;
   }
 }

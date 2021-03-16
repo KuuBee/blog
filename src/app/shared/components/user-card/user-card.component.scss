@@ -8,12 +8,13 @@ $mat-grey-500: map-get($mat-grey, 500);
     height: 130px;
     width: 130px;
     border-radius: 50%;
-    background: url("https://material.angular.io/assets/img/examples/shiba2.jpg") no-repeat center/cover;
-    // ~@assets/images/avatar.png
+    background: url(~@assets/images/avatar.webp) no-repeat center/cover;
+    // ~@assets/images/avatar.webp
+    // "https://material.angular.io/assets/img/examples/shiba2.jpg"
     box-shadow: 3px 3px 5px 3px rgba($color: #000000, $alpha: 0.2);
     &:hover {
       transform: rotate(1turn);
-      background-image: url(~@assets/images/avatar-hover.jpg);
+      background-image: url(~@assets/images/avatar-hover.webp);
       // ~@assets/images/avatar-hover.jpg
     }
   }

@@ -28,9 +28,9 @@
       "@app/*": [
         "src/app/*"
       ],
-      "@assets/*": [
-        "src/assets/*"
-      ]
+      // "@assets/*": [
+      //   "src/assets/*"
+      // ]
     }
   },
   // 采用wepback打包 会产生如下警告
