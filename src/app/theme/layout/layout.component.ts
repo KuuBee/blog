@@ -122,6 +122,10 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     const rootLoadingParent = rootLoading.parentNode as Node;
     // 清除加载动画
     if (environment.production) {
+      if (localStorage.aaaxxx) {
+        rootDom.style.display = 'inline';
+        rootLoadingParent.removeChild(rootLoading);
+      }
       // rootDom.style.display = 'inline';
       // rootLoadingParent.removeChild(rootLoading);
       // setTimeout(() => {

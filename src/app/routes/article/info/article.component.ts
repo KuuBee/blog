@@ -12,6 +12,7 @@ import {
 import { ReplyApiService, ReplyApiType } from '@app/core/api/reply-api.service';
 import { CommentService } from '@app/shared/services/comment.service';
 import { Subscriber, Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 export interface CommentDataType extends CommentApiType.Response.IndexData {
   reply: ReplyApiType.Response.IndexData[];
@@ -40,7 +41,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   commentSub?: Subscription;
 
   get articleLink() {
-    if (environment.production) {
+    if (environment.production || true) {
       return this.articleInfo?.articleLink;
     }
     // 浏览器无法通过js跳转本地文件
@@ -62,11 +63,14 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
   requestArticleInfo() {
     this.loading = true;
-    this._articleApi.info(this.articleId).subscribe((res) => {
-      console.log(res);
-      this.articleInfo = res.data;
-      this.loading = false;
-    });
+    this._articleApi
+      .info(this.articleId)
+      .pipe(delay(1000))
+      .subscribe((res) => {
+        console.log(res);
+        this.articleInfo = res.data;
+        this.loading = false;
+      });
   }
   requestCommentIndex() {
     this.commentLoading = true;
@@ -96,6 +100,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
       });
   }
   onLoad() {
+    // 加载完成时 监听底部元素
     this.intersectionObs = new IntersectionObserver(
       ([first]) => {
         if (first.isIntersecting) {

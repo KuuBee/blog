@@ -24,20 +24,6 @@ export class SnackBarInterceptor implements HttpInterceptor {
       catchError((err: AppHttpErrorResponse | HttpErrorResponse) => {
         console.log('err::', err);
 
-        // FIXME
-        // emmmm 下面这一段意义不明 我也记不得为啥要这么写了
-        // if (err instanceof AppHttpErrorResponse) {
-        //   let errorMsg = err?.error?.message?.toString() ?? '未知错误！';
-        //   this._appSnackBarService.error(errorMsg);
-        //   return throwError(err);
-        // }
-        // if (err instanceof HttpErrorResponse) {
-        //   this._appSnackBarService.error(err.message);
-        //   return throwError(err);
-        // }
-        // this._appSnackBarService.error('未知错误！');
-        // return throwError(err);
-
         const errorMsg =
           err?.error?.message?.toString() ?? err?.message ?? '未知错误！';
         this._appSnackBarService.error(errorMsg);
