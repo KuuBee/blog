@@ -3,7 +3,7 @@
  * @Author: 杨湛杰
  * @Date: 2021-01-24 22:44:42
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-02-25 11:18:35
+ * @LastEditTime: 2021-03-17 15:43:49
  */
 import { Injectable } from '@angular/core';
 import aes from 'crypto-js/aes';
@@ -35,10 +35,19 @@ export class AppCryptoService {
     // console.log('明文', de.toString(Utf8));
   }
 
+  // RSA加密公钥
   private get _publicKeyStr() {
     if (environment.production) {
+      // 照理来说 公钥通常是要通过服务器接口请求的 但我这里太懒了（节省服务器资源）直接写死了
       // 生产用
-      return '';
+      return `
+      -----BEGIN PUBLIC KEY-----
+      MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC8+6Su41bgsidlvlyUS984T1BY
+      gxYa5VgjWqRGSqG/mEMw/8Vnkfv9ZKg66pd3c6wRtNQSqd6smZhiHEdOvyc3fLzM
+      PhiHH3djJL1Iego29cYoeQ/4CyBfZBzItCSLCp1yIYq0Q/uqgc+HGDJAuuOgkOlv
+      YSNtwJ+t4vEx0cI9lQIDAQAB
+      -----END PUBLIC KEY-----
+      `;
     } else {
       // 开发用
       return `
@@ -101,6 +110,7 @@ export class AppCryptoService {
    * @return {string} 密文
    */
   rsaEncrypt(message: string): string {
+    // 这里缺少类型
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(this._publicKeyStr);
     return encrypt.encrypt(message);
