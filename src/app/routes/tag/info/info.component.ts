@@ -32,7 +32,6 @@ export class InfoComponent implements OnInit {
   requestTagInfo() {
     if (!this.id) throw new Error('id 丢失');
     this._tagApi.info(this.id).subscribe((res) => {
-      console.log(res);
       this.tagInfo = res.data;
     });
   }
@@ -47,7 +46,6 @@ export class InfoComponent implements OnInit {
       .pipe(this._articleApi.sortFromYearPipe())
       .subscribe(
         (res) => {
-          console.log(res);
           this.archiveArr = res;
         },
         () => {},

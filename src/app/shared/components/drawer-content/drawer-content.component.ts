@@ -17,7 +17,6 @@ export class DrawerContentComponent implements OnInit {
 
   ngOnInit(): void {}
   async toLink(link: string) {
-    console.log('link', link, this.drawer);
     await this.drawer?.close();
     await this._route.navigateByUrl(link);
   }

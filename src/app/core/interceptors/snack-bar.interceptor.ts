@@ -11,6 +11,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ApiType, AppHttpErrorResponse } from '../api/index';
 import { AppSnackBarService } from '../../shared/services/app-snack-bar.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class SnackBarInterceptor implements HttpInterceptor {
@@ -22,8 +23,6 @@ export class SnackBarInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<ApiType.SuccessResponse>> {
     return next.handle(request).pipe(
       catchError((err: AppHttpErrorResponse | HttpErrorResponse) => {
-        console.log('err::', err);
-
         const errorMsg =
           err?.error?.message?.toString() ?? err?.message ?? '未知错误！';
         this._appSnackBarService.error(errorMsg);
@@ -38,6 +37,7 @@ export class SnackBarInterceptor implements HttpInterceptor {
             responseBody?.message?.length
           )
             this._appSnackBarService.success(responseBody.message);
+          if (!environment.production) console.log('请求结果:', val.body);
         }
         return of(val);
       })

@@ -56,7 +56,6 @@ export class FriendLinkComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   requestFriendLinkIndex() {
     this._friednLinkApi.index().subscribe((res) => {
-      console.log(res);
       this.friednLinkArr = res.data;
     });
   }

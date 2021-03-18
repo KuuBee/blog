@@ -98,14 +98,12 @@ export class CreateLinkDialogRefComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.linkForm.value);
     this._friendLinkApi
       .create({
         ...(this._utils.omit(this.linkForm.value, 'isUseAvatar') as any),
         avatarLink: this.avatar,
       })
       .subscribe((res) => {
-        console.log(res);
         this.close();
       });
   }

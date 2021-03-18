@@ -23,9 +23,6 @@ export class AppRouteReuseStrategy implements RouteReuseStrategy {
    * Storing a `null` value should erase the previously stored value.
    */
   store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle | null) {
-    console.log('store----');
-    console.log('route', route);
-    console.log('handle', handle);
   }
   /** Determines if this route (and its subtree) should be reattached */
   shouldAttach(route: ActivatedRouteSnapshot) {

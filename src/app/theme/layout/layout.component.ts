@@ -154,7 +154,6 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => {
         this._route.children[0].data.subscribe((data) => {
-          console.log('当前路由data', data);
           this.layoutComponents = data?.layoutComponents ?? [];
           this.changeComponents();
         });

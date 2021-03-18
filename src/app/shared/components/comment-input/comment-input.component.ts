@@ -73,12 +73,6 @@ export class CommentInputComponent implements OnInit, OnDestroy {
     }, 0);
   }
   submit() {
-    // console.log('type', this.type);
-    // console.log('replyType', this.replyType);
-    // console.log('commentId', this.commentId);
-    // console.log('replyId', this.replyId);
-    // console.log('articleId', this.articleId);
-
     if (this._userInfoService.isLogin) {
       this._submit();
     } else {
@@ -114,7 +108,6 @@ export class CommentInputComponent implements OnInit, OnDestroy {
       });
     }
     obs.subscribe((res) => {
-      console.log(res);
       this.showEmoji = false;
       this.inputText = '';
       this.textarea.blur();

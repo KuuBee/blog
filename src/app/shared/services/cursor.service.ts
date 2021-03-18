@@ -22,20 +22,20 @@ export class CursorService {
     this.ele.style.position = 'fixed';
     this.ele.style.top = '-100px';
     this.ele.style.left = '-100px';
+    this.ele.style.zIndex = '1010';
     // 忽略指针事件
     this.ele.style.pointerEvents = 'none';
     document.body.appendChild(this.ele);
-    this.mouseSub = fromEvent<MouseEvent>(window, 'mousemove').subscribe(
-      (res) => {
-        if (this.ele) {
-          this.ele.style.transition = 'none';
-          this.ele.style.width = `${DIAMETER}px`;
-          this.ele.style.height = `${DIAMETER}px`;
-          this.ele.style.top = `${res.pageY - RADIUS}px`;
-          this.ele.style.left = `${res.pageX - RADIUS}px`;
-        }
-      }
-    );
+
+    this._mousedown();
+    this._mouseup();
+    this._mousemove(DIAMETER, RADIUS);
+    this._mouseenter();
+    this._mouseleave();
+    this._themeChange();
+  }
+  // 小圈圈变小
+  private _mousedown() {
     fromEvent<MouseEvent>(window, 'mousedown').subscribe((res) => {
       if (!this.ele) return;
       const _DIAMETER = 20;
@@ -46,6 +46,9 @@ export class CursorService {
       this.ele.style.top = `${res.pageY - _RADIUS}px`;
       this.ele.style.left = `${res.pageX - _RADIUS}px`;
     });
+  }
+  // 小圈圈恢复大小
+  private _mouseup() {
     fromEvent<MouseEvent>(window, 'mouseup').subscribe((res) => {
       if (!this.ele) return;
       const _DIAMETER = 30;
@@ -59,6 +62,37 @@ export class CursorService {
         this.ele!.style.transition = 'none';
       }, 100);
     });
+  }
+  // 移动小圈圈
+  private _mousemove(diameter: number, radius: number) {
+    this.mouseSub = fromEvent<MouseEvent>(window, 'mousemove').subscribe(
+      (res) => {
+        if (this.ele) {
+          this.ele.style.transition = 'none';
+          this.ele.style.width = `${diameter}px`;
+          this.ele.style.height = `${diameter}px`;
+          this.ele.style.top = `${res.pageY - radius}px`;
+          this.ele.style.left = `${res.pageX - radius}px`;
+        }
+      }
+    );
+  }
+  // 进入视窗时显示小圈圈
+  private _mouseenter() {
+    fromEvent(document.body, 'mouseenter').subscribe((res) => {
+      if (!this.ele) return;
+      this.ele.style.display = 'block';
+    });
+  }
+  // 移除视窗时隐藏小圈圈
+  private _mouseleave() {
+    fromEvent(document.body, 'mouseleave').subscribe((res) => {
+      if (!this.ele) return;
+      this.ele.style.display = 'none';
+    });
+  }
+  // 改变主题时 改变小圈圈样式
+  private _themeChange() {
     this._theme.theme$.subscribe((res) => {
       if (!this.ele) return;
       if (res === 'dark') {

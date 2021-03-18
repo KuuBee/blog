@@ -29,8 +29,7 @@ export class RecentCardComponent implements OnInit {
     this._articleApi
       .index({ page: 0, pageSize: 5 })
       .subscribe(({ data: { data } }) => {
-        console.log('data', data);
-
+        
         this.list = data;
         this.listTotal = data.length;
         this.loading = false;

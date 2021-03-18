@@ -56,7 +56,7 @@ export class AppConfigurationService {
       res = true;
     } catch (error) {
       res = false;
-      console.log(error);
+      
     }
     return res;
   }

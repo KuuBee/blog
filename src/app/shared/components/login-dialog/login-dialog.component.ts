@@ -67,7 +67,6 @@ export class LoginDialogComponent implements OnInit {
         password: this.password?.value,
       })
       .subscribe((res) => {
-        console.log('create', res);
         const { accessToken, name, avatar } = res.data;
         this._userInfoService.setUserInfo({
           token: accessToken,

@@ -68,7 +68,7 @@ export class AppMarkdownComponent implements OnInit {
     this.load.emit(markdownComponent);
   }
   onError(err: any) {
-    console.log(err);
+    throw new Error(err)
   }
   changePage(type: 'previous' | 'next') {
     this.snackBar.open(

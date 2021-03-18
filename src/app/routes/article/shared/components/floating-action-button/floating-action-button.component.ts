@@ -68,8 +68,6 @@ export class FloatingActionButtonComponent
       });
   }
   clickButton(type: 'like' | 'dislike' | 'bug' = 'like') {
-    console.log(type);
-
     switch (type) {
       case 'like':
         this.likeButtonStatus = !this.likeButtonStatus;

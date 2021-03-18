@@ -15,25 +15,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AppCryptoService {
-  constructor() {
-    // console.log('this.generateKey', this.generateKey(16));
-    // const _key = this.generateKey();
-    // const _iv = this.generateKey(16);
-    // console.log('_key:', _key);
-    // console.log('_iv:', _iv);
-    // const key = Utf8.parse(_key);
-    // const iv = Utf8.parse(_iv);
-    // const data = '122333';
-    // const res = aes.encrypt(data, key, {
-    //   iv,
-    // });
-    // // 这里直接toString 默认是base64编码
-    // console.log('密文', res.toString());
-    // const de = aes.decrypt(res.toString(), key, {
-    //   iv,
-    // });
-    // console.log('明文', de.toString(Utf8));
-  }
 
   // RSA加密公钥
   private get _publicKeyStr() {

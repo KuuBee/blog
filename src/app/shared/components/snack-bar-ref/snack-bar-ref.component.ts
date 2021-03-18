@@ -44,6 +44,6 @@ export class SnackBarRefComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this._props);
+    
   }
 }

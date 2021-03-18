@@ -11,8 +11,6 @@ export class ImageComponent implements OnInit {
     return this._scr;
   }
   set src(val: string) {
-    console.log('val', val);
-
     this._scr = val;
   }
   @Input() alt: string = 'A! 我裂开了';

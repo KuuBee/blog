@@ -11,7 +11,11 @@
       fxLayoutGap="10px"
     >
       <app-skeleton *ngIf="loading" height="50px" [count]="5"></app-skeleton>
-      <mat-card *ngFor="let item of list" class="recent-card__block__item">
+      <mat-card
+        *ngFor="let item of list"
+        [routerLink]="['article', item.articleId]"
+        class="recent-card__block__item"
+      >
         <p class="title text-overflow-ellipsis">{{ item.title }}</p>
         <p class="text-overflow-ellipsis mat-card-subtitle">
           {{ item.createdAt }}

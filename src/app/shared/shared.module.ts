@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, SecurityContext } from '@angular/core';
+import { NgModule, Provider, SecurityContext } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material.module';
 import { AppSearchComponent } from './components/app-search/app-search.component';
@@ -31,6 +31,7 @@ import { NoContentComponent } from './components/no-content/no-content.component
 import { DrawerContentComponent } from './components/drawer-content/drawer-content.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ImageComponent } from './components/image/image.component';
+import { CustomReuseStrategy } from '@app/routes/routes.module';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -62,6 +63,10 @@ export function markedOptionsFactory(): MarkedOptions {
 }
 
 const MODULES: any[] = [
+  CommonModule,
+  FormsModule,
+  RouterModule,
+  ReactiveFormsModule,
   MaterialModule,
   FlexLayoutModule,
   NgxSkeletonLoaderModule,
@@ -102,25 +107,12 @@ const COMPONENTS: any[] = [
   ToolbarComponent,
   ImageComponent,
 ];
-const PROVIDERS: any[] = [];
+const PROVIDERS: Provider[] = [];
 
 @NgModule({
   declarations: [...COMPONENTS],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    ReactiveFormsModule,
-    ...MODULES,
-  ],
+  imports: [...MODULES],
   providers: [],
-  exports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    ReactiveFormsModule,
-    ...MODULES,
-    ...COMPONENTS,
-  ],
+  exports: [...MODULES, ...COMPONENTS],
 })
 export class SharedModule {}

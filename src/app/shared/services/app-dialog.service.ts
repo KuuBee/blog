@@ -64,21 +64,7 @@ export class AppDialogService {
       this.dialogOptions
     );
   }
-  // register() {
-  //   console.log('注册');
-  //   const dialogRef = this._matDialog.open<
-  //     RegisterDialogComponent,
-  //     any,
-  //     AppDialogType.Response
-  //   >(RegisterDialogComponent, this.dialogOptions);
-  //   dialogRef.afterClosed().subscribe((res) => {
-  //     if (res?.code === AppDialogType.responseCode.OPEN_LOGIN) {
-  //       this.login();
-  //     }
-  //   });
-  // }
   bugReport() {
-    console.log('bug');
     this._matDialog.open(BugReportDialogComponent, this.dialogOptions);
   }
 }

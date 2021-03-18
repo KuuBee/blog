@@ -75,10 +75,6 @@ export class CommentContentComponent implements OnInit, OnDestroy {
       this.showComment = false;
     });
     this.isXs = this._mediaObserver.isActive('xs');
-    console.log(
-      "this._mediaObserver.isActive('xs')",
-      this._mediaObserver.isActive('xs')
-    );
   }
   ngOnDestroy() {
     this.commentSub?.unsubscribe();

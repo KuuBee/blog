@@ -79,7 +79,7 @@ export class RegisterDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.defaultAvatar);
+    
   }
   fileInput() {
     this.selectdefaultAvatarIndex = NaN;
@@ -95,7 +95,7 @@ export class RegisterDialogComponent implements OnInit {
         email,
       })
       .subscribe((res) => {
-        console.log(res);
+        
         const { accessToken, name, avatar } = res.data;
         this._userInfoService.setUserInfo({
           token: accessToken,

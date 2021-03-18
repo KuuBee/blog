@@ -118,39 +118,6 @@ export class EncryptInterceptor implements HttpInterceptor {
       responseType: 'text',
     });
     return this.responseDecrypt(next.handle(req), aesKey, aesIv);
-    // return next.handle(req).pipe(
-    //   concatMap((val) => {
-    //     if (val instanceof HttpResponse) {
-    //       // 这里返回的必须是 HttpResponse 类型
-    //       const res: HttpResponse<GlobalType.StrKeyObj> = val.clone({
-    //         body: JSON.parse(
-    //           this._appCryptoService.aesDecrypt(val.body, aesKey, aesIv)
-    //         ),
-    //       });
-    //       console.log('请求结果:', res.body);
-    //       return of(res);
-    //     } else {
-    //       return of(val);
-    //     }
-    //   }),
-    //   catchError((err) => {
-    //     console.log('req', req);
-    //     console.log('HttpInterceptor Error:', err);
-    //     if (err instanceof HttpErrorResponse) {
-    //       // 因为加密返回的是字符串 所以json必须手动序列化
-    //       return throwError(
-    //         new HttpErrorResponse({
-    //           headers: err.headers,
-    //           error: JSON.parse(err.error),
-    //           status: err.status,
-    //           statusText: err.statusText,
-    //           url: err.url ?? undefined,
-    //         })
-    //       );
-    //     }
-    //     return throwError(err);
-    //   })
-    // );
   }
   // 返回值解密
   responseDecrypt(
@@ -180,14 +147,12 @@ export class EncryptInterceptor implements HttpInterceptor {
           //     this._appCryptoService.aesDecrypt(val.body, key, iv)
           //   ),
           // });
-          console.log('请求结果:', res.body);
           return of(res);
         } else {
           return of(val);
         }
       }),
       catchError((err) => {
-        console.log('HttpInterceptor Error:', err);
         if (err instanceof HttpErrorResponse) {
           // 因为加密返回的是字符串 所以json必须手动序列化
           return throwError(

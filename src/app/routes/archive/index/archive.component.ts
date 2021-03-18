@@ -24,7 +24,6 @@ export class ArchiveComponent implements OnInit {
       .index({ pageSize: 9999, page: 0 })
       .pipe(this._articleApi.sortFromYearPipe())
       .subscribe((res) => {
-        console.log(res);
         this.archiveArr = res;
       });
   }

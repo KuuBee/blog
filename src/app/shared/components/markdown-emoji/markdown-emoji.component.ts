@@ -215,7 +215,7 @@ export class MarkdownEmojiComponent implements OnInit {
   // '😈' ':smiling_imp:'	                  😐 ':neutral_face:'	                😶 ':no_mouth:'
 
   ngOnInit(): void {
-    // console.log(this.textarea);
+    
   }
   selectEmoji(code: string) {
     this.select.emit(code);

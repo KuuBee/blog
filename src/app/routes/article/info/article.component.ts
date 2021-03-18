@@ -71,7 +71,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
       .info(this.articleId)
       .pipe(delay(1000))
       .subscribe((res) => {
-        console.log(res);
         this.articleInfo = res.data;
         this.loading = false;
       });
@@ -79,7 +78,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
   requestCommentIndex() {
     this.commentLoading = true;
     this._commentApi.index({ articleId: this.articleId }).subscribe((res) => {
-      console.log('评论', res);
       this._commentArr = res.data;
       this.intersectionObs?.disconnect();
       this.requestReplyIndex();
@@ -91,7 +89,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
         articleId: this.articleId,
       })
       .subscribe((res) => {
-        console.log('回复', res.data);
         this.commentDataArr = this._commentArr.map((item) => {
           const newItem = item as CommentDataType;
           newItem.reply = res.data.filter(
@@ -99,7 +96,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
           );
           return newItem;
         });
-        console.log('this.commentDataArr', this.commentDataArr);
         this.commentLoading = false;
       });
   }

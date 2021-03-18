@@ -16,7 +16,6 @@ export class IndexComponent implements OnInit {
   }
   requestTagIndex() {
     this._tagApi.index().subscribe((res) => {
-      console.log(res);
       this.tagArr = res.data;
     });
   }

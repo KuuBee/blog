@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
   isShowEnd = false;
 
   ngOnInit(): void {
-    console.log('home');
     this.intersectionObserver = new IntersectionObserver(
       ([first]) => {
         if (!this.loading && first.isIntersecting) {
@@ -52,7 +51,6 @@ export class HomeComponent implements OnInit {
         pageSize: 5,
       })
       .subscribe((res) => {
-        console.log(res);
         const data = res.data;
         this.articleArr.push(...data.data);
         this.currentPage = data.pagination.currentPage;
