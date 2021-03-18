@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MediaObserver } from '@angular/flex-layout';
 import {
   ArticleApiService,
   ArticleApiType,
@@ -12,13 +13,18 @@ import { recentCardAnimation } from '../../animation/recent-card.animation';
   animations: [recentCardAnimation],
 })
 export class RecentCardComponent implements OnInit {
-  constructor(private _articleApi: ArticleApiService) {}
+  constructor(
+    private _articleApi: ArticleApiService,
+    private _media: MediaObserver
+  ) {}
   list: ArticleApiType.Response.IndexData[] = [];
   listTotal = 0;
   loading = true;
 
   ngOnInit(): void {
-    this.requestArticleIndex();
+    if (!this._media.isActive('xs')) {
+      this.requestArticleIndex();
+    }
   }
 
   // 这里的理想情况其实是最好能从 home 页直接取已经请求好的数据来用
@@ -29,7 +35,6 @@ export class RecentCardComponent implements OnInit {
     this._articleApi
       .index({ page: 0, pageSize: 5 })
       .subscribe(({ data: { data } }) => {
-        
         this.list = data;
         this.listTotal = data.length;
         this.loading = false;
