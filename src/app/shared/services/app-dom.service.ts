@@ -1,8 +1,8 @@
 /*
  * @Descripttion: 公共dom操作抽离 降低dom操作消耗
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2021-01-30 17:11:45
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2021-01-30 17:23:17
  */
 import { Injectable } from '@angular/core';

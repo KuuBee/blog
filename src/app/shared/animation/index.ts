@@ -1,8 +1,8 @@
 /*
  * @Descripttion: 一些动画时间常量
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2020-12-05 14:25:03
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2020-12-05 14:25:04
  */
 

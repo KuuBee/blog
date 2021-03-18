@@ -1,8 +1,8 @@
 /*
  * @Descripttion: 配置服务
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2020-12-04 14:03:40
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2020-12-04 14:29:31
  */
 import { Injectable } from '@angular/core';

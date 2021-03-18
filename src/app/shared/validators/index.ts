@@ -1,9 +1,9 @@
 /*
  * @Descripttion: 公共验证器
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2021-01-17 22:36:01
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-03-01 11:56:18
+ * @LastEditTime: 2021-03-18 09:40:29
  */
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 

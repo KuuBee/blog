@@ -1,6 +1,6 @@
 /*
  * @Descripttion: 用于管理一些 app 级别的dialog
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2021-01-18 11:18:07
  * @LastEditors: KuuBee
  * @LastEditTime: 2021-03-14 16:20:48

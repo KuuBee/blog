@@ -1,8 +1,8 @@
 /*
  * @Descripttion:
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2021-01-26 09:35:51
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2021-01-26 09:36:02
  */
 declare module 'jsencrypt' {

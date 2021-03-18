@@ -1,8 +1,8 @@
 /*
  * @Descripttion: 浮动按钮动画
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2021-01-30 17:27:07
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2021-01-30 17:46:36
  */
 import { trigger, transition, style, animate } from '@angular/animations';

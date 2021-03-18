@@ -1,8 +1,8 @@
 /*
  * @Descripttion:
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2021-01-25 14:38:57
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2021-01-25 14:38:58
  */
 export namespace GlobalType {

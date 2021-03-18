@@ -45,9 +45,9 @@ export class FloatingActionButtonComponent
   }
   ngAfterViewInit() {
     // 按钮一初始化就执行一次跳转顶部
-    setTimeout(() => {
-      this.scollTop();
-    }, 500);
+    // setTimeout(() => {
+    //   this.scollTop();
+    // }, 500);
   }
   ngOnDestroy() {
     this.scrollSubscription?.unsubscribe();

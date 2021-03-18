@@ -1,8 +1,8 @@
 /*
  * @Descripttion: 有关 app search 组件的动画
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2020-12-05 14:16:06
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2020-12-05 14:41:04
  */
 import {

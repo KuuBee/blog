@@ -1,8 +1,8 @@
 /*
  * @Descripttion: 路由动画
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2020-12-09 14:33:47
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2020-12-14 13:51:07
  */
 import {

@@ -1,8 +1,8 @@
 /*
  * @Descripttion:
- * @Author: 杨湛杰
+ * @Author: KuuBee
  * @Date: 2021-01-07 11:46:33
- * @LastEditors: 杨湛杰
+ * @LastEditors: KuuBee
  * @LastEditTime: 2021-01-07 13:49:02
  */
 interface BrowserInfo {
