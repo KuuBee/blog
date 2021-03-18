@@ -1,5 +1,14 @@
 .recent-card {
   &__block {
     // height: 400px;
+    &__item {
+      .title {
+        margin-bottom: 5px;
+        font-size: 17px;
+      }
+      // .subtitle {
+      //   font-size: 13px;
+      // }
+    }
   }
 }

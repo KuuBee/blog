@@ -35,34 +35,4 @@ export class UserApiService {
       formDataType: true,
     });
   }
-  test() {
-    return this._http.post(
-      '/',
-      {
-        aa: {
-          key: 1234312312312,
-          wowo: `
-          cmxznmidosnadnowneoinwiaondioasnioncmozxncozxi
-          `,
-          c3: '549i0239450309',
-        },
-      },
-      {
-        params: {
-          a: '1',
-          b: '2',
-          cd: '3',
-        },
-      }
-    );
-  }
-  test2() {
-    return this._http.get('/', {
-      params: {
-        a: '1',
-        b: '2',
-        cd: '3',
-      },
-    });
-  }
 }

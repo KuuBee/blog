@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { type } from 'os';
 import { ApiBase, ApiType, CommentBase } from '.';
 
 export namespace CommentApiType {
@@ -21,15 +20,7 @@ export namespace CommentApiType {
     export type Index = ApiType.SuccessResponse<IndexData[]>;
 
     export interface IndexData extends CommentBase {
-      // content: string;
-      // os: string;
-      // browser: string;
-      // name: string;
-      // avatar: string;
-      // level: number;
-      // link: string;
       replyCount: number;
-      // createdAt: string;
     }
   }
 }

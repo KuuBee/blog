@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { extend } from 'lodash';
-import { type } from 'os';
 import { ApiBase, ApiType, CommentBase } from '.';
 
 export namespace ReplyApiType {
@@ -29,15 +27,6 @@ export namespace ReplyApiType {
     export type Index = ApiType.SuccessResponse<IndexData[]>;
     export interface IndexData extends CommentBase {
       replyId: number;
-
-      // content: string;
-      // os: string;
-      // browser: string;
-      // name: string;
-      // avatar: string;
-      // level: number;
-      // link: string;
-      // createdAt: string;
     }
   }
 }

@@ -7,21 +7,20 @@
  */
 
 import { HttpErrorResponse } from '@angular/common/http';
+// api 用的公共类型
 export namespace ApiType {
   export interface SuccessResponse<T = any> {
     data: T;
     message: string;
     code: number;
   }
-  export interface ErrorResponse<T = null> extends AppHttpErrorResponse {
-    // error: _ErrorType<T>;
-  }
-  interface _ErrorType<T> {
-    data: T;
-    message: string | string[];
-    path: string;
-    statusCode: number;
-  }
+  export interface ErrorResponse<T = null> extends AppHttpErrorResponse {}
+  // interface _ErrorType<T> {
+  //   data: T;
+  //   message: string | string[];
+  //   path: string;
+  //   statusCode: number;
+  // }
   export interface PaginationParameter {
     page: string | number;
     pageSize: string | number;

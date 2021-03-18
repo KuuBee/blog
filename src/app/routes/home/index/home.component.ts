@@ -1,20 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostBinding,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import {
-  articleCardAnimation,
-  homePageAnimation,
-} from '../shared/animation/home.animation';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { articleCardAnimation } from '../shared/animation/home.animation';
 import {
   ArticleApiService,
   ArticleApiType,
 } from '@app/core/api/article-api.service';
-import { environment } from 'src/environments/environment';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
 
 type ArticleIndexData = ArticleApiType.Response.IndexData;
@@ -42,6 +31,7 @@ export class HomeComponent implements OnInit {
   isShowEnd = false;
 
   ngOnInit(): void {
+    console.log('home');
     this.intersectionObserver = new IntersectionObserver(
       ([first]) => {
         if (!this.loading && first.isIntersecting) {
