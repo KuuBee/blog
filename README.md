@@ -1,27 +1,60 @@
-# NgBlog
+# 个人博客
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+这是一个基于 [Angular](https://github.com/angular/angular) 和 [Material](https://github.com/angular/material) 开发的博客系统前台。
 
-## Development server
+[预览](https://autocode.icu/blog/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## 配套
 
-## Code scaffolding
+- [blog后台](https://github.com/KuuBee/blog-admin)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  基于 [Angular](https://github.com/angular/angular) 和 [Material](https://github.com/angular/material) 开发的博客系统后台
+  
+- [blog后端](https://github.com/KuuBee/blog-backend)
 
-## Build
+  基于 [Nestjs](https://github.com/nestjs/nest) 和 [Postgres](https://github.com/postgres/postgres) 开发的博客后端
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## 环境
 
-## Running unit tests
+- **Nodejs**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  需要 Node.js 的[当前版、活跃 LTS 版或维护期 LTS版](https://nodejs.org/about/releases)。
 
-## Running end-to-end tests
+- **npm**
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+  检查您是否安装了npm客户端，请在终端允许 `npm -v`
 
-## Further help
+- **Angular**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  您可以参考[这里](https://angular.cn/guide/setup-local#install-the-angular-cli)来安装Angualr
+
+## 使用
+
+进入目录 `npm i`
+
+您可以通过 `npm run start `开始本地预览
+
+您可以通过修改根目录的 `deploy.sh` 来管理您的上传方式
+
+您可以通过 `npm run deploy` 部署
+
+# 异常
+
+已知待修复的问题
+
+- `terser-webpack-plugin` 删除`console`无效
+- 路由复用策略暂时还未完成
+
+如果有问题或者疑问，欢迎在issues进行提问。
+
+如果这个项目对您有帮助，欢迎star，这也是对作者的一种鼓励。
+
+
+# 致谢
+
+感谢每一个给我提供意见和建议的小伙伴 ;-)
+
+# License
+
+遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/qiubaiying/qiubaiying.github.io/blob/master/LICENSE)。
+
