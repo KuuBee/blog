@@ -15,6 +15,8 @@ import {
   FRIEND_CARD_COMPONENT_MIN_WIDTH,
 } from '@app/shared/components/friend-card/friend-card.component';
 import { AppDialogService } from '@app/shared/services/app-dialog.service';
+import { AppSnackBarService } from '@app/shared/services/app-snack-bar.service';
+import { AuthService } from '@app/shared/services/auth.service';
 import { fromEvent, Subscription } from 'rxjs';
 
 @Component({
@@ -24,8 +26,10 @@ import { fromEvent, Subscription } from 'rxjs';
 })
 export class FriendLinkComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
-    private _appDialog: AppDialogService,
-    private _friednLinkApi: FriendLinkApiService
+    private _dialog: AppDialogService,
+    private _friednLinkApi: FriendLinkApiService,
+    private _auth: AuthService,
+    private _snackBar: AppSnackBarService
   ) {}
 
   @ViewChild('friendCard') friendCardRef!: ElementRef<HTMLElement>;
@@ -65,6 +69,19 @@ export class FriendLinkComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
   openDialog() {
-    this._appDialog.createFriendLink();
+    if (this._auth.isLogin) {
+      this._dialog.createFriendLink();
+    } else {
+      this._snackBar.warning('登陆后才能创建友链哦');
+      const sub = this._dialog
+        .login()
+        .afterClosed()
+        .subscribe((res) => {
+          if (res?.code === 1) {
+            sub.unsubscribe();
+            this._dialog.createFriendLink();
+          }
+        });
+    }
   }
 }

@@ -25,7 +25,6 @@ export class LoginDialogComponent implements OnInit {
       AppDialogType.Response
     >,
     private _tokenApi: TokenApiService,
-    private _appSnackBarService: AppSnackBarService,
     private _userInfoService: UserInfoService
   ) {}
   @Output()

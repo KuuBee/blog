@@ -3,7 +3,7 @@
  * @Author: KuuBee
  * @Date: 2021-01-18 11:18:07
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-03-14 16:20:48
+ * @LastEditTime: 2021-03-20 12:33:29
  */
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -20,12 +20,14 @@ export namespace AppDialogType {
     'DEFAULT' = 1,
     'OPEN_LOGIN' = 2,
     'OPEN_REGISTER' = 3,
+    'OPEN_FRIENDLINK' = 4,
   }
   export interface Response<T = any> {
     // 规定
     // 1 为正常返回值 不做任何处理
     // 2 为打开注册dialog
     // 3 为打开登陆dialog
+    // 4 为打开友链dialog
     code: responseCode;
     data: T;
   }

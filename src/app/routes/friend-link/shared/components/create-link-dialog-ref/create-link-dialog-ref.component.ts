@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -24,7 +24,7 @@ export class CreateLinkDialogRefComponent implements OnInit {
     private _fb: FormBuilder,
     private _userInfo: UserInfoService,
     private _friendLinkApi: FriendLinkApiService,
-    private _utils: AppUtilsService
+    private _utils: AppUtilsService,
   ) {}
 
   linkForm = this._fb.group({
