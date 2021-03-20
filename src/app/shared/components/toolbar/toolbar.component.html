@@ -25,7 +25,7 @@
         <span>模式</span>
       </button>
       <!-- TODO 跳转github issue -->
-      <button mat-menu-item>
+      <button mat-menu-item (click)="toGithub()">
         <mat-icon>bug_report</mat-icon>
         <span>异常</span>
       </button>
@@ -54,7 +54,7 @@
       <mat-icon>{{ isDark ? "wb_sunny" : "bedtime" }}</mat-icon>
     </button>
     <!-- TODO 跳转github issue -->
-    <button mat-icon-button>
+    <button mat-icon-button (click)="toGithub()">
       <mat-icon>bug_report</mat-icon>
     </button>
     <button mat-icon-button routerLink="/favorite">

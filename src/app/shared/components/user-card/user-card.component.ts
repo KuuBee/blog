@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { UserInfoService } from '../../services/user-info.service';
+import { RpcApiService, RpcApiType } from '@app/core/api/rpc-api.service';
 
 @Component({
   selector: 'app-user-card',
@@ -19,22 +20,9 @@ import { UserInfoService } from '../../services/user-info.service';
   ],
 })
 export class UserCardComponent implements OnInit {
-  constructor(public userInfo: UserInfoService) {}
+  constructor(public userInfo: UserInfoService, private _rpc: RpcApiService) {}
   @Input() isShowBoxShadow = true;
-  readonly articleInfoIcons = [
-    {
-      icon: 'article',
-      tips: '文章',
-    },
-    {
-      icon: 'class',
-      tips: '分类',
-    },
-    {
-      icon: 'tag',
-      tips: '标签',
-    },
-  ];
+  articleInfoIcons: RpcApiType.Response.TagData[] = [];
   get cardStyle() {
     if (!this.isShowBoxShadow)
       return {
@@ -42,5 +30,12 @@ export class UserCardComponent implements OnInit {
       };
     return {};
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getBlogInfo();
+  }
+  getBlogInfo() {
+    this._rpc.getBlogInfo().subscribe(({ data: { tag: tagData } }) => {
+      this.articleInfoIcons = tagData;
+    });
+  }
 }

@@ -6,6 +6,7 @@
     <!-- <div class="user-card__content__address">
       {{ userInfo.country }} {{ userInfo.city }}
     </div> -->
+    <!-- TODO 补上info功能 -->
     <div
       class="user-card__content__article-info"
       fxLayout="row"
@@ -19,7 +20,7 @@
         class="icon"
       >
         <mat-icon size="20">{{ item.icon }}</mat-icon>
-        <div class="text-overflow-ellipsis">0</div>
+        <div class="text-overflow-ellipsis">{{ item.count }}</div>
       </div>
     </div>
   </mat-card-content>

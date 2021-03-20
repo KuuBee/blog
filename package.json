@@ -38,6 +38,7 @@
     "rxjs": "~6.6.0",
     "scroll-into-view-if-needed": "^2.2.26",
     "tslib": "^2.0.0",
+    "xss": "^1.0.8",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

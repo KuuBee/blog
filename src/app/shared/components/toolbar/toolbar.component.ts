@@ -54,4 +54,7 @@ export class ToolbarComponent implements OnInit {
   logout() {
     this._auth.logout();
   }
+  toGithub() {
+    window.open('https://github.com/KuuBee/blog/issues');
+  }
 }
