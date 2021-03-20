@@ -5,6 +5,7 @@ import { ArticleApiType } from '@app/core/api/article-api.service';
 import { SearchApiType } from '@app/core/api/search-api.service';
 import { AppMarkdownService } from '@app/shared/services/app-markdown.service';
 import { MarkdownComponent } from 'ngx-markdown';
+import { XssService } from '@app/shared/services/xss.service';
 
 enum ChangeType {
   previous,
@@ -18,15 +19,14 @@ enum ChangeType {
 })
 export class AppMarkdownComponent implements OnInit {
   constructor(
-    private snackBar: MatSnackBar,
-    private appMarkdownService: AppMarkdownService
+    private _snackBar: MatSnackBar,
+    private _markdown: AppMarkdownService,
+    private _xss: XssService
   ) {}
   // 是否需要收缩
   @Input() isShrink: boolean = false;
   // 远程数据地址 远程数据优先级更高
   @Input() src?: string;
-  // 本地数据内容
-  @Input() content?: string;
   // 文章id
   @Input() articleId!: number | string;
   // 文章标题
@@ -39,10 +39,19 @@ export class AppMarkdownComponent implements OnInit {
   @Input() date?: string;
 
   @Input('loading') outerLoading = false;
+  // 本地数据内容
+  @Input()
+  get content() {
+    return this._content;
+  }
+  set content(val: string) {
+    this._content = this._xss.filterXSS(val);
+  }
 
   @Output() load = new EventEmitter<MarkdownComponent>();
 
   loading = true;
+  private _content: string = '';
 
   get markdownContent() {
     if (this.src) return '';
@@ -62,16 +71,14 @@ export class AppMarkdownComponent implements OnInit {
     // 就导致获取2个 markdown，但因为之前都是在一页刷新，就从未发现这个问题
     // =。= 现在发现后就采用从组件 MarkdownComponent 实例上取已经存好的 dom 了
     // const markdownDom = document.getElementsByTagName('markdown')[0];
-    this.appMarkdownService.markdownDom$.next(
-      markdownComponent.element.nativeElement
-    );
+    this._markdown.markdownDom$.next(markdownComponent.element.nativeElement);
     this.load.emit(markdownComponent);
   }
   onError(err: any) {
-    throw new Error(err)
+    throw new Error(err);
   }
   changePage(type: 'previous' | 'next') {
-    this.snackBar.open(
+    this._snackBar.open(
       `你已经达到世界的尽头了${type === 'next' ? '(○´･д･)ﾉ' : 'ヽ(･д･`●)'}`,
       '关闭'
     );

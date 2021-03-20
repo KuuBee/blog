@@ -15,6 +15,7 @@ import { UserInfoService } from '@app/shared/services/user-info.service';
 import browserInfo from 'browser-info';
 import { Observable, Subscription } from 'rxjs';
 import { CommentService } from '@app/shared/services/comment.service';
+import { XssService } from '@app/shared/services/xss.service';
 
 @Component({
   selector: 'app-comment-input',
@@ -26,10 +27,10 @@ export class CommentInputComponent implements OnInit, OnDestroy {
   constructor(
     private _appDialogService: AppDialogService,
     private _userInfoService: UserInfoService,
-    private _appSnackBarService: AppSnackBarService,
     private _commentApi: CommentApiService,
     private _replyApi: ReplyApiService,
-    private _comment: CommentService
+    private _comment: CommentService,
+    private _xss: XssService
   ) {}
   @Input() placeholder = '支持markdown语法;-)';
   @Input() type: 'comment' | 'reply' = 'comment';
@@ -48,7 +49,7 @@ export class CommentInputComponent implements OnInit, OnDestroy {
 
   get markdownData() {
     if (this.inputText) {
-      return this.inputText;
+      return this._xss.filterXSS(this.inputText);
     } else {
       return '写点什么再来看看吧...';
     }
