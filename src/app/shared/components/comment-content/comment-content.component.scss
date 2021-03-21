@@ -1,4 +1,5 @@
 @import "@app/theme/theme.scss";
+@import "@app/shared/style/animations.scss";
 
 $avatar-radius: 50px;
 .app-comment-content {
@@ -38,7 +39,6 @@ $avatar-radius: 50px;
     height: $avatar-radius;
     border-radius: 50%;
     background-color: pink;
-    // background: url("") no-repeat center/cover;
   }
   &__content {
     flex: 1;
@@ -46,6 +46,8 @@ $avatar-radius: 50px;
     &__user-info {
       font-size: 14px;
       font-weight: bold;
+    }
+    &__message {
       padding: 7px 0;
     }
     &__action {
@@ -57,6 +59,17 @@ $avatar-radius: 50px;
           padding-left: 10px;
         }
       }
+    }
+  }
+  .under-line-from-start {
+    &:hover {
+      @include under-line-from-start();
+    }
+  }
+  .rotate {
+    &:hover {
+      transition: transform .3s;
+      transform: rotate(1turn);
     }
   }
 }

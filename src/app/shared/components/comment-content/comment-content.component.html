@@ -1,11 +1,20 @@
 <div class="app-comment-content">
-  <div class="app-comment-content__avatar mat-elevation-z3" [ngStyle]="avatarStyle">
+  <div
+    class="app-comment-content__avatar mat-elevation-z3"
+    [class.rotate]="data?.link"
+    [ngStyle]="avatarStyle"
+    (click)="toOtherBlog(data?.link)"
+  >
     <!-- <img [src]="avatar" alt="我裂开了" /> -->
   </div>
   <div class="app-comment-content__content">
-    <div class="app-comment-content__content__user-info">
+    <span
+      class="app-comment-content__content__user-info"
+      [class.under-line-from-start]="data?.link"
+      (click)="toOtherBlog(data?.link)"
+    >
       {{ data?.name + (data?.level === 200 ? "(博主)" : "") }}
-    </div>
+    </span>
     <div class="app-comment-content__content__message">
       <markdown emoji ngPreserveWhitespaces>
         {{ data?.content }}

@@ -90,4 +90,8 @@ export class CommentContentComponent implements OnInit, OnDestroy {
   trackByItem(_index: number, item: ReplyApiType.Response.IndexData) {
     return item.replyId;
   }
+  toOtherBlog(link?: string) {
+    if (!link) return;
+    window.open(link);
+  }
 }
