@@ -48,11 +48,19 @@ export class CommentContentComponent implements OnInit, OnDestroy {
         background,
       };
     } else {
-      return {
-        width: '0',
-        height: '0',
-        background,
-      };
+      if (this.isXs) {
+        return {
+          width: '0',
+          height: '0',
+          background,
+        };
+      } else {
+        return {
+          width: '30px',
+          height: '30px',
+          background,
+        };
+      }
     }
   }
   get replyType() {
