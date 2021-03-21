@@ -14,6 +14,7 @@ import { CommentService } from '@app/shared/services/comment.service';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
+import { RpcApiService } from '@app/core/api/rpc-api.service';
 
 export interface CommentDataType extends CommentApiType.Response.IndexData {
   reply: ReplyApiType.Response.IndexData[];
@@ -31,7 +32,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
     private _replyApi: ReplyApiService,
     private _route: ActivatedRoute,
     private _comment: CommentService,
-    private _utils: AppUtilsService
+    private _utils: AppUtilsService,
+    private _rpc: RpcApiService
   ) {}
   articleId: string = '';
   articleInfo?: ArticleApiType.Response.InfoData;
@@ -42,6 +44,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   commentDataArr: CommentDataType[] = [];
   commentSub?: Subscription;
   contentDomSub?: Subscription;
+  pageArr: [number | null, number | null] = [null, null];
 
   get articleLink() {
     if (environment.production) {
@@ -55,6 +58,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this._route.params.subscribe((res) => {
       this.articleId = res.id;
       this.requestArticleInfo();
+      this.getArticlePageContext();
     });
     this.commentSub = this._comment.mainObs$.subscribe(() => {
       this.requestCommentIndex();
@@ -98,6 +102,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
         });
         this.commentLoading = false;
       });
+  }
+  // 获取上一页下一页
+  getArticlePageContext() {
+    this._rpc.getArticlePageContext(this.articleId).subscribe(({ data }) => {
+      this.pageArr = [data.previous, data.next];
+    });
   }
   onLoad() {
     this.contentDomSub = this._utils.contentDom$.subscribe((res) => {

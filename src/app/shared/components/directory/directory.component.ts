@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import {
   MatTreeNestedDataSource,
   NestedTreeControl,
@@ -9,7 +10,7 @@ import {
 } from '@app/shared/services/app-markdown.service';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
 import { combineLatest, fromEvent, of, Subscription } from 'rxjs';
-import { concatMap } from 'rxjs/operators';
+import { concatMap, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-directory',
@@ -19,7 +20,8 @@ import { concatMap } from 'rxjs/operators';
 export class DirectoryComponent implements OnInit, OnDestroy {
   constructor(
     private _markdownService: AppMarkdownService,
-    private _utils: AppUtilsService
+    private _utils: AppUtilsService,
+    private _router: Router
   ) {}
   renderData: DirectoryType[] = [];
   dataSource = new MatTreeNestedDataSource<DirectoryType>();
@@ -38,6 +40,15 @@ export class DirectoryComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
     this.watchScroll();
+    // 需要监听路由改变
+    // 如果改变 需要先取消订阅 然后再次订阅
+    this._router.events.subscribe((res) => {
+      if (res instanceof NavigationStart)
+        this.scrollSubscription?.unsubscribe();
+      if (res instanceof NavigationEnd) {
+        this.watchScroll();
+      }
+    });
   }
   ngOnDestroy() {
     this.scrollSubscription?.unsubscribe();
@@ -51,6 +62,7 @@ export class DirectoryComponent implements OnInit, OnDestroy {
     let laysIndex: number | null = null;
     let targetContext: DirectoryType | null = null;
     let rootDomTop: number;
+
     this.scrollSubscription = this._utils.contentDom$
       .pipe(
         concatMap((val) => {
@@ -69,7 +81,7 @@ export class DirectoryComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         if (!res) return;
         this.flatTree = [];
-        const [headDom, renderData] = res;
+        const [headDom] = res;
         let targetDom: HTMLHeadElement | null = null;
         let targetIndex: number = NaN;
         for (const element of headDom) {

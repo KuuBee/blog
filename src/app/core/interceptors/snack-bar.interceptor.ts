@@ -37,7 +37,7 @@ export class SnackBarInterceptor implements HttpInterceptor {
             responseBody?.message?.length
           )
             this._appSnackBarService.success(responseBody.message);
-          if (!environment.production) console.log('请求结果:', val.body);
+          // if (!environment.production) console.log('请求结果:', val.body);
         }
         return of(val);
       })

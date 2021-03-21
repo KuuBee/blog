@@ -21,7 +21,7 @@ export class AppMarkdownService {
       const children = Array.from(dom.children);
       const head = children.filter((item) =>
         this._tagList.includes(item.tagName.toLowerCase())
-      ) as HTMLHeadElement[];
+      ) as HTMLHeadElement[]; 
       return of(head);
     })
   );

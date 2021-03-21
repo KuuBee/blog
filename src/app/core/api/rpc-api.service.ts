@@ -5,6 +5,10 @@ import { ApiBase, ApiType } from '.';
 export namespace RpcApiType {
   export namespace Response {
     export type GetBlogInfo = ApiType.SuccessResponse<GetBlogInfoData>;
+    export type GetArticlePageContext = ApiType.SuccessResponse<{
+      previous: number | null;
+      next: number | null;
+    }>;
     export interface GetBlogInfoData {
       tag: TagData[];
     }
@@ -31,6 +35,16 @@ export class RpcApiService extends ApiBase {
   getBlogInfo() {
     return this._http.get<RpcApiType.Response.GetBlogInfo>(
       `${this._baseUrl}/getBlogInfo`
+    );
+  }
+  getArticlePageContext(id: string) {
+    return this._http.get<RpcApiType.Response.GetArticlePageContext>(
+      `${this._baseUrl}/getArticlePageContext`,
+      {
+        params: {
+          id,
+        },
+      }
     );
   }
 }

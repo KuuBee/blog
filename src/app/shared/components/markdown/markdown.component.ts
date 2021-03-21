@@ -6,6 +6,8 @@ import { SearchApiType } from '@app/core/api/search-api.service';
 import { AppMarkdownService } from '@app/shared/services/app-markdown.service';
 import { MarkdownComponent } from 'ngx-markdown';
 import { XssService } from '@app/shared/services/xss.service';
+import { Router } from '@angular/router';
+import { AppUtilsService } from '@app/shared/services/app-utils.service';
 
 enum ChangeType {
   previous,
@@ -21,7 +23,9 @@ export class AppMarkdownComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
     private _markdown: AppMarkdownService,
-    private _xss: XssService
+    private _xss: XssService,
+    private _router: Router,
+    private _utils: AppUtilsService
   ) {}
   // 是否需要收缩
   @Input() isShrink: boolean = false;
@@ -39,6 +43,8 @@ export class AppMarkdownComponent implements OnInit {
   @Input() date?: string;
 
   @Input('loading') outerLoading = false;
+
+  @Input() pageArr: [number | null, number | null] = [null, null];
   // 本地数据内容
   @Input()
   get content() {
@@ -71,6 +77,7 @@ export class AppMarkdownComponent implements OnInit {
     // 就导致获取2个 markdown，但因为之前都是在一页刷新，就从未发现这个问题
     // =。= 现在发现后就采用从组件 MarkdownComponent 实例上取已经存好的 dom 了
     // const markdownDom = document.getElementsByTagName('markdown')[0];
+
     this._markdown.markdownDom$.next(markdownComponent.element.nativeElement);
     this.load.emit(markdownComponent);
   }
@@ -78,12 +85,21 @@ export class AppMarkdownComponent implements OnInit {
     throw new Error(err);
   }
   changePage(type: 'previous' | 'next') {
-    this._snackBar.open(
-      `你已经达到世界的尽头了${type === 'next' ? '(○´･д･)ﾉ' : 'ヽ(･д･`●)'}`,
-      '关闭'
-    );
+    const page = type === 'previous' ? this.pageArr[0] : this.pageArr[1];
+    if (page?.toString()) {
+      this._utils.contentDom?.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+      this._router.navigateByUrl(`article/${page}`);
+    } else {
+      this._snackBar.open(
+        `你已经达到世界的尽头了${type === 'next' ? '(○´･д･)ﾉ' : 'ヽ(･д･`●)'}`,
+        '关闭'
+      );
+    }
   }
-  trackById(index: number, item: SearchApiType.Response.IndexData) {
+  trackById(_index: number, item: SearchApiType.Response.IndexData) {
     return item.id;
   }
 }

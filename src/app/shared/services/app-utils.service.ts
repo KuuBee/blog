@@ -12,6 +12,11 @@ import { take } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AppUtilsService {
+  constructor() {
+    this.contentDom$.subscribe((ele) => {
+      if (ele) this._contentDom = ele;
+    });
+  }
   private _contentDom?: Element;
   contentDom$ = new BehaviorSubject<null | Element>(null);
 
