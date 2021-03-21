@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <title>加载中哦 别走开呀</title>
     <base href="/" />
-    <!-- <base href="/blog/" /> -->
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
@@ -15,20 +14,6 @@
       href="https://autocode.icu/assets/favicon/favicon.ico"
     />
     <link rel="stylesheet" href="" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZHPKCC3LM8"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-ZHPKCC3LM8");
-    </script> -->
   </head>
   <style>
     #root-loading {
@@ -82,7 +67,6 @@
       <h1>加载中</h1>
     </div>
     <app-root id="root" style="display: none"></app-root>
-    <!-- <canvas id="riveCanvas"></canvas> -->
   </body>
   <script>
     const h1 = document.querySelector("#root-loading h1");
@@ -95,41 +79,20 @@
       if (!document.querySelector("#root-loading h1")) clearInterval(timer);
     }, 1000);
   </script>
-  <!-- <script src="https://unpkg.com/rive-canvas@0.6.5/rive.js"></script> -->
-  <script>
-    // const riveFile = new Request("./assets/rive/Trim.flr2d");
-    window.onload = () => {
-      // Rive({
-      //   locateFile: (file) => 'https://unpkg.com/rive-canvas@0.6.5/' + file,
-      // }).then((rive) => {
-      // console.log(rive);
-      // fetch(riveFile).then(res => {
-      //   return res.arrayBuffer()
-      // }).then(buf => {
-      //   const file = rive.load(new Uint8Array(buf));
-      //   console.log(rive);
-      //   const artboard = file.defaultArtboard();
-      //   const myAnim = artboard.animation('animation_name');
-      //   const myAnimInstance = new rive.LinearAnimationInstance(myAnim);
-      //   const canvas = document.getElementById('riveCanvas');
-      //   const ctx = canvas.getContext('2d');
-      //   const renderer = new rive.CanvasRenderer(ctx);
-      //   ctx.save();
-      //   renderer.align(rive.Fit.contain, rive.Alignment.center, {
-      //     minX: 0,
-      //     minY: 0,
-      //     maxX: canvas.width,
-      //     maxY: canvas.height
-      //   }, artboard.bounds);
-      //   artboard.draw(renderer);
-      //   ctx.restore();
-      // }).catch(err => {
-      //   console.log(err);
-      //   throw err;
-      // })
-      // Code goes here using Rive.
-      // });
-    };
-  </script>
   <!-- <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-ZHPKCC3LM8"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-ZHPKCC3LM8");
+  </script>
 </html>
