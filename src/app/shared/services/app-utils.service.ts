@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-
-import omit from 'lodash/omit';
-import omitBy from 'lodash/omitBy';
-import isNil from 'lodash/isNil';
+import { omit, omitBy, isNil } from 'lodash-es';
 
 import scrollIntoView, { Options } from 'scroll-into-view-if-needed';
 import { BehaviorSubject } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

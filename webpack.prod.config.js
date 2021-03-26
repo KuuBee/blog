@@ -3,12 +3,14 @@
  * @Author: KuuBee
  * @Date: 2020-12-13 15:23:22
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-03-18 16:23:33
+ * @LastEditTime: 2021-03-24 10:48:10
  */
 const { merge } = require("webpack-merge");
 const base = require("./webpack.config");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = merge(base, {
   mode: "production",
@@ -16,6 +18,13 @@ module.exports = merge(base, {
     new CompressionWebpackPlugin({
       algorithm: "gzip",
       deleteOriginalAssets: false,
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "json",
+      generateStatsFile: true,
+      statsOptions: {
+        source: false,
+      },
     }),
   ],
   optimization: {

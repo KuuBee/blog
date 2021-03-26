@@ -3,8 +3,6 @@ import { combineLatest, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SearchListService } from '../../shared/services/search-list.service';
 
-import { JSEncrypt } from 'jsencrypt';
-
 @Injectable({
   providedIn: 'root',
 })

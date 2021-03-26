@@ -27,7 +27,6 @@
             "tsConfig": "tsconfig.json",
             "aot": true,
             "allowedCommonJsDependencies": [
-              "lodash",
               "crypto-js/enc-utf8",
               "crypto-js/aes"
             ],
