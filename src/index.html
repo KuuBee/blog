@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="" />
   </head>
   <style>
+    .seo {
+      position: absolute;
+      top: 999px;
+      left: 999px;
+    }
     #root-loading {
       position: fixed;
       top: 0;
@@ -28,7 +33,7 @@
       justify-content: center;
       background-color: #fff;
     }
-    #root-loading h1 {
+    #root-loading span {
       padding: 20px;
       font-size: 50px;
       font-weight: lighter;
@@ -63,20 +68,21 @@
     }
   </style>
   <body class="mat-typography">
+    <h1 class="seo">KuuBee的猫窝</h1>
     <div id="root-loading">
-      <h1>加载中</h1>
+      <span>加载中</span>
     </div>
     <app-root id="root" style="display: none"></app-root>
   </body>
   <script>
-    const h1 = document.querySelector("#root-loading h1");
+    const h1 = document.querySelector("#root-loading span");
     const defalutText = h1.innerText;
     let times = 0;
     const timer = setInterval(() => {
       if (times > 3) times = 0;
       h1.innerText = defalutText.padEnd(defalutText.length + times, ".");
       times += 1;
-      if (!document.querySelector("#root-loading h1")) clearInterval(timer);
+      if (!document.querySelector("#root-loading span")) clearInterval(timer);
     }, 1000);
   </script>
   <!-- <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> -->

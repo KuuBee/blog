@@ -3,7 +3,7 @@
  * @Author: KuuBee
  * @Date: 2020-12-15 10:51:40
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-02-19 15:38:36
+ * @LastEditTime: 2021-04-06 15:53:47
  */
 @import "~@angular/material/theming";
 
@@ -141,6 +141,7 @@
           }
         }
         tbody {
+          margin: 20px 0;
           tr {
             > td {
               padding: 10px;
@@ -163,6 +164,8 @@
         }
       }
       p {
+        font-size: 15px;
+        line-height: 1.5em;
         > code {
           margin: 0 2px;
           padding: 3px;
