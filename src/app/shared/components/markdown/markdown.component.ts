@@ -1,4 +1,12 @@
-import { EventEmitter } from '@angular/core';
+import {
+  ComponentFactoryResolver,
+  ElementRef,
+  EventEmitter,
+  Injector,
+  OnDestroy,
+  StaticProvider,
+  ViewChild,
+} from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ArticleApiType } from '@app/core/api/article-api.service';
@@ -8,6 +16,10 @@ import { MarkdownComponent } from 'ngx-markdown';
 import { XssService } from '@app/shared/services/xss.service';
 import { Router } from '@angular/router';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
+import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
+import { ComponentPortal, Portal } from '@angular/cdk/portal';
+import { ImagePreviewComponent } from '../image-preview/image-preview.component';
+import { fromEvent, Subscription } from 'rxjs';
 
 enum ChangeType {
   previous,
@@ -19,13 +31,15 @@ enum ChangeType {
   templateUrl: './markdown.component.html',
   styleUrls: ['./markdown.component.scss'],
 })
-export class AppMarkdownComponent implements OnInit {
+export class AppMarkdownComponent implements OnInit, OnDestroy {
   constructor(
     private _snackBar: MatSnackBar,
     private _markdown: AppMarkdownService,
     private _xss: XssService,
     private _router: Router,
-    private _utils: AppUtilsService
+    private _utils: AppUtilsService,
+    private _overlay: Overlay,
+    private _injector: Injector
   ) {}
   // 是否需要收缩
   @Input() isShrink: boolean = false;
@@ -55,9 +69,11 @@ export class AppMarkdownComponent implements OnInit {
   }
 
   @Output() load = new EventEmitter<MarkdownComponent>();
+  @ViewChild('markdownRoot') markdownRoot?: ElementRef;
 
   loading = true;
   private _content: string = '';
+  private _imageClickSub: Subscription[] = [];
 
   get markdownContent() {
     if (this.src) return '';
@@ -66,9 +82,18 @@ export class AppMarkdownComponent implements OnInit {
   ngOnInit(): void {
     if (!this.src) {
       this.loading = false;
+      if (this.markdownContent) {
+        // 内容md不会出发onload函数
+        this.addImageOpenerListener();
+      }
     }
   }
+  ngOnDestroy() {
+    this._imageClickSub.forEach((item) => item.unsubscribe());
+  }
+  // 只有远程加载的md才会触发onload
   onLoad(markdownComponent: MarkdownComponent) {
+    this.addImageOpenerListener();
     this.loading = false;
     if (this.isShrink) return;
     // 下面一行有个巨坑
@@ -101,5 +126,62 @@ export class AppMarkdownComponent implements OnInit {
   }
   trackById(_index: number, item: SearchApiType.Response.IndexData) {
     return item.id;
+  }
+  /**
+   * @description: 给图片增加点击事件监听监听
+   */
+  addImageOpenerListener() {
+    setTimeout(() => {
+      const imageList: HTMLImageElement[] = Array.from(
+        this.markdownRoot?.nativeElement.querySelectorAll('img') ?? []
+      );
+      if (!imageList.length) return;
+      this._imageClickSub = imageList.map((item) => {
+        return fromEvent(item, 'click').subscribe(({ target }) => {
+          const src = (target as HTMLImageElement | null)?.src;
+          if (src) this.openImagePreview(src);
+        });
+      });
+    });
+  }
+  /**
+   * @description: 打开图片预览
+   * @param {string} src
+   */
+  openImagePreview(src: string) {
+    const config = new OverlayConfig({
+      panelClass: 'xxx',
+      hasBackdrop: true,
+      positionStrategy: this._overlay.position().global(),
+    });
+    const overlayRef = this._overlay.create(config);
+    overlayRef.backdropClick().subscribe(() => {
+      overlayRef.dispose();
+    });
+    overlayRef.attach(
+      new ComponentPortal(
+        ImagePreviewComponent,
+        null,
+        this._createImagePreviewInjector([
+          { provide: 'SRC', useValue: src },
+          {
+            provide: 'ON_CLOSE',
+            useValue: () => {
+              overlayRef.dispose();
+            },
+          },
+        ])
+      )
+    );
+  }
+  /**
+   * @description: 给组件注入数据
+   * @param {StaticProvider[]} providers
+   */
+  private _createImagePreviewInjector(providers: StaticProvider[]): Injector {
+    return Injector.create({
+      parent: this._injector,
+      providers,
+    });
   }
 }

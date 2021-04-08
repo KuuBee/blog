@@ -3,7 +3,7 @@
  * @Author: KuuBee
  * @Date: 2020-12-15 10:51:40
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-04-06 15:53:47
+ * @LastEditTime: 2021-04-06 16:10:07
  */
 @import "~@angular/material/theming";
 
@@ -117,7 +117,7 @@
       table {
         box-sizing: border-box;
         overflow: hidden;
-        margin-top: 20px;
+        margin: 20px 0;
         width: 100%;
         border-spacing: 0;
         border-radius: 5px;
@@ -141,7 +141,6 @@
           }
         }
         tbody {
-          margin: 20px 0;
           tr {
             > td {
               padding: 10px;

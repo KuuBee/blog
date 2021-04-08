@@ -1,0 +1,18 @@
+.image-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
+  user-select: none;
+  &__close {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

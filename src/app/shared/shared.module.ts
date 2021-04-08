@@ -32,6 +32,7 @@ import { DrawerContentComponent } from './components/drawer-content/drawer-conte
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ImageComponent } from './components/image/image.component';
 import { CustomReuseStrategy } from '@app/routes/routes.module';
+import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -43,7 +44,7 @@ export function markedOptionsFactory(): MarkedOptions {
   renderer.image = (href, _title, text) => {
     return `
       <p class="image" ${text ? 'title="' + text + '"' : ''}>
-        <img src="${href}" alt="${text}"  ondragstart="return false">
+        <img src="${href}" alt="${text}" ondragstart="return false">
       </p>
     `;
   };
@@ -106,6 +107,7 @@ const COMPONENTS: any[] = [
   DrawerContentComponent,
   ToolbarComponent,
   ImageComponent,
+  ImagePreviewComponent,
 ];
 const PROVIDERS: Provider[] = [];
 

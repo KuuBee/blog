@@ -46,24 +46,26 @@
     2. data 字符串
     -->
     <ng-container *ngIf="!outerLoading">
-      <markdown
-        *ngIf="src"
-        #markdownSrc
-        ngPreserveWhitespaces
-        emoji
-        [src]="src"
-        (load)="onLoad(markdownSrc)"
-        (error)="onError($event)"
-      >
-      </markdown>
-      <markdown
-        *ngIf="!src && markdownContent"
-        #markdown
-        ngPreserveWhitespaces
-        emoji
-        [data]="markdownContent"
-      >
-      </markdown>
+      <div #markdownRoot>
+        <markdown
+          *ngIf="src"
+          #markdownSrc
+          ngPreserveWhitespaces
+          emoji
+          [src]="src"
+          (load)="onLoad(markdownSrc)"
+          (error)="onError($event)"
+        >
+        </markdown>
+        <markdown
+          *ngIf="!src && markdownContent"
+          #markdown
+          ngPreserveWhitespaces
+          emoji
+          [data]="markdownContent"
+        >
+        </markdown>
+      </div>
     </ng-container>
   </mat-card-content>
   <mat-card-actions

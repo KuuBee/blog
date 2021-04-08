@@ -47,7 +47,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   pageArr: [number | null, number | null] = [null, null];
 
   get articleLink() {
-    if (environment.production) {
+    if (!this.articleInfo?.articleLink.match(/^file:\/\//)) {
       return this.articleInfo?.articleLink;
     }
     // 浏览器无法通过js跳转本地文件

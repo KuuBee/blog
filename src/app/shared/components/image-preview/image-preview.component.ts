@@ -1,0 +1,14 @@
+import { Component, Inject, Input, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-image-preview',
+  templateUrl: './image-preview.component.html',
+  styleUrls: ['./image-preview.component.scss'],
+})
+export class ImagePreviewComponent implements OnInit {
+  constructor(
+    @Inject('SRC') public src: string,
+    @Inject('ON_CLOSE') public onClose: Function
+  ) {}
+  ngOnInit(): void {}
+}
