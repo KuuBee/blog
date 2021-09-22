@@ -26,8 +26,6 @@ export class AppBlhxWivesComponent implements OnInit {
     if (Number.isNaN(this.r)) {
       this.r = Math.ceil((this.blhxData.length - 1) * Math.random());
     }
-    console.log(this.r);
-
     return this.blhxData[this.r] ?? null;
   }
   ngOnInit(): void {
@@ -46,6 +44,5 @@ export class AppBlhxWivesComponent implements OnInit {
       this.blhxData = res;
       window.localStorage.blhxWivesData = JSON.stringify(res);
     }
-    console.log(this.currentData);
   }
 }
