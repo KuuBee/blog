@@ -33,6 +33,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ImageComponent } from './components/image/image.component';
 import { CustomReuseStrategy } from '@app/routes/routes.module';
 import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
+import { AppBlhxWivesComponent } from './components/app-blhx-wives/app-blhx-wives.component';
 
 // function that returns `MarkedOptions` with renderer override
 export function markedOptionsFactory(): MarkedOptions {
@@ -84,6 +85,7 @@ const MODULES: any[] = [
   }),
 ];
 const COMPONENTS: any[] = [
+  AppBlhxWivesComponent,
   AppSearchComponent,
   AppMarkdownComponent,
   DirectoryComponent,

@@ -1,0 +1,30 @@
+@import "~@app/theme/theme.scss";
+.app-blhx-wives {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  align-items: flex-start;
+  &__lines {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #333;
+    background-color: #fff;
+    transition: all 0.3s;
+    @include mat-elevation(3);
+    &:hover {
+      @include mat-elevation(7);
+    }
+  }
+}
+
+:host-context(.dark-theme) {
+  .app-blhx-wives {
+    &__lines {
+      color: #fff;
+      background-color: #424242;
+    }
+  }
+}

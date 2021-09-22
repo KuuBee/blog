@@ -7,8 +7,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
-import aes from 'crypto-js/aes';
-import Utf8 from 'crypto-js/enc-utf8';
 
 @Injectable()
 export class FormDataInterceptor implements HttpInterceptor {

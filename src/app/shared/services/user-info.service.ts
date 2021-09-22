@@ -39,6 +39,19 @@ export class UserInfoService {
     return this._userInfo.avatar;
   }
   get name() {
+    const list1 = Array.from(document.querySelectorAll('ruby rb span'));
+    const list2 = Array.from(document.querySelectorAll('.xtb-image span'));
+    const res1 = list1.map((item) => item.innerHTML);
+    const res2 = list2.map((item) => item.innerHTML);
+    console.log(res1);
+    console.log(res2);
+    const res = res1.map((item, index) => ({
+      name: item,
+      trueName: res2[index],
+    }));
+    console.log(res);
+    JSON.stringify(res);
+
     return this._userInfo.name;
   }
 }
