@@ -1,12 +1,19 @@
-<div class="app-blhx-wives">
+<div
+  @myInsertRemoveTrigger
+  class="app-blhx-wives"
+  *ngIf="currentData?.imageList?.length"
+>
+  <audio
+    #audio
+    style="display: none"
+    [src]="currentData!.lines[linesIndex]?.recording"
+  ></audio>
   <app-image
     [src]="currentData!.imageList[0].url"
     [alt]="currentData!.imageList[0].name"
+    (click)="onClick()"
   ></app-image>
-  <div class="app-blhx-wives__lines">
-    我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词
-    我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词
-    我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词
-    我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词我是台词
+  <div *ngIf="isShowLines" class="app-blhx-wives__lines">
+    {{ currentData!.lines[linesIndex].lines }}
   </div>
 </div>
