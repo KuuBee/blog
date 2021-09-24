@@ -5,6 +5,7 @@
 export const environment = {
   baseUrl: '/api/blog',
   production: false,
+  hmr: false,
 };
 
 /*

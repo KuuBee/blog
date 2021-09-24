@@ -30,6 +30,11 @@
       border-right-color: #fff;
     }
   }
+  &__action {
+    position: absolute;
+    top: -10px;
+    left: 0;
+  }
 }
 
 :host-context(.dark-theme) {

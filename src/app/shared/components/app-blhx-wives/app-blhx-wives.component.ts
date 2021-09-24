@@ -34,7 +34,7 @@ interface BlhxData {
       ]),
       transition(':leave', [
         animate(
-          '10000ms',
+          '370ms',
           style({
             transform: 'scale(0)',
             opacity: 0,
