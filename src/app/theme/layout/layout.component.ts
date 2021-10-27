@@ -63,7 +63,7 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       icon: 'home',
       text: '主页',
-      link: '/',
+      link: '/home',
     },
     {
       icon: 'class',

@@ -31,7 +31,6 @@ import { NoContentComponent } from './components/no-content/no-content.component
 import { DrawerContentComponent } from './components/drawer-content/drawer-content.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ImageComponent } from './components/image/image.component';
-import { CustomReuseStrategy } from '@app/routes/routes.module';
 import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
 import { AppBlhxWivesComponent } from './components/app-blhx-wives/app-blhx-wives.component';
 
@@ -119,4 +118,4 @@ const PROVIDERS: Provider[] = [];
   providers: [],
   exports: [...MODULES, ...COMPONENTS],
 })
-export class SharedModule {}
+export class SharedModule { }

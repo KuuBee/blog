@@ -5,9 +5,9 @@ import { IndexComponent } from './index/index.component';
 import { InfoComponent } from './info/info.component';
 
 const routes: Routes = [
-  { path: '', component: IndexComponent },
+  { path: 'tag', component: IndexComponent },
   {
-    path: ':id',
+    path: 'tag/:id',
     component: InfoComponent,
   },
 ];

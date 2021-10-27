@@ -45,7 +45,7 @@ interface BlhxData {
   ],
 })
 export class AppBlhxWivesComponent implements OnInit {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   @ViewChild('audio') audioEl!: ElementRef<HTMLMediaElement>;
 
@@ -57,9 +57,9 @@ export class AppBlhxWivesComponent implements OnInit {
   get currentData() {
     if (!this.blhxData.length) return null;
     const getRandomIndex = () =>
-      (this.randomIndex = Math.ceil(
-        (this.blhxData.length - 1) * Math.random()
-      ));
+    (this.randomIndex = Math.ceil(
+      (this.blhxData.length - 1) * Math.random()
+    ));
     if (Number.isNaN(this.randomIndex)) getRandomIndex();
     const rightData = () => {
       if (this.blhxData[this.randomIndex].imageList.length) return;
@@ -67,7 +67,6 @@ export class AppBlhxWivesComponent implements OnInit {
       rightData();
     };
     rightData();
-    console.log(this.randomIndex);
     return this.blhxData[this.randomIndex] ?? null;
   }
   ngOnInit(): void {

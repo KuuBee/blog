@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FriendLinkComponent } from './index/friend-link.component';
 
-const routes: Routes = [{ path: '', component: FriendLinkComponent }];
+const routes: Routes = [{ path: 'friend-link', component: FriendLinkComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

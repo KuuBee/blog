@@ -25,7 +25,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'article',
+        path: '',
         loadChildren: () =>
           import('./article/article.module').then((m) => m.ArticleModule),
         data: {
@@ -37,7 +37,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'tag',
+        path: '',
         loadChildren: () => import('./tag/tag.module').then((m) => m.TagModule),
         data: {
           layoutComponents: [
@@ -48,7 +48,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'classification',
+        path: '',
         loadChildren: () =>
           import('./classification/classification.module').then(
             (m) => m.ClassificationModule
@@ -62,7 +62,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'friend-link',
+        path: '',
         loadChildren: () =>
           import('./friend-link/friend-link.module').then(
             (m) => m.FriendLinkModule
@@ -76,7 +76,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'archive',
+        path: '',
         loadChildren: () =>
           import('./archive/archive.module').then((m) => m.ArchiveModule),
         data: {
@@ -88,7 +88,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'about',
+        path: '',
         loadChildren: () =>
           import('./about/about.module').then((m) => m.AboutModule),
         data: {
@@ -100,7 +100,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'favorite',
+        path: '',
         loadChildren: () =>
           import('./favorite/favorite.module').then((m) => m.FavoriteModule),
         data: {

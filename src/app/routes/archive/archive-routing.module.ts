@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ArchiveComponent } from './index/archive.component';
 
-const routes: Routes = [{ path: '', component: ArchiveComponent }];
+const routes: Routes = [{ path: 'archive', component: ArchiveComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

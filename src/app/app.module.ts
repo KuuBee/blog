@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { httpInterceptorProviders } from '@app/core/interceptors/index';
 import { appInitializerProviders } from '@app/core/initializers';
 import { ThemeModule } from '@app/theme/theme.module';
-import { CustomReuseStrategy, RoutesModule } from './routes/routes.module';
+import { RoutesModule } from './routes/routes.module';
 
 // enableProdMode();
 @NgModule({
@@ -42,4 +42,4 @@ import { CustomReuseStrategy, RoutesModule } from './routes/routes.module';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
