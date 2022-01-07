@@ -76,14 +76,9 @@ export class LoginDialogComponent implements OnInit {
           code: AppDialogType.responseCode.DEFAULT,
           data: null,
         });
-        // this._appSnackBarService.success(res.message);
       });
   }
   register() {
     this.toRegister.emit();
-    // this._matDialogRef.close({
-    //   code: AppDialogType.responseCode.OPEN_REGISTER,
-    //   data: null,
-    // });
   }
 }

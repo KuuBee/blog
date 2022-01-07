@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@use "~@angular/material/theming" as *;
 
 @mixin app-theme($is-dark, $primary, $accent, $warn) {
   $snack-bar-background-color: #ffffff;

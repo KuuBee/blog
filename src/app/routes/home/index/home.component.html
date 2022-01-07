@@ -7,7 +7,7 @@
   <app-markdown
     *ngFor="let item of articleArr; trackBy: trackById"
     [isShrink]="true"
-    [content]="item.firstParagraph"
+    [content]="item.introduction??''"
     [articleTitle]="item.title"
     [tagArr]="item.tag"
     [classification]="item.classification"

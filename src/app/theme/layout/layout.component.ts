@@ -9,14 +9,12 @@ import {
 import { MediaObserver } from '@angular/flex-layout';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { searchBarBlurAnimation } from '@app/shared/animation/app-search.animation';
-import { AppDialogService } from '@app/shared/services/app-dialog.service';
 import { AppSearchService } from '@app/shared/services/app-search.service';
 import { AppThemeService } from '@app/shared/services/app-theme.service';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
 import { UserInfoService } from '@app/shared/services/user-info.service';
-import { link } from 'fs';
 import { Subscription } from 'rxjs';
-import { concatMap, delay, filter, take } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CursorService } from '@app/shared/services/cursor.service';
 
@@ -105,6 +103,7 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+
     this.initRoute();
     this.initMedia();
 

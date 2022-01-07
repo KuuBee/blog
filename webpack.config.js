@@ -3,7 +3,7 @@
  * @Author: KuuBee
  * @Date: 2020-12-11 15:00:17
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-03-18 15:24:29
+ * @LastEditTime: 2022-01-07 14:48:21
  */
 const path = require("path");
 module.exports = {
@@ -15,4 +15,12 @@ module.exports = {
       "@assets": path.resolve(__dirname, "src/assets"),
     },
   },
+  module:{
+    rules:[
+      {
+        test: /\.svg/,
+        type: 'asset/source'
+      }
+    ]
+  }
 };

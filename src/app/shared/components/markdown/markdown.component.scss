@@ -1,6 +1,8 @@
-@import "@app/theme/theme.scss";
+@use "@app/theme/theme.scss" as *;
 .app-article {
   position: relative;
+  border: 10px solid;
+  border-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%) 1;
   &--loading {
     position: absolute;
     left: 0;

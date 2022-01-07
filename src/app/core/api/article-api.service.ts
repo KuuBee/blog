@@ -27,6 +27,7 @@ export namespace ArticleApiType {
       updatedAt: string;
       classification: Classification;
       firstParagraph: string;
+      introduction?: string
     }
     export interface InfoData {
       articleId: number;

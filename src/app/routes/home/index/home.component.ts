@@ -5,6 +5,7 @@ import {
   ArticleApiType,
 } from '@app/core/api/article-api.service';
 import { AppUtilsService } from '@app/shared/services/app-utils.service';
+import { MarkdownParserService } from '@app/shared/services/markdown-parser.service';
 
 type ArticleIndexData = ArticleApiType.Response.IndexData;
 @Component({
@@ -17,7 +18,8 @@ type ArticleIndexData = ArticleApiType.Response.IndexData;
 export class HomeComponent implements OnInit {
   constructor(
     private _articleApi: ArticleApiService,
-    private _appUtils: AppUtilsService
+    private _appUtils: AppUtilsService,
+    private _mdParser: MarkdownParserService
   ) {}
   @ViewChild('loading') loadingRef!: ElementRef;
   // @HostBinding('@homePageAnimation')
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
   isShowEnd = false;
 
   ngOnInit(): void {
+    this._mdParser.init();
     this.intersectionObserver = new IntersectionObserver(
       ([first]) => {
         if (!this.loading && first.isIntersecting) {

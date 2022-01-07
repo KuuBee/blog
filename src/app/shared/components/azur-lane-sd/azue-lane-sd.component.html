@@ -1,0 +1,19 @@
+<div @myInsertRemoveTrigger class="azue-lane-sd" *ngIf="currentData?.imageList?.length">
+  <audio #audio style="display: none" [src]="currentData!.lines[linesIndex]?.recording"></audio>
+  <app-image [src]="currentData!.imageList[0].url" [alt]="currentData!.imageList[0].name" (click)="onClick()">
+  </app-image>
+  <div *ngIf="isShowLines" class="azue-lane-sd__lines">
+    {{ currentData!.lines[linesIndex].lines }}
+  </div>
+  <div class="azue-lane-sd__action">
+    <div>
+      <!-- 最小化 -->
+      <!-- fullscreen_exit -->
+      <mat-icon style="color: red;" svgIcon="refresh"></mat-icon>
+      <!-- 换一个 -->
+      <!-- <mat-icon>refresh</mat-icon> -->
+      <!-- 就你了（固定） -->
+      <!-- <mat-icon></mat-icon> -->
+    </div>
+  </div>
+</div>
