@@ -50,8 +50,6 @@ interface AzueLaneData {
 })
 export class AppAzueLaneSDComponent implements OnInit {
   constructor(private _http: HttpClient, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    console.log(refreshSvg);
-    
     iconRegistry.addSvgIconLiteral('refresh', sanitizer.bypassSecurityTrustHtml(refreshSvg))
   }
   @ViewChild('audio') audioEl!: ElementRef<HTMLMediaElement>;
