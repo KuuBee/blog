@@ -78,12 +78,12 @@ export class AppAzueLaneSDComponent implements OnInit {
     this._init();
   }
   async _init() {
-    const res = await this._http
+    this._http
       .get<AzueLaneData[]>(
         'https://autocode.icu/assets/images/blhx/data/blhx_gfs.json'
-      )
-      .toPromise();
-    this.azueLaneData = res;
+      ).subscribe(res => {
+        this.azueLaneData = res;
+      })
   }
   onClick() {
     if ((this.currentData?.lines.length ?? 0) <= 0) return;

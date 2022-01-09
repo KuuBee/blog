@@ -10,6 +10,6 @@ export class CommentService {
   }
   mainObs$: Subject<any>;
   commentUpdate() {
-    this.mainObs$.next();
+    this.mainObs$.next('');
   }
 }

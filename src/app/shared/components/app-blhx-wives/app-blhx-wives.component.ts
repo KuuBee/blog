@@ -77,13 +77,13 @@ export class AppBlhxWivesComponent implements OnInit {
     if (localStorage.blhxWivesData) {
       this.blhxData = JSON.parse(localData);
     } else {
-      const res = await this._http
+       this._http
         .get<BlhxData[]>(
           'https://autocode.icu/assets/images/blhx/data/blhx_gfs.json'
-        )
-        .toPromise();
-      this.blhxData = res;
-      window.localStorage.blhxWivesData = JSON.stringify(res);
+        ).subscribe(res=>{
+          this.blhxData = res;
+          window.localStorage.blhxWivesData = JSON.stringify(res);
+        })
     }
   }
   onClick() {
