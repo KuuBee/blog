@@ -1,5 +1,5 @@
-@import "@app/theme/theme.scss";
-@import "@app/shared/style/animations.scss";
+@use "@app/shared/style/animations" as animations;
+@use "@angular/material" as mat;
 
 $avatar-radius: 50px;
 .app-comment-content {
@@ -13,7 +13,7 @@ $avatar-radius: 50px;
   // https://angular.cn/guide/component-styles#host-context
   :host-context(.light-theme) {
     .app-comment-content__content__user-info {
-      color: map-get($map: $mat-deep-orange, $key: 600);
+      color: map-get($map: mat.$deep-orange-palette, $key: 600);
     }
     .app-comment-content__content__action {
       .action-left,
@@ -24,7 +24,7 @@ $avatar-radius: 50px;
   }
   :host-context(.dark-theme) {
     .app-comment-content__content__user-info {
-      color: map-get($map: $mat-deep-orange, $key: A200);
+      color: map-get($map: mat.$deep-orange-palette, $key: A200);
     }
     .app-comment-content__content__action {
       .date,
@@ -55,7 +55,6 @@ $avatar-radius: 50px;
       padding-bottom: 16px;
       .action-left {
         .comment {
-          // cursor: pointer;
           padding-left: 10px;
         }
       }
@@ -63,7 +62,7 @@ $avatar-radius: 50px;
   }
   .under-line-from-start {
     &:hover {
-      @include under-line-from-start();
+      @include animations.under-line-from-start();
     }
   }
   .rotate {

@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@use "@angular/material" as mat;
 .friend-card {
   // padding: 0 16px;
   // min-width: 288px;
@@ -8,7 +8,7 @@
 
     user-select: none;
     .avatar {
-      @include mat-elevation(3);
+      @include mat.elevation(3);
 
       border-radius: $radius;
       width: $radius;

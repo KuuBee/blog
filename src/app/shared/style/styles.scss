@@ -1,5 +1,4 @@
-@import "~@angular/material/theming";
-@import "./animations.scss";
+@use "@angular/material" as mat;
 
 // @font-face {
 //   font-family: "MaShanZheng-Regular";
@@ -44,7 +43,7 @@ body {
       auto;
   }
   a {
-    color: map-get($map: $mat-green, $key: 600);
+    color: map-get($map: mat.$green-palette, $key: 600);
   }
 }
 .dark-theme {
@@ -60,7 +59,7 @@ body {
       auto;
   }
   a {
-    color: map-get($map: $mat-deep-orange, $key: A200);
+    color: map-get($map: mat.$deep-orange-palette, $key: A200);
   }
 }
 // 全局类名

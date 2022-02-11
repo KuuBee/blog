@@ -1,4 +1,5 @@
-@import "@app/shared/style/index.scss";
+// @import "@app/shared/style/index.scss";
+@use "@app/style" as app;
 .directory {
   max-height: 600px;
   overflow-y: auto;
@@ -28,7 +29,7 @@
       display: none;
     }
     &--active {
-      @include under-line-from-start();
+      @include app.under-line-from-start();
     }
   }
 }

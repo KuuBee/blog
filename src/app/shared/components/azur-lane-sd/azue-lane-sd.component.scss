@@ -18,9 +18,7 @@
     transition: all 0.3s;
     text-overflow: ellipsis;
     filter: drop-shadow(3px 3px 4px rgba(#000,.5));
-    // @include mat-elevation(3);
     &:hover {
-      // @include mat-elevation(7);
       filter: drop-shadow(5px 5px 8px rgba(#000,.7));
     }
     &:after {

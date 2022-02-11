@@ -1,7 +1,21 @@
-$app-dark-primary: mat-palette($mat-blue-grey, 900);
-$app-dark-accent: mat-palette($mat-deep-orange, 900);
-$app-dark-warn: mat-palette($mat-red, A700);
-$theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
+@use "@angular/material" as mat;
+@use "../../shared/style/markdown" as md;
+@use "../style/app-theme" as app;
+
+$app-dark-primary: mat.define-palette(mat.$blue-palette, 900);
+// $mat-blue-grey
+$app-dark-accent: mat.define-palette(mat.$deep-orange-palette, 900);
+$app-dark-warn: mat.define-palette(mat.$red-palette, A700);
+$app-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $app-dark-primary,
+      accent: $app-dark-accent,
+      warn: $app-dark-warn,
+    ),
+  )
+);
+// mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn)
 $dark-primary: map-get(
   $map: $app-dark-primary,
   $key: default,
@@ -15,13 +29,11 @@ $dark-warn: map-get(
   $key: default,
 );
 .dark-theme {
-  @include angular-material-color($theme);
-  @include markdown(true, $dark-primary, $dark-accent, $dark-warn);
-  @include app-theme(true, $dark-primary, $dark-accent, $dark-warn);
-  @include angular-material-theme($theme);
+  @include mat.all-component-themes($app-dark-theme);
+  @include md.markdown(true, $dark-primary, $dark-accent, $dark-warn);
+  @include app.app-theme(true, $dark-primary, $dark-accent, $dark-warn);
 
   ::selection {
-    // background-color: map-get($mat-deep-orange, 700);
     background-color: $dark-accent;
     color: #ffffff;
   }

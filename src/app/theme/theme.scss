@@ -1,24 +1,20 @@
-@import "~@angular/material/theming";
-@import "../shared/style/markdown.scss";
-@import "./style/app-theme.scss";
-@import "./style/dark-theme.scss";
-@import "./style/light-theme.scss";
-@import "./style/mat-theme.scss";
+@use "@angular/material" as mat;
+
 // google 字体
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap");
 
-@include mat-core();
 
 // 字体
-$custom-typography: mat-typography-config(
+$custom-typography: mat.define-typography-config(
   $font-family: 'Noto Serif SC,Roboto, "Helvetica Neue", sans-serif',
   // 因为字体的原因 行高必须设置成1
-  $input: mat-typography-level(inherit, 1.4, 400),
+  $input: mat.define-typography-level(inherit, 1.4, 400),
 ); // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
-@include mat-base-typography($custom-typography);
+@include mat.core($custom-typography);
+// @include mat-base-typography($custom-typography);
 
-// Override typography for a specific Angular Material components.
-@include mat-checkbox-typography($custom-typography);
+// // Override typography for a specific Angular Material components.
+// @include mat-checkbox-typography($custom-typography);
 
-// Override typography for all Angular Material, including mat-base-typography and all components.
-@include angular-material-typography($custom-typography);
+// // Override typography for all Angular Material, including mat-base-typography and all components.
+// @include angular-material-typography($custom-typography);

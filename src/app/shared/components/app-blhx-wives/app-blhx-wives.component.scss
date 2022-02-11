@@ -1,4 +1,4 @@
-@import "~@app/theme/theme.scss";
+@use "@angular/material" as mat;
 .app-blhx-wives {
   position: fixed;
   bottom: 20px;
@@ -17,9 +17,9 @@
     background-color: #fff;
     transition: all 0.3s;
     text-overflow: ellipsis;
-    @include mat-elevation(3);
+    @include mat.elevation(3);
     &:hover {
-      @include mat-elevation(7);
+      @include mat.elevation(7);
     }
     &:after {
       content: "";

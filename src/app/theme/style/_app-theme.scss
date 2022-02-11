@@ -1,7 +1,7 @@
-@use "~@angular/material/theming" as *;
+@use "@angular/material" as mat;
 
 @mixin app-theme($is-dark, $primary, $accent, $warn) {
-  $snack-bar-background-color: #ffffff;
+  $snack-bar-background-color: #ddd5d5;
   $snack-bar-color: #333333;
   @if $is-dark {
     $snack-bar-background-color: #323232;
@@ -15,15 +15,15 @@
       color: $accent;
     }
     &--success {
-      background-color: map-get($map: $mat-green, $key: 500);
+      background-color: map-get($map: mat.$green-palette, $key: 500);
       color: #ffffff;
     }
     &--warning {
-      background-color: map-get($map: $mat-amber, $key: 700);
+      background-color: map-get($map: mat.$amber-palette, $key: 700);
       color: #ffffff;
     }
     &--error {
-      background-color: map-get($map: $mat-red, $key: A700);
+      background-color: map-get($map: mat.$red-palette, $key: A700);
       color: #ffffff;
     }
   }

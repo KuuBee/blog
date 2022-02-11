@@ -1,13 +1,14 @@
-@import "@app/theme/theme.scss";
+@use "@app/style" as app;
+
 :host-context(.light-theme) {
   .app-tag {
-    background-color: $light-accent;
+    background-color: app.$light-accent;
     color: #333;
   }
 }
 :host-context(.dark-theme) {
   .app-tag {
-    background-color: $dark-accent;
+    background-color: app.$dark-accent;
   }
 }
 

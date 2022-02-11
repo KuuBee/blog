@@ -3,9 +3,9 @@
  * @Author: KuuBee
  * @Date: 2020-12-15 10:51:40
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-04-06 16:10:07
+ * @LastEditTime: 2022-02-11 09:47:57
  */
-@import "~@angular/material/theming";
+@use "@angular/material" as mat;
 
 @mixin markdown($is-dark, $primary, $accent, $warn) {
   // 变量部分
@@ -15,7 +15,7 @@
     $table-border: 2px
       solid
       map-get(
-        $map: $mat-grey,
+        $map: mat.$grey-palette,
         $key: 500,
       );
     $h2-border: 1px solid #ffffff;
@@ -23,7 +23,7 @@
     $table-border: 2px
       solid
       map-get(
-        $map: $mat-grey,
+        $map: mat.$grey-palette,
         $key: 400,
       );
     $h2-border: 1px solid #000000;
@@ -92,7 +92,7 @@
       blockquote,
       table,
       pre {
-        @include mat-elevation(3, map-get($map: $mat-grey, $key: 700));
+        @include mat.elevation(3, map-get($map: mat.$grey-palette, $key: 700));
       }
       img {
         border-radius: 5px;
@@ -100,7 +100,7 @@
         transition: all 0.3s;
         &:hover {
           transform: scale(1.02);
-          @include mat-elevation(7, map-get($map: $mat-grey, $key: 800));
+          @include mat.elevation(7, map-get($map: mat.$grey-palette, $key: 800));
         }
       }
       blockquote {

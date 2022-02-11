@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@use "@angular/material" as mat;
 .register-dialog {
   &__content {
     mat-form-field {
@@ -29,9 +29,9 @@
             width: 80px;
             height: 80px;
             border-radius: 99px;
-            @include mat-elevation(2);
+            @include mat.elevation(2);
             &:hover {
-              @include mat-elevation(4);
+              @include mat.elevation(4);
               // cursor: pointer;
             }
           }
@@ -46,7 +46,7 @@
               width: 90px;
               height: 90px;
               border-radius: 99px;
-              background-color: map-get($map: $mat-light-blue, $key: 800);
+              background-color: map-get($map: mat.$light-blue-palette, $key: 800);
             }
           }
         }

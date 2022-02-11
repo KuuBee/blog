@@ -1,4 +1,4 @@
-@import "~@angular/material/theming";
+@use "@angular/material" as mat;
 .favorite {
   $diameter: 100px;
   mat-card-content {
@@ -15,9 +15,9 @@
         width: $diameter;
         height: $diameter;
         border-radius: 999px;
-        @include mat-elevation(3);
+        @include mat.elevation(3);
         &:hover {
-          @include mat-elevation(7);
+          @include mat.elevation(7);
         }
       }
       .name {

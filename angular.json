@@ -49,7 +49,8 @@
               "src/assets/script/prism-sql.min.js",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js",
-              "node_modules/emoji-toolkit/lib/js/joypixels.min.js"
+              "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
+              "src/assets/script/xss.min.js"
             ]
           },
           "configurations": {

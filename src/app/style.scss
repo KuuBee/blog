@@ -1,2 +1,10 @@
-@import "./shared/style/index.scss";
-@import "./theme/theme.scss";
+@forward "./shared/style/markdown";
+@forward "./shared/style/animations";
+@forward "./shared/style/icon-font";
+@forward "./theme/style/app-theme";
+@forward "./theme/style/dark-theme";
+@forward "./theme/style/light-theme";
+
+@use "./theme/theme";
+@use "./shared/style/index";
+@use "./theme/style/mat-theme";

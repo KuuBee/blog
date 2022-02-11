@@ -1,8 +1,8 @@
-@import "~@angular/material/theming";
+@use "@angular/material" as mat;
 .app-markdown-emoji {
   user-select: none;
   &:hover {
-    @include mat-elevation(8);
+    @include mat.elevation(8);
   }
   &__content {
     display: flex;
